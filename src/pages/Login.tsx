@@ -32,7 +32,7 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="relative flex min-h-screen w-full items-center justify-center bg-[url('src/assets/bg-img.jpg')] bg-no-repeat">
+    <div className="relative flex min-h-screen w-full items-center justify-center bg-[url('/bg-img.jpg')] bg-no-repeat">
       
       {/* Dark Mode Overlay */}
       <div className={`absolute inset-0 transition-colors duration-500 ${theme === 'dark' ? 'bg-black/60' : 'bg-transparent'}`} />

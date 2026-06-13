@@ -43,8 +43,8 @@ const Details = () => {
       try {
         const [courseRes, discountsRes, reviewsRes] = await Promise.all([
           axios.get(`https://6a0818fefa9b27c848faa2b1.mockapi.io/courses/teachers/${id}`),
-          axios.get("../../data/discountPrices.json"),
-          axios.get("../../data/studentReviews.json")
+          axios.get("/data/discountPrices.json"),
+          axios.get("/data/studentReviews.json")
         ]);
         setCourse(courseRes.data);
         setDiscountPrices(discountsRes.data);
