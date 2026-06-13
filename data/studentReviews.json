@@ -1,0 +1,842 @@
+[
+  {
+    "id": 1,
+    "totalReviews": "4.8k",
+    "studentsFullName": {
+      "student_1": "Emily Carter",
+      "student_2": "Daniel Wright",
+      "student_3": "Sophia Nguyen",
+      "student_4": "Michael Brooks"
+    },
+    "studentsReview": {
+      "student_1": "Clear structure and very practical explanations. I could apply the lessons immediately in real tasks.",
+      "student_2": "Great pacing and strong examples. The instructor explained the reasoning, not just the steps.",
+      "student_3": "Beginner-friendly but still detailed. The exercises helped me build confidence quickly.",
+      "student_4": "One of the most useful courses I’ve taken. The real-world approach made a big difference."
+    },
+    "lessonRatings": {
+      "student_1": 4.4,
+      "student_2": 4.1,
+      "student_3": 4.2,
+      "student_4": 4.8
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124155/943330fe-d606-4c70-8b41-6599103ddfd6_rl32rs.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125153/a2e30468-c036-4fff-a0a7-d294542f7d45_neif59.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124155/2c7eb4f1-5bc2-4e5d-9a06-99cb2e2eb814_cvq6xd.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125153/d9b16402-9ffb-4bf8-bde3-28696674de18_rtf8cn.jpg"
+    }
+  },
+  {
+    "id": 2,
+    "totalReviews": "6.0k",
+    "studentsFullName": {
+      "student_1": "Olivia Martinez",
+      "student_2": "Ethan Collins",
+      "student_3": "Ava Thompson",
+      "student_4": "Noah Patel"
+    },
+    "studentsReview": {
+      "student_1": "Actionable content and modern methods. I improved my workflow right after the first modules.",
+      "student_2": "Complex topics were explained simply. The checklists and examples were especially helpful.",
+      "student_3": "Loved the balance of theory and practice. Each lesson built logically on the previous one.",
+      "student_4": "Short, high-value lessons. The assignments were realistic and reinforced everything."
+    },
+    "lessonRatings": {
+      "student_1": 4.7,
+      "student_2": 4.3,
+      "student_3": 4.5,
+      "student_4": 4.6
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124155/2afbb330-f5fd-4464-bdaa-4eb98747c517_oevohi.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125153/834a86a7-7e41-4686-a50f-d04f9e67b2ef_wjopgf.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124155/d08ecb36-5b83-4d72-83f3-519e3a83fed2_e5dxmf.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125154/6489b96b-2250-406f-9664-23aa968f39c0_kmvkqp.jpg"
+    }
+  },
+  {
+    "id": 3,
+    "totalReviews": "6.8k",
+    "studentsFullName": {
+      "student_1": "Isabella Rossi",
+      "student_2": "Liam Johnson",
+      "student_3": "Mia Anderson",
+      "student_4": "James Wilson"
+    },
+    "studentsReview": {
+      "student_1": "Well organized and easy to follow. I finally understood the fundamentals clearly.",
+      "student_2": "Practical and focused. I saw measurable improvement within a couple of weeks.",
+      "student_3": "Great step-by-step approach. The templates made it easy to apply in my own work.",
+      "student_4": "Solid coverage of essentials. The course gave me a process I can repeat reliably."
+    },
+    "lessonRatings": {
+      "student_1": 4.4,
+      "student_2": 4.6,
+      "student_3": 4.5,
+      "student_4": 4.2
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124155/83353fb4-7de2-4c5c-bfab-efb2b2c95551_zhdiqs.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125154/b43ff370-9c92-4bf0-a4fd-7764faf84c51_sqcdxw.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124155/7b71a1d2-ad19-46bd-bc77-e8117f19833f_qopjmw.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125154/2ac159bd-56fb-4cda-85df-282eee404d13_hwxcva.jpg"
+    }
+  },
+  {
+    "id": 4,
+    "totalReviews": "3.3k",
+    "studentsFullName": {
+      "student_1": "Charlotte King",
+      "student_2": "Benjamin Lee",
+      "student_3": "Amelia Scott",
+      "student_4": "Henry Davis"
+    },
+    "studentsReview": {
+      "student_1": "High-quality content and great explanations. Everything felt relevant and practical.",
+      "student_2": "Good pacing and clear delivery. The instructor highlighted common mistakes and fixes.",
+      "student_3": "Very motivating and structured. I gained confidence with each module.",
+      "student_4": "Informative and practical. I’m now more organized and faster in execution."
+    },
+    "lessonRatings": {
+      "student_1": 4.8,
+      "student_2": 4.4,
+      "student_3": 4.7,
+      "student_4": 4.3
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124156/ee7675af-1b51-4f18-a855-4eeca420e7f7_ndibfy.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125154/224fc2df-46f3-46a8-becc-8dfa65b50055_n1m5kf.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124156/edb9a4d9-ce83-4f22-9178-2815b1b1b892_bregun.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125154/807b39b4-f31c-45e7-b944-9e1ecb41dc2d_wgke8j.jpg"
+    }
+  },
+  {
+    "id": 5,
+    "totalReviews": "4.0k",
+    "studentsFullName": {
+      "student_1": "Grace Walker",
+      "student_2": "Lucas Brown",
+      "student_3": "Harper Clark",
+      "student_4": "Jack Miller"
+    },
+    "studentsReview": {
+      "student_1": "Engaging lessons with clear examples. I liked how theory was tied to real scenarios.",
+      "student_2": "I gained real skills, not just information. The practice tasks were the best part.",
+      "student_3": "Excellent frameworks and modern approach. I saw improvement immediately.",
+      "student_4": "Strong course for the time invested. Simple, but it covered the important details."
+    },
+    "lessonRatings": {
+      "student_1": 4.6,
+      "student_2": 4.4,
+      "student_3": 4.9,
+      "student_4": 4.1
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124156/9bfe12c3-e1b8-4ec6-a4e7-41e039ca5ff1_driyzx.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125154/52c3cfbb-52ff-4b57-a9e0-e7bd1260aa9a_b7nhlx.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124156/62b3b4aa-8c2f-47bc-ac63-170a9d6af953_u9qcgt.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125154/d5d12c06-6cd7-43de-8e8a-dd67fff5cbf0_iiwimy.jpg"
+    }
+  },
+  {
+    "id": 6,
+    "totalReviews": "7.2k",
+    "studentsFullName": {
+      "student_1": "Sofia Garcia",
+      "student_2": "Sebastian Fischer",
+      "student_3": "Ella Robinson",
+      "student_4": "Mateo Silva"
+    },
+    "studentsReview": {
+      "student_1": "Very clear and patient explanations. Even difficult parts felt manageable.",
+      "student_2": "Useful, realistic, and repeatable. I now have a consistent process to follow.",
+      "student_3": "Practical lessons that boosted my confidence quickly. The structure was great.",
+      "student_4": "Well organized and focused on what matters. The assignments were genuinely helpful."
+    },
+    "lessonRatings": {
+      "student_1": 4.7,
+      "student_2": 4.3,
+      "student_3": 4.6,
+      "student_4": 4.2
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124156/f27663a1-f4f7-41d3-8ae0-1a756b6f4d17_s1rmvo.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125154/8977cbfc-4562-4e17-b538-43db75cc4f50_ahoxuz.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124156/63402d66-5cab-47c2-a36d-141873b1ad78_vdg31k.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125155/6da2242d-a5ec-443e-acb7-8f8af6fc7505_oitwvu.jpg"
+    }
+  },
+  {
+    "id": 7,
+    "totalReviews": "4.4k",
+    "studentsFullName": {
+      "student_1": "Victoria Adams",
+      "student_2": "Julian Baker",
+      "student_3": "Zoey Hernandez",
+      "student_4": "Nathan Cooper"
+    },
+    "studentsReview": {
+      "student_1": "Excellent clarity and real-world examples. Everything felt immediately usable.",
+      "student_2": "Direct teaching style with strong takeaways. I applied the techniques right away.",
+      "student_3": "Motivating and structured. I improved consistency and confidence in my work.",
+      "student_4": "Good value overall. The practice tasks reinforced the key concepts well."
+    },
+    "lessonRatings": {
+      "student_1": 4.8,
+      "student_2": 4.4,
+      "student_3": 4.6,
+      "student_4": 4.1
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124156/c8754f9a-9848-45ba-892c-f0809533cb57_vcdquv.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125155/6da2242d-a5ec-443e-acb7-8f8af6fc7505_oitwvu.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124156/6f4bcb59-c7e1-444a-9246-e8061e5cb987_fva7th.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125155/7abecddc-5fb1-449c-9fd3-b2a81bfcff17_a210gf.jpg"
+    }
+  },
+  {
+    "id": 8,
+    "totalReviews": "4.1k",
+    "studentsFullName": {
+      "student_1": "Penelope Young",
+      "student_2": "Leo Bennett",
+      "student_3": "Hannah Moore",
+      "student_4": "Gabriel Stone"
+    },
+    "studentsReview": {
+      "student_1": "High-quality content with a clear teaching style. I felt progress after every module.",
+      "student_2": "Clear explanations and strong examples. I leveled up faster than I expected.",
+      "student_3": "Loved the structure and the practical focus. The instructor made it easy to follow.",
+      "student_4": "Very useful and well paced. I could apply the lessons immediately at work."
+    },
+    "lessonRatings": {
+      "student_1": 4.7,
+      "student_2": 4.5,
+      "student_3": 4.4,
+      "student_4": 4.6
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124156/f1f0403d-c1da-468e-bddb-896f18ed61be_b1mkxr.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125155/0b01ffca-eb56-4534-a3d3-f8c031b43e99_tipnad.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124156/d01907ac-fff4-48f4-9a9c-f6589d7a9718_bnnnpv.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125155/8d3c64d6-e017-4ded-be16-740c53212849_ciyvy2.jpg"
+    }
+  },
+  {
+    "id": 9,
+    "totalReviews": "2.5k",
+    "studentsFullName": {
+      "student_1": "Emma Wilson",
+      "student_2": "Logan Scott",
+      "student_3": "Chloe Martin",
+      "student_4": "David Kim"
+    },
+    "studentsReview": {
+      "student_1": "Great explanations and a clear structure. I always knew what to do next.",
+      "student_2": "Very practical and focused. The examples felt real, not generic.",
+      "student_3": "The lessons were beginner-friendly but still detailed and useful.",
+      "student_4": "Strong course overall. I can apply these methods confidently now."
+    },
+    "lessonRatings": {
+      "student_1": 4.5,
+      "student_2": 4.2,
+      "student_3": 4.4,
+      "student_4": 4.6
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124156/4cb294cf-bac2-43f1-abc2-a2866483efbc_agole1.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125156/3bb400e3-40d7-4f82-b777-8ba55e11ca27_jnroja.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124157/7f715653-6001-47af-a09b-f4123e6bdf98_yj67qv.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125157/d12d318b-d5c3-42c2-ac26-a0451d3b93d3_havl9f.jpg"
+    }
+  },
+  {
+    "id": 10,
+    "totalReviews": "3.6k",
+    "studentsFullName": {
+      "student_1": "Sarah Johnson",
+      "student_2": "Andrew Miller",
+      "student_3": "Maya Singh",
+      "student_4": "Thomas Clark"
+    },
+    "studentsReview": {
+      "student_1": "Well paced and easy to follow. The structure made learning smooth.",
+      "student_2": "Clear teaching and practical tasks. I improved fast with consistent practice.",
+      "student_3": "Great real-world focus. I liked the step-by-step breakdown of each topic.",
+      "student_4": "Useful frameworks and clear examples. Definitely worth the time."
+    },
+    "lessonRatings": {
+      "student_1": 4.3,
+      "student_2": 4.4,
+      "student_3": 4.6,
+      "student_4": 4.5
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124157/5bd6dbab-6459-4773-aec0-59388ce93e2f_e16hhs.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125157/1cd98cdf-fbdf-47fb-8148-0bedcb07e01e_vwh9ub.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124157/7ad3c720-dba9-4670-9a6a-48d5fad5efc3_enas2w.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125157/0229281d-0861-4a54-b27f-fa3ea3e00438_rksyew.jpg"
+    }
+  },
+  {
+    "id": 11,
+    "totalReviews": "9.3k",
+    "studentsFullName": {
+      "student_1": "Isla Baker",
+      "student_2": "Ryan Edwards",
+      "student_3": "Natalie Perez",
+      "student_4": "Kevin Turner"
+    },
+    "studentsReview": {
+      "student_1": "Clear explanations with strong examples. I felt progress after each module.",
+      "student_2": "Practical and actionable. I used the lessons immediately in my workflow.",
+      "student_3": "Good balance between theory and practice. Everything felt relevant.",
+      "student_4": "Great course overall. The structure helped me stay consistent."
+    },
+    "lessonRatings": {
+      "student_1": 4.4,
+      "student_2": 4.2,
+      "student_3": 4.7,
+      "student_4": 4.3
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124157/b3345d23-3cc2-4d81-8b8d-5805e2811e44_sj8za1.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125158/990eb03f-1cb3-4d14-a81f-120e701b831d_sephvp.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124157/e446a6fd-4d54-4fd6-a328-7549036de3aa_acljai.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125158/e7ab5a16-5b96-4c79-9fba-ee9300786bf1_ptyjfr.jpg"
+    }
+  },
+  {
+    "id": 12,
+    "totalReviews": "6.2k",
+    "studentsFullName": {
+      "student_1": "Lily Stewart",
+      "student_2": "George Harris",
+      "student_3": "Zara Ahmed",
+      "student_4": "Jason Reed"
+    },
+    "studentsReview": {
+      "student_1": "Very understandable and well organized. I never felt overwhelmed.",
+      "student_2": "Direct, useful teaching style. The exercises improved my confidence.",
+      "student_3": "Practical and modern approach. The examples were especially helpful.",
+      "student_4": "Good pace and clear structure. I learned a process I can repeat."
+    },
+    "lessonRatings": {
+      "student_1": 4.6,
+      "student_2": 4.1,
+      "student_3": 4.5,
+      "student_4": 4.2
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124157/babb049d-ae73-4f80-a770-d17fa3df2794_n54fk7.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125158/bfd0801a-9d80-4c30-a170-95b8a886b152_on9p5o.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124157/2d4cc372-5339-4182-8c73-3967a41550be_g2jcfu.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125158/c914b67c-6a63-4fb8-8588-7f16cee1a734_laljir.jpg"
+    }
+  },
+  {
+    "id": 13,
+    "totalReviews": "7.5k",
+    "studentsFullName": {
+      "student_1": "Madison Price",
+      "student_2": "Owen Mitchell",
+      "student_3": "Hana Saito",
+      "student_4": "Samuel Brooks"
+    },
+    "studentsReview": {
+      "student_1": "High-quality content and clear delivery. I enjoyed the practical focus.",
+      "student_2": "The course gave me a clean system to follow. Very useful.",
+      "student_3": "Beginner-friendly and well paced. I learned faster than expected.",
+      "student_4": "Great examples and strong structure. The lessons were easy to apply."
+    },
+    "lessonRatings": {
+      "student_1": 4.8,
+      "student_2": 4.3,
+      "student_3": 4.4,
+      "student_4": 4.6
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124157/83ebd0d9-91ae-4c99-acb3-15a36d67de5f_pyonzh.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125159/e55f4967-47ca-4f14-923a-09d093cbff7b_qrul1x.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124157/ce28d3a7-4401-4c10-b57b-5a446e3491e5_qf2zmn.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125159/70c2f977-c648-4c10-8f71-1e4fcba27214_alnaun.jpg"
+    }
+  },
+  {
+    "id": 14,
+    "totalReviews": "10.3k",
+    "studentsFullName": {
+      "student_1": "Ella Thompson",
+      "student_2": "Nicholas Green",
+      "student_3": "Irene Lopez",
+      "student_4": "Caleb Parker"
+    },
+    "studentsReview": {
+      "student_1": "Clear and practical. The lessons were short but packed with value.",
+      "student_2": "Good pacing and real examples. I liked how everything was explained logically.",
+      "student_3": "The course helped me stay organized and focus on what matters.",
+      "student_4": "Very useful frameworks. I can now apply this in real projects confidently."
+    },
+    "lessonRatings": {
+      "student_1": 4.5,
+      "student_2": 4.2,
+      "student_3": 4.4,
+      "student_4": 4.7
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124157/da7bafbc-73a2-4877-a94c-2e3715c99a7d_qoupqe.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125159/1be4eeb0-bb06-4ca2-9f30-a8df81ff44db_jxpvhu.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124157/1daf7b09-19cc-4dc1-9a4c-6469c90a5299_rmxvfd.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125160/0f9d0f16-f072-443c-9bd5-ae3c02943a13_zhklzu.jpg"
+    }
+  },
+  {
+    "id": 15,
+    "totalReviews": "6.9k",
+    "studentsFullName": {
+      "student_1": "Ruby Collins",
+      "student_2": "Jonathan White",
+      "student_3": "Ananya Rao",
+      "student_4": "Peter Evans"
+    },
+    "studentsReview": {
+      "student_1": "Loved the step-by-step structure. It made complex topics feel easy.",
+      "student_2": "Very practical course. The checklists and tasks helped a lot.",
+      "student_3": "Strong examples and clear teaching. I gained confidence quickly.",
+      "student_4": "Well organized and useful. I learned techniques I can reuse."
+    },
+    "lessonRatings": {
+      "student_1": 4.7,
+      "student_2": 4.3,
+      "student_3": 4.6,
+      "student_4": 4.4
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124158/d0f198fc-526b-404d-9959-b8c35eae25b6_pyqdm5.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125160/769dc48a-2354-493a-b8ab-039ae6f9923f_cjpzph.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124158/2f346f79-8408-44f2-9a53-0153f6685717_ou1tp5.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125160/1817d2c0-1e0d-4f2a-9f38-10680795678f_fuz8et.jpg"
+    }
+  },
+  {
+    "id": 16,
+    "totalReviews": "6.3k",
+    "studentsFullName": {
+      "student_1": "Stella Martin",
+      "student_2": "Adam Lewis",
+      "student_3": "Leila Haddad",
+      "student_4": "Connor Hughes"
+    },
+    "studentsReview": {
+      "student_1": "Clear, modern, and practical. I enjoyed the examples and tasks.",
+      "student_2": "Direct teaching style with strong results. I improved quickly.",
+      "student_3": "The course explained the why behind each step. That helped a lot.",
+      "student_4": "Very useful and well structured. Great balance of theory and practice."
+    },
+    "lessonRatings": {
+      "student_1": 4.6,
+      "student_2": 4.2,
+      "student_3": 4.5,
+      "student_4": 4.4
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124158/7178627a-3b94-4574-8af4-bb70b6a8ac25_sa9wwi.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125161/4887da73-f88f-4e2a-b50c-165954158699_yusr3x.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124158/dadd5350-1b7e-47c8-a051-37002654f1de_xnqv3w.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125161/303ec71a-8c59-485b-812d-26cf7d527882_kzp8oa.jpg"
+    }
+  },
+  {
+    "id": 17,
+    "totalReviews": "6.6k",
+    "studentsFullName": {
+      "student_1": "Sienna Walker",
+      "student_2": "Brandon Hall",
+      "student_3": "Mei Lin",
+      "student_4": "Diego Ramirez"
+    },
+    "studentsReview": {
+      "student_1": "Well paced and very clear. I liked the practical assignments.",
+      "student_2": "Strong structure and useful frameworks. Everything felt actionable.",
+      "student_3": "Beginner-friendly and detailed. I finally understood the fundamentals.",
+      "student_4": "Great real-world focus. I can apply this directly in my work."
+    },
+    "lessonRatings": {
+      "student_1": 4.4,
+      "student_2": 4.3,
+      "student_3": 4.6,
+      "student_4": 4.5
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124158/06b8118e-8b66-4c93-b791-559eb1c191d6_a1vfnx.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125161/a6bceb06-43ea-41aa-be9c-7df31d57987f_hjtk5o.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124158/27178f8e-879f-4ef3-81c0-b88a5bac8f7c_qke7be.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125162/33ca9007-4827-4901-b3ad-bf7eada47129_abwzfc.jpg"
+    }
+  },
+  {
+    "id": 18,
+    "totalReviews": "7.7k",
+    "studentsFullName": {
+      "student_1": "Nora Young",
+      "student_2": "Sean Morgan",
+      "student_3": "Fatima Noor",
+      "student_4": "Alexandre Dubois"
+    },
+    "studentsReview": {
+      "student_1": "Clear explanations and helpful examples. The pacing was great.",
+      "student_2": "Practical and direct. I learned a process I can repeat consistently.",
+      "student_3": "Very useful course. The exercises made everything easier to retain.",
+      "student_4": "Good structure and strong delivery. I’d recommend it to others."
+    },
+    "lessonRatings": {
+      "student_1": 4.5,
+      "student_2": 4.2,
+      "student_3": 4.4,
+      "student_4": 4.6
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124158/3bc8c357-c37e-40a3-8fce-3a47a92e5edf_ddu3c4.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125162/8294cd82-4e9a-40f9-83b5-1636f0fa6a59_adfft1.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124158/0cf563b3-48b7-40a8-bb8d-eb669b2bf0b3_pkgdxp.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125162/3a91d7cd-b1bd-4d05-aee5-fe3fe0e72b03_xz7lqt.jpg"
+    }
+  },
+  {
+    "id": 19,
+    "totalReviews": "7.1k",
+    "studentsFullName": {
+      "student_1": "Leah Cooper",
+      "student_2": "Tyler Bennett",
+      "student_3": "Aisha Khan",
+      "student_4": "Marco Bianchi"
+    },
+    "studentsReview": {
+      "student_1": "Excellent course. The structure helped me stay focused and consistent.",
+      "student_2": "Clear and actionable. The real examples were the most valuable part.",
+      "student_3": "Very practical approach. I improved my confidence and speed.",
+      "student_4": "High-quality lessons and great pacing. I learned a lot in a short time."
+    },
+    "lessonRatings": {
+      "student_1": 4.8,
+      "student_2": 4.4,
+      "student_3": 4.6,
+      "student_4": 4.7
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124159/cf7dfe5b-f57e-4c23-a8f5-7a7fb91cf17e_twpstv.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125162/50192194-eb6c-4250-81b5-ef443c8e971c_qxix9e.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124159/195355c2-c6ba-490b-8bd7-c486cc4cb0c6_zoi76d.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125162/610da67c-0b40-4f5d-b6b6-e19f1b30c7be_rnzw5m.jpg"
+    }
+  },
+  {
+    "id": 20,
+    "totalReviews": "2.8k",
+    "studentsFullName": {
+      "student_1": "Violet Reed",
+      "student_2": "Chris Anderson",
+      "student_3": "Sana Iqbal",
+      "student_4": "Hugo Laurent"
+    },
+    "studentsReview": {
+      "student_1": "Well structured and easy to follow. I liked the step-by-step approach.",
+      "student_2": "Good value and practical lessons. I used the methods immediately.",
+      "student_3": "Clear teaching and helpful exercises. It felt very beginner-friendly.",
+      "student_4": "Strong course overall. The instructor explained concepts clearly."
+    },
+    "lessonRatings": {
+      "student_1": 4.3,
+      "student_2": 4.2,
+      "student_3": 4.4,
+      "student_4": 4.1
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124159/536c7b0d-6eb7-44b6-8876-beed079f34f7_erugsr.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125163/975b70d3-f1da-47e1-92ba-b3b796a53d35_n9d9v9.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124159/34e7325a-d880-4d81-a188-8b479b4ca503_jyjmxe.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125163/377765a5-8072-4fa4-b4df-332ffd572bec_ulkqpz.jpg"
+    }
+  },
+  {
+    "id": 21,
+    "totalReviews": "2.2k",
+    "studentsFullName": {
+      "student_1": "Alice Morgan",
+      "student_2": "Jordan Hayes",
+      "student_3": "Priya Desai",
+      "student_4": "Kenji Tanaka"
+    },
+    "studentsReview": {
+      "student_1": "Clear, practical lessons. I enjoyed the examples and the structure.",
+      "student_2": "Very useful frameworks. I can apply this directly in my projects.",
+      "student_3": "Good balance of detail and simplicity. I learned faster than expected.",
+      "student_4": "Great pacing and strong delivery. The practice tasks were helpful."
+    },
+    "lessonRatings": {
+      "student_1": 4.5,
+      "student_2": 4.4,
+      "student_3": 4.6,
+      "student_4": 4.3
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124159/34e7325a-d880-4d81-a188-8b479b4ca503_jyjmxe.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125163/4692c991-0be9-4e63-abca-cf8a3ff6ec5a_vvms1r.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124159/dd66524a-7a16-468b-8775-11896ddb495b_m3r0j7.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125164/5cd3719c-529d-4163-81ca-6b08f5858927_quipks.jpg"
+    }
+  },
+  {
+    "id": 22,
+    "totalReviews": "5.4k",
+    "studentsFullName": {
+      "student_1": "Claire Peterson",
+      "student_2": "Ian Rogers",
+      "student_3": "Nadia Hassan",
+      "student_4": "Felix Schneider"
+    },
+    "studentsReview": {
+      "student_1": "Very clear explanations. The lessons felt organized and practical.",
+      "student_2": "Direct and helpful teaching style. I improved quickly with practice.",
+      "student_3": "Realistic examples and great pacing. The structure kept me motivated.",
+      "student_4": "Strong course overall. I learned a repeatable process that works."
+    },
+    "lessonRatings": {
+      "student_1": 4.4,
+      "student_2": 4.2,
+      "student_3": 4.5,
+      "student_4": 4.3
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124159/295ef7e8-7c6c-415e-a24d-e6866909c94b_ze2asr.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125164/94fee328-00c1-4cbc-9e6e-5ff47e8771a7_noxeso.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780124159/1af7227e-093a-440b-92b4-b8b79209f658_hvlyp0.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125164/46b257b0-5bf4-4d5d-99ab-034873650d4b_v7jkr7.jpg"
+    }
+  },
+  {
+    "id": 23,
+    "totalReviews": "5.2k",
+    "studentsFullName": {
+      "student_1": "Brooke Turner",
+      "student_2": "Evan Mitchell",
+      "student_3": "Hyejin Park",
+      "student_4": "Rafael Costa"
+    },
+    "studentsReview": {
+      "student_1": "Great content and clear delivery. I could follow everything easily.",
+      "student_2": "Practical lessons and useful exercises. The frameworks were excellent.",
+      "student_3": "Beginner-friendly and detailed. I gained confidence step by step.",
+      "student_4": "Very useful course. I applied the lessons immediately in real work."
+    },
+    "lessonRatings": {
+      "student_1": 4.6,
+      "student_2": 4.4,
+      "student_3": 4.3,
+      "student_4": 4.7
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1779003847/woman_01_qvpcva.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125165/054d5e87-6672-42aa-b18a-7cfce96a6594_fha37m.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1779003847/woman_02_gudje7.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125165/4f27b743-b36a-4416-b0d5-ee99c48a4183_vebm7e.jpg"
+    }
+  },
+  {
+    "id": 24,
+    "totalReviews": "9.1k",
+    "studentsFullName": {
+      "student_1": "Paige Edwards",
+      "student_2": "Luke Harrison",
+      "student_3": "Mariam Saleh",
+      "student_4": "Arthur Moreau"
+    },
+    "studentsReview": {
+      "student_1": "Well paced and easy to follow. The practice tasks were very helpful.",
+      "student_2": "Clear, direct, and practical. I learned techniques I can reuse.",
+      "student_3": "Good structure and strong examples. I stayed engaged throughout.",
+      "student_4": "High-quality course with practical focus. Worth the time."
+    },
+    "lessonRatings": {
+      "student_1": 4.3,
+      "student_2": 4.2,
+      "student_3": 4.5,
+      "student_4": 4.4
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1779003847/woman_03_ak0op0.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125166/deada86d-128d-4033-9cc1-61ed50335d42_o9ql8x.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1779003845/woman_09_i0wxnd.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125166/b8fcf7f6-123e-47b7-8bc9-db5b67fb0c3b_oqsbsc.jpg"
+    }
+  },
+  {
+    "id": 25,
+    "totalReviews": "4.5k",
+    "studentsFullName": {
+      "student_1": "Lucy Bennett",
+      "student_2": "Aaron Collins",
+      "student_3": "Yasmin El-Sayed",
+      "student_4": "Bruno Almeida"
+    },
+    "studentsReview": {
+      "student_1": "Excellent clarity and structure. The lessons were very actionable.",
+      "student_2": "Practical course with strong examples. I improved faster than expected.",
+      "student_3": "Beginner-friendly and well explained. The exercises were great.",
+      "student_4": "Very useful frameworks and good pacing. I recommend it."
+    },
+    "lessonRatings": {
+      "student_1": 4.8,
+      "student_2": 4.4,
+      "student_3": 4.6,
+      "student_4": 4.5
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125166/ef892c69-5d6d-40c9-ac6b-4b04dbca4385_sgwawj.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125166/f9a4a1f1-d483-45e3-8f6a-b0001ca4c7bf_oanbvb.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125167/ad6bcfac-1f58-4b13-b595-b5dd9bd2c9c2_zg6x6k.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125167/08429af0-09e6-4467-aefe-ef9c4677979f_capulx.jpg"
+    }
+  },
+  {
+    "id": 26,
+    "totalReviews": "3.8k",
+    "studentsFullName": {
+      "student_1": "Anna Roberts",
+      "student_2": "Dylan Parker",
+      "student_3": "Siti Amina",
+      "student_4": "Giulia Conti"
+    },
+    "studentsReview": {
+      "student_1": "Clear and practical. I liked the step-by-step approach and examples.",
+      "student_2": "Good pace and strong structure. The lessons were easy to apply.",
+      "student_3": "Very helpful course. I gained confidence through practice tasks.",
+      "student_4": "High-quality content with modern methods. Worth taking."
+    },
+    "lessonRatings": {
+      "student_1": 4.5,
+      "student_2": 4.3,
+      "student_3": 4.4,
+      "student_4": 4.6
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125168/25263432-3e38-4a86-946b-ef3c4a57353c_cjcl5r.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125168/fe538ad5-1888-4dd4-9dce-d4a93358ff91_qst52o.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125169/d54ddc76-ff11-4802-aa9f-3e7870160b2b_re4umj.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125169/42362847-f65c-44f7-b6fd-2b3c1ce634b2_dx6dzb.jpg"
+    }
+  },
+  {
+    "id": 27,
+    "totalReviews": "6.1k",
+    "studentsFullName": {
+      "student_1": "Holly James",
+      "student_2": "Zachary Lewis",
+      "student_3": "Noor Alawi",
+      "student_4": "Sergio Romano"
+    },
+    "studentsReview": {
+      "student_1": "Very organized and clear. I appreciated the practical assignments.",
+      "student_2": "Direct teaching with strong takeaways. Great value for the time.",
+      "student_3": "Clear explanations and good examples. I learned a repeatable process.",
+      "student_4": "Well paced and useful. I can apply this to real projects now."
+    },
+    "lessonRatings": {
+      "student_1": 4.4,
+      "student_2": 4.1,
+      "student_3": 4.5,
+      "student_4": 4.3
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125169/00dd1419-db07-467c-a986-814fb2720c09_apaw8h.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125170/7f99eb48-86b6-46a6-81ed-a549f1f04b8a_q0d6it.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125170/c2ce5ba6-2c29-4d8c-8d73-46f6963c8384_dukbnn.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125171/6df6c8b4-00a1-44ce-8e32-ca0d90dbd7c4_kqdoal.jpg"
+    }
+  },
+  {
+    "id": 28,
+    "totalReviews": "5.2k",
+    "studentsFullName": {
+      "student_1": "Kelly Moore",
+      "student_2": "Justin Evans",
+      "student_3": "Rania Farouk",
+      "student_4": "Jonas Berg"
+    },
+    "studentsReview": {
+      "student_1": "Great pacing and clear structure. The lessons felt easy to follow.",
+      "student_2": "Practical and actionable. The examples helped me understand quickly.",
+      "student_3": "Beginner-friendly and detailed. I liked the exercises and real cases.",
+      "student_4": "Very useful course overall. I learned a solid process."
+    },
+    "lessonRatings": {
+      "student_1": 4.3,
+      "student_2": 4.2,
+      "student_3": 4.4,
+      "student_4": 4.1
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125171/3c4dd6e2-2fdf-4599-ad78-21caf06dbafe_emiwpj.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125171/c9a495fa-5253-4f3d-9bbb-33d640afea49_wn2h66.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125172/4d0c3c3c-862d-4e00-897e-2d6b3d941664_tnxecc.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125172/1ef4efe6-ce25-4ae0-9fcb-b93bd9baeedb_kgiime.jpg"
+    }
+  },
+  {
+    "id": 29,
+    "totalReviews": "5.7k",
+    "studentsFullName": {
+      "student_1": "Rebecca Stone",
+      "student_2": "Carter Hayes",
+      "student_3": "Ines Ferreira",
+      "student_4": "Tariq Mahmood"
+    },
+    "studentsReview": {
+      "student_1": "High-quality and very practical. The structure helped me stay consistent.",
+      "student_2": "Clear explanations with strong examples. I improved faster than expected.",
+      "student_3": "Great course with real-world focus. I applied the lessons immediately.",
+      "student_4": "Well organized and useful frameworks. Definitely recommended."
+    },
+    "lessonRatings": {
+      "student_1": 4.7,
+      "student_2": 4.4,
+      "student_3": 4.6,
+      "student_4": 4.5
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125172/6c02c0fd-d42f-4539-b3b4-4fe1982368cb_miemjn.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125172/a864bfdb-bcf7-4b04-b68d-2388978f783a_sf6uop.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125172/e347d863-d433-423c-b45d-674c7ebe1cee_tmrwhp.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125173/b67bd459-b897-4447-aa5a-652049fddabe_esh3n9.jpg"
+    }
+  },
+  {
+    "id": 30,
+    "totalReviews": "8.3k",
+    "studentsFullName": {
+      "student_1": "Madeline Cruz",
+      "student_2": "Colin Murphy",
+      "student_3": "Aarav Sharma",
+      "student_4": "Elena Petrova"
+    },
+    "studentsReview": {
+      "student_1": "Excellent course with clear structure. I liked how practical everything was.",
+      "student_2": "Strong examples and a repeatable process. The pacing worked well for me.",
+      "student_3": "Beginner-friendly but still detailed. The exercises made a big difference.",
+      "student_4": "Very high-quality and actionable. I’d recommend it to anyone learning this topic."
+    },
+    "lessonRatings": {
+      "student_1": 4.8,
+      "student_2": 4.5,
+      "student_3": 4.4,
+      "student_4": 4.7
+    },
+    "studentsProfileUrl": {
+      "student_1": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125173/cd6e978f-6cc4-4d6a-8bfa-773c1f25fbec_cdmsk2.jpg",
+      "student_2": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125173/bb067724-e305-4d2f-a619-9d01b7bd894a_pl73fk.jpg",
+      "student_3": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1780125174/ce9d3496-ad77-4e75-a66a-9428eabe2cdf_nrbijs.jpg",
+      "student_4": "https://res.cloudinary.com/dmfsetwfs/image/upload/v1779003846/man_11_o8ycae.jpg"
+    }
+  }
+]
