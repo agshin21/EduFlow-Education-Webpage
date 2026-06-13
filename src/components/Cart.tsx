@@ -59,7 +59,7 @@ export default function CartPage() {
             {cart.map((item) => (
               <div key={item.id} className="flex flex-col sm:flex-row items-start sm:items-center gap-4 border-b border-gray-100 pb-6 last:border-0 last:pb-0">
                 
-                <div className="w-full sm:max-w-64 max-h-40 sm:max-h-40 bg-gray-100 rounded-xl flex-shrink-0 overflow-hidden">
+                <div className="w-full sm:max-w-64 max-h-40 sm:max-h-40 bg-gray-100 rounded-xl shrink-0 overflow-hidden">
                      <img src={item.thumbnail} alt={item.title} className="w-full h-full object-cover" />
                 </div>
                 

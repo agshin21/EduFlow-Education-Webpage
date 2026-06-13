@@ -4,7 +4,7 @@ export interface DiscountPrice {
 }
 
 export interface Course {
-   id: string | number,
+   id?: string | number,
    avatar: string,
    title: string,
    description: string,
@@ -56,7 +56,7 @@ export interface Review {
 }
 
 export type CartItem = {
-    id: string | number;
+    id?: string | number;
     title: string;
     price: number;
     discountPrice?: number | string;
@@ -74,7 +74,7 @@ export type CartState = {
     cart: CartItem[];
     count: number;
     addCart: (item: Omit<CartItem, 'quantity'>) => void;
-    removeCart: (id: number | string) => void;
+    removeCart: (id?: number | string) => void;
     clearCart: () => void;
 };
 

@@ -35,7 +35,7 @@ const { id } = useParams();
 const [courses, setCourses] = useState<Course[]>([]);
 const [discountPrices, setDiscountPrices] = useState<DiscountPrice[]>([]);
 const [studentReviews, setStudentReviews] = useState<Review[]>([]);
-const isInCart = (id: number | string) => {
+const isInCart = (id?: number | string) => {
   return cart.some((item) => item.id === id)
 }
 
