@@ -150,7 +150,7 @@ const Courses = () => {
                     <Form.Control
                       type="checkbox"
                       checked={checked.includes(course.businessCategory)}
-                      id={course.id}
+                      id={Number(course.id)}
                       onChange={(e) => handleCheckbox(e, course)}
                       className="block group w-3 rounded border bg-white data-checked:bg-blue-500"
                     />
