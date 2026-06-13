@@ -22,7 +22,7 @@ const Courses = () => {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1)
   const [coursesPerPage] = useState(8)
-  const handleCheckbox = (e: any, c: any) => {
+  const handleCheckbox = (e: any, c: Course) => {
 
     if (e.target.checked) {
       setChecked((prevChecked) => [...prevChecked, c.businessCategory])
@@ -54,7 +54,7 @@ const Courses = () => {
 
   if (loading) return <div className={`flex ${theme === 'dark' ? 'bg-[#1a1919]' : 'bg-[#f1f5fc]'} transition duration-500 items-center justify-center h-screen text-gray-700`}><CircularIndeterminate /></div>
 
-  const changePageNo = (number: any) => setCurrentPage(number)
+  const changePageNo = (number: number) => setCurrentPage(number)
   const lastPostIndex = currentPage * coursesPerPage
   const firstPostIndex = lastPostIndex - coursesPerPage
   const displayedCourses = courses

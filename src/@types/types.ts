@@ -1,6 +1,6 @@
 export interface DiscountPrice {
   id: number | string,
-  discountPrice: number | string
+  discountPrice: number | string;
 }
 
 export interface Course {

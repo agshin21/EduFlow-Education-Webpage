@@ -47,6 +47,7 @@ const handleAddCart = (course: Course) => {
     discountPrice: discountEntry?.discountPrice
   })
 }
+
 useEffect(() => {
   const fetchAllData = async() => {
     try {

@@ -1,4 +1,3 @@
-import Cartbutton from "./Cartbutton";
 import HamburgerC from "./Hamburger";
 import { HiMiniAcademicCap } from "react-icons/hi2";
 import { Link } from "react-router"

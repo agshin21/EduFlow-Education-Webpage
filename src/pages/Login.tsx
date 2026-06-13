@@ -6,8 +6,6 @@ import { routes } from '../route/routes';
 import { toast } from 'react-toastify';
 import { useTheme } from '../context/ThemeContext';
 
-const dynamicImage = ''
-
 const Login: React.FC = () => {
   const {theme} = useTheme()
   const [email, setEmail] = useState('');
@@ -29,6 +27,7 @@ const Login: React.FC = () => {
       navigate('/dashboard');
     } catch (err: any) {
       setError(err.message);
+      console.error(error)
     }
   };
 
@@ -42,7 +41,6 @@ const Login: React.FC = () => {
       <div className={`relative z-10 flex w-fit min-w-xs sm:min-w-md max-w-4xl overflow-hidden rounded-2xl shadow-2xl backdrop-blur-xl transition-colors duration-500 ${
           theme === 'dark' ? 'bg-gray-900/50 text-white' : 'bg-white/20 text-gray-900'
         }`}>
-        
         {/* Left Column */}
         <div className="flex w-full flex-col justify-center p-8 sm:p-12 lg:w-1/2">
           <div className="mx-auto w-full max-w-sm">

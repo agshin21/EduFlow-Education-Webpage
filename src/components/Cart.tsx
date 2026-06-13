@@ -17,8 +17,9 @@ export default function CartPage() {
   const originalTotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   const discountedTotal = cart.reduce((sum, item) => {
+    const num = 0
     const price = item.discountPrice;
-    return sum + price * item.quantity;
+    return sum + Number(price ?? num) * (item.quantity ?? 0);
   }, 0);
   const differentOfTotals = cart.reduce((sum) => 
     sum + discountedTotal / numberOfCartItems - originalTotal / numberOfCartItems

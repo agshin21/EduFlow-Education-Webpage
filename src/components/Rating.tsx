@@ -7,7 +7,6 @@ import StarIcon from '@mui/icons-material/Star';
 import axios from 'axios';
 
 export default function TextRating() {
-  const value = 4.5;
   const [ courses, setCourses ] = useState<Course[]>([])
   useEffect(() => {
     axios
@@ -19,7 +18,7 @@ export default function TextRating() {
     <Box sx={{ width: 200, display: 'flex', alignItems: 'center' }}>
       <Rating
         name="text-feedback"
-        value={value}
+        value={Number(courses[2]?.rating)}
         readOnly
         precision={0.5}
         emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit"/>}

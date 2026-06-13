@@ -38,6 +38,7 @@ const Register: React.FC = () => {
       navigate('/login');
     } catch (err: any) {
       setError(err.message);
+      console.error(error)
     }
   };
   return (

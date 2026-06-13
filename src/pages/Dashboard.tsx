@@ -210,10 +210,10 @@ status();
                   {course.startDate} — {course.endDate} | Total: <span className={`font-medium ${theme === 'dark' ? 'text-[#cbcbcb]' : 'text-gray-800'}`}>{course.totalTime} hours</span>
                 </p>
               </div>
-              <span className={course.status === 'completed' && styles.completed || 
+              <span className={`${course.status === 'completed' && styles.completed || 
               course.status === 'upcoming' && styles.upcoming || 
               course.status === 'locked' && styles.locked || 
-              course.status === 'active' && styles.active}>
+              course.status === 'active' && styles.active}`}>
                 {course.status}
               </span>
             </div>
