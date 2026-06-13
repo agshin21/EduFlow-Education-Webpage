@@ -1,5 +1,3 @@
-
-
 const Pagination = (data: {
   enabled?: any
   changePageNo?: any,

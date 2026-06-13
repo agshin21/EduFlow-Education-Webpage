@@ -1,6 +1,5 @@
 import { Link } from 'react-router'
 import { LuShoppingCart } from 'react-icons/lu'
-import React from 'react'
 import { routes } from '../route/routes'
 import { useCart } from '../store/cartStore'
 import { useTheme } from '../context/ThemeContext'
