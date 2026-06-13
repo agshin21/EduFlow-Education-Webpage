@@ -1,5 +1,5 @@
 export interface DiscountPrice {
-  id: number | string,
+  id?: number | string,
   discountPrice: number | string;
 }
 
