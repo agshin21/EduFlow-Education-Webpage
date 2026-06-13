@@ -27,7 +27,7 @@ export interface Course {
 }
 
 export interface Review {
-    id: number | string,
+    id?: number | string,
     totalReviews: string
     studentsFullName: {
         student_1: string,

@@ -36,7 +36,7 @@ createRoot(document.getElementById('root')!).render(
       <Route path={routes[2]?.href} element={<Dashboard />} />
       <Route path={routes[3]?.href} element={<Login/>} />
       <Route path={routes[4]?.href} element={<Register/>} />
-      <Route path={routes[0]?.href} element={<Home  />}/>
+      <Route path={routes[0]?.href} element={<Home />}/>
       <Route path={routes[1]?.href} element={<Courses />}/>
       <Route path={`${routes[6]?.href}/:id`} element={<Details />}/>
       <Route path={routes[5]?.href} element={<Cart/>}/>

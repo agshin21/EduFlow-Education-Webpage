@@ -84,7 +84,12 @@ const Courses = () => {
         <h2 className="font-bold lg:font-medium xl:font-bold text-lg md:text-2xl lg:text-md xl:text-2xl min-h-16">{course.title}</h2>
         <p>{`${course.description.slice(0, 49)}...`}</p>
         <div className="flex flex-col gap-2 items-center justify-between">
-          <button onClick={() => { navigate(`/details/` + course.id) }} className="font-bold text-sm md:text-lg lg:text-base xl:text-lg bg-[#5760fe] transition hover:bg-[#323795] text-white text-center py-4 px-15 w-full rounded-2xl hover:cursor-pointer">
+          <button onClick={() => {if(course.id)
+           { navigate(`/details/` + course.id) }
+           else {
+            console.error("Course id is nothing!")
+           }
+          }} className="font-bold text-sm md:text-lg lg:text-base xl:text-lg bg-[#5760fe] transition hover:bg-[#323795] text-white text-center py-4 px-15 w-full rounded-2xl hover:cursor-pointer">
             Browse Course
           </button>
         </div>
