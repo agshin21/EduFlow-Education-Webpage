@@ -283,7 +283,7 @@ const Courses = () => {
                     <h2 className="font-bold lg:font-medium xl:font-bold text-lg md:text-2xl lg:text-md xl:text-2xl min-h-16">
                       {course.title}
                     </h2>
-                    <p>{`${course.description.slice(0, 49)}...`}</p>
+                    <p className="h-10">{course.description}</p>
                     <div className="flex flex-col gap-2 items-center justify-between">
                       <button
                         onClick={() => course.id ? navigate(`/details/${course.id}`) : console.error("Course id is nothing!")}

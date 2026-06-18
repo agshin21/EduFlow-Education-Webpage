@@ -108,9 +108,8 @@ export default function Learning() {
     };
   }, [id]);
 
-
+  const topicLength = String(course?.topic_1).length 
   const lessons = useMemo(() => flattenSyllabus(syllabus), [syllabus]);
-
   useEffect(() => {
     if (id && lessons.length) setTotal(id, lessons.length);
   }, [id, lessons.length, setTotal]);
@@ -230,7 +229,7 @@ export default function Learning() {
   return (
     <div className="min-h-screen bg-gray-50 pt-16">
       <div className="mx-auto max-w-7xl px-4 py-8 lg:px-8">
-        {/* Üst başlık */}
+        {/* Title */}
         <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <button
@@ -256,7 +255,7 @@ export default function Learning() {
         </div>
 
         <div className="grid gap-6 lg:grid-cols-3">
-          {/* Sol: oynatıcı + içerik */}
+          {/* Lesson Content */}
           <div className="lg:col-span-2">
             <div className="overflow-hidden rounded-2xl bg-black shadow-sm">
               <div className="aspect-video w-full">
@@ -287,7 +286,7 @@ export default function Learning() {
                   {activeIndex + 1}. {activeLesson.title}
                 </h2>
                 <p className="mt-1 text-sm text-gray-500">
-                  Duration: {activeLesson.time}
+                  Duration: {Math.ceil(Number(course.totalTime) / topicLength)}h
                 </p>
 
                 <div className="mt-5 flex flex-wrap items-center gap-3">
@@ -334,7 +333,7 @@ export default function Learning() {
             )}
           </div>
 
-          {/* Sağ: müfredat */}
+          {/* Right: Syllabus */}
           <aside className="lg:col-span-1">
             <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm">
               <div className="border-b border-gray-100 p-5">
@@ -342,7 +341,7 @@ export default function Learning() {
                 <p className="mt-1 text-xs text-gray-500">
                   {totalLessons} lessons
                 </p>
-                {/* İlerleme çubuğu */}
+                {/* Progress bar */}
                 <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-gray-100">
                   <div
                     className="h-full rounded-full bg-indigo-600 transition-all duration-500"
@@ -393,7 +392,7 @@ export default function Learning() {
                                 {lesson.title}
                               </span>
                               <span className="text-xs text-gray-400">
-                                {lesson.time}
+                                {Math.ceil(Number(course.totalTime) / topicLength)}h
                               </span>
                             </button>
                           </li>
