@@ -22,7 +22,8 @@ const levelStyles: Record<string, string> = {
 
 type PurchasedCourse = Course & CartItem;
 
-function CourseCard({ course }: { course: PurchasedCourse }) { 
+function CourseCard({ course }: { course: PurchasedCourse }) {
+  const navigate = useNavigate() 
   const {purchased} = usePurchased()
   
   const isPurchased = (id?: number | string) => {
@@ -121,7 +122,9 @@ function CourseCard({ course }: { course: PurchasedCourse }) {
           {course.studentsCount != null && <span>👥 {course.studentsCount}</span>}
         </div>
 
-        <button className="mt-5 w-full rounded-xl bg-indigo-600 py-2.5 text-sm font-medium text-white transition hover:bg-indigo-700 active:scale-[0.98]">
+        <button 
+          onClick={() => navigate(`/learn/${course.id}`)}
+          className="mt-5 w-full rounded-xl bg-indigo-600 py-2.5 text-sm font-medium text-white transition hover:bg-indigo-700 active:scale-[0.98]">
           {status === "completed" ? "Review" : "Continue Learning"}
         </button>
       </div>

@@ -8,6 +8,7 @@ import Courses from './pages/Courses.tsx'
 import Dashboard from './pages/Dashboard.tsx'
 import Details from './pages/Details.tsx'
 import Home from './pages/Home.tsx'
+import Learning from './pages/Learning.tsx'
 import Login from './pages/Login.tsx'
 import MyCourses from './pages/Mycourses.tsx'
 import NavbarC from './components/Navbar.tsx'
@@ -45,6 +46,7 @@ function Root() {
           />
           <NavbarC />
           <Routes>
+            <Route path="/learn/:id" element={<Learning />} />
             <Route path="/my-courses" element={<MyCourses />} />
             <Route path={routes[3]?.href} element={<Login />} />
             <Route path={routes[4]?.href} element={<Register />} />
