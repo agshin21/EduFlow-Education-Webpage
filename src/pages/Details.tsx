@@ -1,6 +1,6 @@
 import { Accordion, AccordionDetails, AccordionSummary, Typography } from "@mui/material";
 import { Avatar, AvatarGroup, Button, Rating } from "@mui/material";
-import type { Course, DiscountPrice, Review, Syllabus, Topic } from "../@types/types";
+import type { Course, Description, DiscountPrice, Review, Syllabus, Topic } from "../@types/types";
 import { IoIosArrowForward, IoMdTime } from "react-icons/io";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router";
@@ -22,6 +22,7 @@ import { PiUsersBold } from "react-icons/pi";
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutlineOutlined';
 import QuizIcon from '@mui/icons-material/Quiz';
 import StarIcon from "@mui/icons-material/Star";
+import SvgComponent from "../components/HumanIcon";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useCart } from "../store/cartStore";
@@ -30,6 +31,7 @@ import { usePurchased } from "../store/purchasedStore";
 import { useTheme } from "../context/ThemeContext";
 
 const Details = () => {
+  const [description, setDescription] = useState<Description | null>(null)
   const [reviewText, setReviewText] = useState("")
   const [reviewRating, setReviewRating] = useState<number | null>(0)
   const [userReviews, setUserReviews] = useState<any[]>([])
@@ -76,16 +78,18 @@ const getCourseStatus = (course: Course): string => {
   useEffect(() => {
     const fetchAllData = async () => {
       try {
-        const [courseRes, discountsRes, syllabusRes, reviewsRes] = await Promise.all([
+        const [courseRes, discountsRes, syllabusRes, reviewsRes, descriptionRes] = await Promise.all([
           axios.get(`https://6a0818fefa9b27c848faa2b1.mockapi.io/courses/teachers/${id}`),
           axios.get("/data/discountPrices.json"),
           axios.get(`https://6a2ec8d2c9776ca6c0c4f04a.mockapi.io/lessons/v1/previews/${id}`),
-          axios.get("/data/studentReviews.json")
+          axios.get("/data/studentReviews.json"),
+          axios.get(`https://6a3409f48248ee962fa4fc34.mockapi.io/api/v1/descriptions/${id}`)
         ]);
         setLessonSyllabus(syllabusRes.data)
         setCourse(courseRes.data);
         setDiscountPrices(discountsRes.data);
         setStudentReviews(reviewsRes.data);
+        setDescription(descriptionRes.data)
       }
       catch (err) {
         console.error(err);
@@ -96,7 +100,7 @@ const getCourseStatus = (course: Course): string => {
   }, [id]);
 
 
-  useEffect(() => {
+useEffect(() => {
   const fetchUserReviews = async () => {
     try {
       const res = await axios.get(
@@ -227,6 +231,8 @@ const handleSubmitReview = async () => {
               </div>
             </div>
           </div>
+          
+          <p className={`text-xs px-4 ${theme === "dark" ? "text-[#e1dede]/70" : "text-black/70"}`}>{description?.courseDescription}</p>
 
           {/* ── COURSE SYLLABUS (MOBILE) ── */}
           <div className={`px-4 pt-4 pb-3 ${theme === 'dark' ? 'bg-[#1a1919]' : 'border-b border-gray-100'} transition duration-500`}>
@@ -471,12 +477,10 @@ return discountPrices.filter((discount) => String(discount.id) === String(course
           <h2 className={`text-5xl xl:text-6xl font-bold mb-5 ${theme === 'dark' ? 'text-[#e1dede]' : 'text-black'}`}>
             {course.title}
           </h2>
-          <p className={`text-lg xl:text-2xl mb-4 font-medium ${theme === 'dark' ? 'text-[#e1dede]' : 'text-black'}`}>
-            {course.description}
-          </p>
+          
           <div className="flex gap-4">
           <div className="flex gap-1 items-center">
-              <PiUsersBold className={`size-10 rounded-full shadow-md shadow-indigo-400 bg-black/60 p-2 ${theme === 'dark' ? 'text-[#e1dede]' : 'text-white'}`} />
+              <PiUsersBold className={`size-10 rounded-full shadow-md shadow-indigo-400 bg-[#563fec] p-2 ${theme === 'dark' ? 'text-[#e1dede]' : 'text-white'}`} />
               <p className={`text-[23px] tracking-tighter font-medium ${theme === 'dark' ? 'text-[#e1dede]' : 'text-black'}`}>
                 {course.studentsCount} Students enrolled
               </p>
@@ -502,8 +506,11 @@ return discountPrices.filter((discount) => String(discount.id) === String(course
               <p className={`font-semibold text-[23px] ${theme === 'dark' ? 'text-[#e1dede]' : 'text-black'}`}>({review.totalReviews} Review)</p>
             </div>
             </div>
-        <iframe src={`https://www.youtube.com/embed/${course.previewVideoId}`} className="w-full shadow-md shadow-slate-500 mt-11 h-96 xl:h-114 rounded-2xl"></iframe>
+          <iframe src={`https://www.youtube.com/embed/${course.previewVideoId}`} className="w-full mb-8 shadow-md shadow-slate-500 mt-11 h-96 xl:h-114 rounded-2xl"></iframe>
           
+          <p className={`text-md p-6 xl:text-lg mb-4 font-medium ${theme === 'dark' ? 'text-[#e1dede]/70' : 'text-black/70'}`}>
+            {description?.courseDescription}
+          </p>
         {/* Course Syllabus */}
         <div className="course-syllabus mx-auto mt-14 max-w-[820px]">
           <div className="mb-8 flex items-end justify-between">

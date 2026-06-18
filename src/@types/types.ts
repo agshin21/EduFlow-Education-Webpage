@@ -107,3 +107,8 @@ export type StatusInput = {
   startDate: string,
   endDate: string
 }
+
+export type Description = {
+    id?: number | string;
+    courseDescription: string;
+}

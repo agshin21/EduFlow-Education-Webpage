@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef } from "react";
-import { useLocation, useNavigate, useSearchParams } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 
 import Box from '@mui/material/Box';
 import Cartbutton from "../components/Cartbutton";
@@ -16,7 +16,6 @@ import { useQuery } from "@tanstack/react-query";
 import { useTheme } from "../context/ThemeContext";
 
 const Courses = () => {
-  const location = useLocation()
   const { theme } = useTheme();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -96,7 +95,7 @@ const Courses = () => {
     }
     
     allElements.forEach(el => el.style.transition = "")
-  }, [data, location.key]);
+  }, [data]);
   
 
   const getRemainingDays = (endDate: string) => {
@@ -288,7 +287,7 @@ const Courses = () => {
                     <div className="flex flex-col gap-2 items-center justify-between">
                       <button
                         onClick={() => course.id ? navigate(`/details/${course.id}`) : console.error("Course id is nothing!")}
-                        className="font-bold text-sm md:text-lg lg:text-base xl:text-lg shadow-lg shadow-blue-600 bg-blue-600 transition hover:bg-[#323795] text-white text-center py-4 px-15 w-full rounded-2xl hover:cursor-pointer"
+                        className="font-bold text-sm md:text-lg lg:text-base xl:text-lg shadow-lg shadow-blue-700 bg-blue-500 transition hover:bg-[#323795] text-white text-center py-4 px-15 w-full rounded-2xl hover:cursor-pointer"
                       >
                         Browse Course
                       </button>
