@@ -1,8 +1,7 @@
 import { Accordion, AccordionDetails, AccordionSummary, Typography } from "@mui/material";
 import { Avatar, AvatarGroup, Button, Rating } from "@mui/material";
 import type { Course, DiscountPrice, Review, Syllabus, Topic } from "../@types/types";
-import { IoIosArrowBack, IoIosArrowForward, IoMdTime } from "react-icons/io";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { IoIosArrowForward, IoMdTime } from "react-icons/io";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 
@@ -17,7 +16,6 @@ import Footer from "../components/Footer";
 import { IoInfiniteSharp } from "react-icons/io5";
 import { MdLockOutline } from "react-icons/md";
 import MenuBookIcon from '@mui/icons-material/MenuBook';
-import { Navigation } from "swiper/modules";
 import { PiCertificateBold } from "react-icons/pi";
 import { PiMoneyLight } from "react-icons/pi";
 import { PiUsersBold } from "react-icons/pi";
@@ -34,7 +32,7 @@ import { useTheme } from "../context/ThemeContext";
 const Details = () => {
   const [reviewText, setReviewText] = useState("")
   const [reviewRating, setReviewRating] = useState<number | null>(0)
-  const [userReviews, setUserReviews] = useState<any[]>()
+  const [userReviews, setUserReviews] = useState<any[]>([])
   const [submitting, setSubmitting] = useState(false)
   const {purchased} = usePurchased()
   const [lessonSyllabus, setLessonSyllabus] = useState<Syllabus| null>(null)
@@ -69,7 +67,7 @@ const getCourseStatus = (course: Course): string => {
   }
 
  
-  if (today > endDate) return "locked";   
+  if (today >= endDate) return "locked";   
   if (today < startDate) return "upcoming";
   return "active";
 };
@@ -124,12 +122,13 @@ const handleSubmitReview = async () => {
   }
 
   try {
+    if (!course) return;
     setSubmitting(true);
     const newReview = {
       courseId: String(course.id),
       studentName: userAuth.fullName || userAuth.name || "Anonymous",
       avatar: userAuth.avatar || "",
-      rating: reviewRating,
+      rating: String(reviewRating),
       comment: reviewText.trim(),
       createdAt: new Date().toISOString(),
     };
@@ -178,7 +177,8 @@ const handleSubmitReview = async () => {
     }
     
     if(courseStatus === "locked"){
-      toast.error("This item status is locked try again later")
+      toast.error("This course status is locked try again later")
+      return
     }
 
     if (courseStatus === "upcoming") {
@@ -190,7 +190,7 @@ const handleSubmitReview = async () => {
       discountPrice: currentDiscount?.discountPrice,
     });
   };
-  
+  console.log(courseStatus);
  
   if (!course) return <div className={`flex ${theme === 'dark' ? 'bg-[#1a1919]' : 'bg-[#f1f5fc]'} items-center justify-center h-screen text-gray-700`}><CircularIndeterminate /></div>
 
@@ -360,68 +360,80 @@ const handleSubmitReview = async () => {
 
             <p className={`text-sm font-medium text-gray-500 leading-relaxed mt-3`}>{course.aboutInstructor}</p>
           </div>
+          
+          <div className="grid col-span-2 px-2 mt-12">
+            <h2 className={`mb-6 text-3xl font-bold ${theme === 'dark' ? 'text-[#e1dede]' : 'text-black'}`}>
+              Write a Review
+            </h2>
 
-          {/* ── STUDENT REVIEWS ── */}
-          <div className="px-4 pt-4 pb-3 flex flex-col gap-4">
-            <div className="flex items-center justify-between mb-3">
-              <h2 className={`text-md font-bold ${theme === 'dark' ? 'text-[#dedee1]' : 'text-gray-900'}`}>Student Reviews</h2>
-            </div>
-
-            {/* Review 1 */}
-            <div className="flex gap-2 mb-3">
-              <AvatarGroup max={1}>
-                <Avatar src={review.studentsProfileUrl.student_1} sx={{ bgcolor: "#4B5EAA", width: 34, height: 34, fontSize: 12, fontWeight: 700, flexShrink: 0 }} />
-              </AvatarGroup>
-              <div className="flex-1">
-                <div className="flex items-center justify-between">
-                  <span className={`text-sm font-bold ${theme === 'dark' ? 'text-[#e1dede]/70' : 'text-gray-900'}`}>{review.studentsFullName.student_1}</span>
-                  <Rating value={Number(review.lessonRatings.student_1)} readOnly size="small" sx={{ fontSize: 13, color: "#EAB308" }} />
-                </div>
-                <p className="text-XS font-medium text-gray-500 mt-0.5 leading-relaxed">{review.studentsReview.student_1}</p>
+            <div className={`max-w-220 w-full rounded-2xl p-6 shadow-md shadow-slate-400 ${theme === 'dark' ? 'bg-[#222121]' : 'bg-white'}`}>
+              <div className="flex items-center gap-3 mb-4">
+                <span className={`font-semibold ${theme === 'dark' ? 'text-[#e1dede]' : 'text-gray-700'}`}>
+                  Your rating:
+                </span>
+                <Rating
+                  value={reviewRating}
+                  onChange={(_, v) => setReviewRating(v)}
+                  precision={1}
+                  sx={{ fontSize: 30, color: "#EAB308" }}
+                />
               </div>
+
+              <textarea
+                value={reviewText}
+                onChange={(e) => setReviewText(e.target.value)}
+                placeholder="Share your experience with this course..."
+                rows={4}
+                className={`w-full rounded-xl border p-4 text-sm outline-none transition focus:ring-2 focus:ring-indigo-200 ${
+                  theme === 'dark'
+                    ? 'bg-[#1a1919] border-white/10 text-[#e1dede] placeholder:text-[#e1dede]/40'
+                    : 'bg-white border-slate-200 text-gray-800'
+                }`}
+              />
+
+              <button
+                onClick={handleSubmitReview}
+                disabled={submitting}
+                className={`mt-4 rounded-xl px-6 py-3 text-base font-semibold text-white transition ${
+                  submitting ? 'bg-indigo-400 cursor-not-allowed' : 'bg-indigo-600 hover:bg-indigo-700'
+                }`}
+              >
+                {submitting ? "Submitting..." : "Submit Review"}
+              </button>
             </div>
 
-            {/* Review 2 */}
-            <div className="flex gap-2 mb-3">
-              <AvatarGroup max={1}>
-                <Avatar src={review.studentsProfileUrl.student_2} sx={{ bgcolor: "#4B5EAA", width: 34, height: 34, fontSize: 12, fontWeight: 700, flexShrink: 0 }} />
-              </AvatarGroup>
-              <div className="flex-1">
-                <div className="flex items-center justify-between">
-                  <span className={`text-sm font-bold ${theme === 'dark' ? 'text-[#e1dede]/70' : 'text-gray-900'}`}>{review.studentsFullName.student_2}</span>
-                  <Rating value={Number(review.lessonRatings.student_2)} readOnly size="small" sx={{ fontSize: 13, color: "#EAB308" }} />
-                </div>
-                <p className="text-XS font-medium text-gray-500 mt-0.5 leading-relaxed">{review.studentsReview.student_2}</p>
+            {/* User reviews list */}
+            {userReviews && userReviews.length > 0 && (
+              <div className="max-w-220 w-full mt-8 flex flex-col gap-4">
+                <h3 className={`text-2xl font-bold ${theme === 'dark' ? 'text-[#e1dede]' : 'text-black'}`}>
+                  Recent Student Reviews
+                </h3>
+                {userReviews.map((r) => (
+                  <div
+                    key={r.id}
+                    className={`rounded-2xl p-5 shadow-md shadow-slate-300 ${theme === 'dark' ? 'bg-[#222121]' : 'bg-white'}`}
+                  >
+                    <div className="flex items-start gap-4">
+                      <Avatar src={r.avatar} sx={{ width: 48, height: 48 }} />
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between">
+                          <h4 className={`text-lg font-semibold ${theme === 'dark' ? 'text-[#e1dede]' : 'text-gray-900'}`}>
+                            {r.studentName}
+                          </h4>
+                          <Rating value={Number(r.rating)} readOnly size="small" sx={{ color: "#EAB308" }} />
+                        </div>
+                        <p className="text-sm text-gray-500 mt-1 leading-relaxed">{r.comment}</p>
+                        {r.createdAt && (
+                          <p className="text-xs text-gray-400 mt-2">
+                            {new Date(r.createdAt).toLocaleDateString()}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
-            </div>
-
-            {/* Review 3 */}
-            <div className="flex gap-2 mb-3">
-              <AvatarGroup max={1}>
-                <Avatar src={review.studentsProfileUrl.student_3} sx={{ bgcolor: "#4B5EAA", width: 34, height: 34, fontSize: 12, fontWeight: 700, flexShrink: 0 }} />
-              </AvatarGroup>
-              <div className="flex-1">
-                <div className="flex items-center justify-between">
-                  <span className={`text-sm font-bold ${theme === 'dark' ? 'text-[#e1dede]/70' : 'text-gray-900'}`}>{review.studentsFullName.student_3}</span>
-                  <Rating value={Number(review.lessonRatings.student_3)} readOnly size="small" sx={{ fontSize: 13, color: "#EAB308" }} />
-                </div>
-                <p className="text-XS font-medium text-gray-500 mt-0.5 leading-relaxed">{review.studentsReview.student_3}</p>
-              </div>
-            </div>
-
-            {/* Review 4 */}
-            <div className="flex gap-2 mb-3">
-              <AvatarGroup max={1}>
-                <Avatar src={review.studentsProfileUrl.student_4} sx={{ bgcolor: "#4B5EAA", width: 34, height: 34, fontSize: 12, fontWeight: 700, flexShrink: 0 }} />
-              </AvatarGroup>
-              <div className="flex-1">
-                <div className="flex items-center justify-between">
-                  <span className={`text-sm font-bold ${theme === 'dark' ? 'text-[#e1dede]/70' : 'text-gray-900'}`}>{review.studentsFullName.student_4}</span>
-                  <Rating value={Number(review.lessonRatings.student_4)} readOnly size="small" sx={{ fontSize: 13, color: "#EAB308" }} />
-                </div>
-                <p className="text-XS font-medium text-gray-500 mt-0.5 leading-relaxed">{review.studentsReview.student_4}</p>
-              </div>
-            </div>
+            )}
           </div>
 
           {/* ── STICKY ENROLL FOOTER ── */}
@@ -662,8 +674,8 @@ return discountPrices.filter((discount) => String(discount.id) === String(course
             </p>
             <button
               onClick={() => handleAddCart(course)}
-              className={`${isPurchased(course.id) ? 'bg-gray-600 hover:cursor-not-allowed' : 'bg-[#2f71f7] hover:bg-[#224ea6] hover:cursor-pointer'} rounded-xl py-5 w-full text-white text-2xl xl:text-3xl font-semibold transition`}>
-              {courseStatus === "upcoming" ? "Coming Soon" : isPurchased(course.id) ? 'Owned' : isInCart(course.id) ? 'In Cart' : 'Add to Cart'}
+              className={`${isPurchased(course.id) || courseStatus === "locked" ? 'bg-gray-600 hover:cursor-not-allowed' : 'bg-[#2f71f7] hover:bg-[#224ea6] hover:cursor-pointer'} rounded-xl py-5 w-full text-white text-2xl xl:text-3xl font-semibold transition`}>
+              {courseStatus === "locked" ? "Locked" : courseStatus === "upcoming" ? "Coming Soon" : isPurchased(course.id) ? 'Owned' : isInCart(course.id) ? 'In Cart' : 'Add to Cart'}
             </button>
             <hr className={`${theme === 'dark' ? 'text-[#e1dede]/40' : 'text-black/20'} `} />
             <h2 className={`font-bold text-md ${theme === 'dark' ? 'text-[#e1dede]' : 'text-black'}`}>
@@ -695,89 +707,84 @@ return discountPrices.filter((discount) => String(discount.id) === String(course
           </div>
         </div>          
 
-        {/* Student Reviews */}
-        <div className="grid col-span-2">
-          <div className="flex justify-between">
-            <h2 className={`mb-8 text-3xl font-bold ${theme === 'dark' ? 'text-[#e1dede]' : 'text-black'}`}>Student Reviews</h2>
-            <div className="flex mb-2 gap-2">
-              <button className="swiper-prev bg-white h-fit my-auto p-3 rounded-full shadow-lg hover:cursor-pointer">
-                <IoIosArrowBack />
-              </button>
-              <button className="swiper-next bg-white h-fit my-auto p-3 rounded-full shadow-lg hover:cursor-pointer">
-                <IoIosArrowForward />
-              </button>
-            </div>
-          </div>
-          <Swiper
-            pagination={{ clickable: true }}
-            scrollbar={{ draggable: true }}
-            slidesPerView={2}
-            spaceBetween={24}
-            navigation={{ prevEl: ".swiper-prev", nextEl: ".swiper-next" }}
-            modules={[Navigation]}
-            loop={true}
-            autoplay={true}
-            className="max-w-220 w-full max-h-90"
-          >
-            <SwiperSlide>
-            <div className="bg-white shadow-lg shadow-slate-500 px-6 py-4 border h-48 border-black/10 rounded-xl">
-              <div className="flex items-start justify-start gap-4">
-                <AvatarGroup max={1} className="flex">
-                  <Avatar src={review.studentsProfileUrl.student_1} sx={{ width: 50, height: 50 }} />
-                </AvatarGroup>
-                <div className="flex flex-col">
-                  <h2 className="text-2xl font-semibold">{review.studentsFullName.student_1}</h2>
-                  <Rating max={5} readOnly value={Number(review.lessonRatings.student_1)} />
-                  <em>"{review.studentsReview.student_1}"</em>
-                </div>
-              </div>
-            </div>
-            </SwiperSlide>
-            <SwiperSlide>
-            <div className="bg-white px-6 py-4 border h-48 border-black/10 rounded-xl shadow-lg">
-              <div className="flex items-start justify-start gap-4">
-                <AvatarGroup max={1} className="flex">
-                  <Avatar src={review.studentsProfileUrl.student_2} sx={{ width: 50, height: 50 }} />
-                </AvatarGroup>
-                <div className="flex flex-col">
-                  <h2 className="text-2xl font-semibold">{review.studentsFullName.student_2}</h2>
-                  <Rating max={5} readOnly value={Number(review.lessonRatings.student_2)} />
-                  <em>"{review.studentsReview.student_2}"</em>
-                </div>
-              </div>
-            </div>
-            </SwiperSlide>
-            <SwiperSlide>
-            <div className="bg-white px-6 py-4 border h-48 border-black/10 rounded-xl shadow-lg">
-              <div className="flex items-start justify-start gap-4">
-                <AvatarGroup max={1} className="flex">
-                  <Avatar src={review.studentsProfileUrl.student_3} sx={{ width: 50, height: 50 }} />
-                </AvatarGroup>
-                <div className="flex flex-col">
-                  <h2 className="text-2xl font-semibold">{review.studentsFullName.student_3}</h2>
-                  <Rating max={5} readOnly value={Number(review.lessonRatings.student_3)} />
-                  <em>"{review.studentsReview.student_3}"</em>
-                </div>
-              </div>
-            </div>
-            </SwiperSlide>
-            <SwiperSlide>
-            <div className="bg-white px-6 py-4 border h-48 border-black/10 rounded-xl shadow-lg">
-              <div className="flex items-start justify-start gap-4">
-                <AvatarGroup max={1} className="flex">
-                  <Avatar src={review.studentsProfileUrl.student_4} sx={{ width: 50, height: 50 }} />
-                </AvatarGroup>
-                <div className="flex flex-col">
-                  <h2 className="text-2xl font-semibold">{review.studentsFullName.student_4}</h2>
-                  <Rating max={5} readOnly value={Number(review.lessonRatings.student_4)} />
-                  <em>"{review.studentsReview.student_4}"</em>
-                </div>
-              </div>
-            </div>
-            </SwiperSlide>
-          </Swiper>
-        </div>
+        
       </div>
+      {/* ── WRITE A REVIEW + USER REVIEWS ── */}
+      <div className="grid col-span-2 px-12 mt-12">
+        <h2 className={`mb-6 text-3xl font-bold ${theme === 'dark' ? 'text-[#e1dede]' : 'text-black'}`}>
+          Write a Review
+        </h2>
+
+        <div className={`max-w-220 w-full rounded-2xl p-6 shadow-md shadow-slate-400 ${theme === 'dark' ? 'bg-[#222121]' : 'bg-white'}`}>
+          <div className="flex items-center gap-3 mb-4">
+            <span className={`font-semibold ${theme === 'dark' ? 'text-[#e1dede]' : 'text-gray-700'}`}>
+              Your rating:
+            </span>
+            <Rating
+              value={reviewRating}
+              onChange={(_, v) => setReviewRating(v)}
+              precision={1}
+              sx={{ fontSize: 30, color: "#EAB308" }}
+            />
+          </div>
+
+          <textarea
+            value={reviewText}
+            onChange={(e) => setReviewText(e.target.value)}
+            placeholder="Share your experience with this course..."
+            rows={4}
+            className={`w-full rounded-xl border p-4 text-sm outline-none transition focus:ring-2 focus:ring-indigo-200 ${
+              theme === 'dark'
+                ? 'bg-[#1a1919] border-white/10 text-[#e1dede] placeholder:text-[#e1dede]/40'
+                : 'bg-white border-slate-200 text-gray-800'
+            }`}
+          />
+
+          <button
+            onClick={handleSubmitReview}
+            disabled={submitting}
+            className={`mt-4 rounded-xl px-6 py-3 text-base font-semibold text-white transition ${
+              submitting ? 'bg-indigo-400 cursor-not-allowed' : 'bg-indigo-600 hover:bg-indigo-700'
+            }`}
+          >
+            {submitting ? "Submitting..." : "Submit Review"}
+          </button>
+        </div>
+
+        {/* User reviews list */}
+        {userReviews && userReviews.length > 0 && (
+          <div className="max-w-220 w-full mt-8 flex flex-col gap-4">
+            <h3 className={`text-2xl font-bold ${theme === 'dark' ? 'text-[#e1dede]' : 'text-black'}`}>
+              Recent Student Reviews
+            </h3>
+            {userReviews.map((r) => (
+              <div
+                key={r.id}
+                className={`rounded-2xl p-5 shadow-md shadow-slate-300 ${theme === 'dark' ? 'bg-[#222121]' : 'bg-white'}`}
+              >
+                <div className="flex items-start gap-4">
+                  <Avatar src={r.avatar} sx={{ width: 48, height: 48 }} />
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <h4 className={`text-lg font-semibold ${theme === 'dark' ? 'text-[#e1dede]' : 'text-gray-900'}`}>
+                        {r.studentName}
+                      </h4>
+                      <Rating value={Number(r.rating)} readOnly size="small" sx={{ color: "#EAB308" }} />
+                    </div>
+                    <p className="text-sm text-gray-500 mt-1 leading-relaxed">{r.comment}</p>
+                    {r.createdAt && (
+                      <p className="text-xs text-gray-400 mt-2">
+                        {new Date(r.createdAt).toLocaleDateString()}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
     </section>
    </main>
 

@@ -22,7 +22,7 @@ export const useCart = create<CartState>()(
             }
             const purchased = usePurchased.getState().purchased
             if(purchased.some((course) => String(course.id) === String(item.id))){
-              toast.error("This item already in dashboard!")
+              toast.error("This course already in dashboard!")
               return {
                 count: state.count,
                 cart: state.cart

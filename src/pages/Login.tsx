@@ -101,7 +101,7 @@ const Login: React.FC = () => {
 
             <p className={`mt-6 text-center text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
               Don't have an account?{' '}
-              <Link to={routes[4]?.href} className="font-semibold text-blue-600 hover:text-blue-500">
+              <Link to={routes[5]?.href} className="font-semibold text-blue-600 hover:text-blue-500">
                 Sign up
               </Link>
             </p>

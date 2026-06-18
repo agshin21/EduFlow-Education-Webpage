@@ -1,12 +1,14 @@
-import type { Course, Topic } from "../@types/types";
+import type { Course, Syllabus, Topic } from "../@types/types";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { GoArrowRight } from "react-icons/go";
+import axios from "axios";
 import { fetchCourseById } from "../api/courses";
 import { useProgress } from "../store/progressStore";
 import { usePurchased } from "../store/purchasedStore";
+
+const SYLLABUS_URL = "https://6a2ec8d2c9776ca6c0c4f04a.mockapi.io/lessons/v1/previews";
 
 type FlatLesson = {
   id: string;
@@ -15,21 +17,19 @@ type FlatLesson = {
   time: string;
 };
 
-function flattenSyllabus(course: Course): FlatLesson[] {
-  const topics: (Topic | undefined)[] = [
-    course.topic_1,
-    course.topic_2,
-    course.topic_3,
-  ];
+function flattenSyllabus(syllabus: Syllabus | null): FlatLesson[] {
+  const topics: (Topic | undefined)[] = syllabus
+    ? [syllabus.topic_1, syllabus.topic_2, syllabus.topic_3]
+    : [];
 
   const lessons: FlatLesson[] = [];
 
   topics.forEach((topic, ti) => {
     if (!topic) return;
-    const syllabus = topic.lesson_syllabus;
+    const titles = topic.lesson_syllabus;
     const times = topic.lessonsTime;
     (["lesson_1", "lesson_2", "lesson_3"] as const).forEach((key, li) => {
-      const title = syllabus?.[key];
+      const title = titles?.[key];
       if (!title) return;
       lessons.push({
         id: `t${ti}-l${li}`,
@@ -68,9 +68,10 @@ export default function Learning() {
   const navigate = useNavigate();
 
   const purchased = usePurchased((s) => s.purchased);
-  const { getCompleted, isCompleted, toggleLesson } = useProgress();
+  const { getCompleted, isCompleted, toggleLesson, setTotal } = useProgress();
 
   const [course, setCourse] = useState<Course | null>(null);
+  const [syllabus, setSyllabus] = useState<Syllabus | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [activeLessonId, setActiveLessonId] = useState<string>("");
@@ -80,28 +81,40 @@ export default function Learning() {
     [purchased, id]
   );
 
-  useEffect(() => {
+    useEffect(() => {
     if (!id) return;
     let active = true;
     setLoading(true);
     setError(false);
-    fetchCourseById(id)
-      .then((data) => {
+
+    Promise.all([
+      fetchCourseById(id),
+      axios
+        .get<Syllabus>(`${SYLLABUS_URL}/${id}`)
+        .then((r) => r.data)
+        .catch(() => null),
+    ])
+      .then(([courseData, syllabusData]) => {
         if (!active) return;
-        if (!data) setError(true);
-        else setCourse(data);
+        if (!courseData) setError(true);
+        else setCourse(courseData);
+        setSyllabus(syllabusData);
       })
       .catch(() => active && setError(true))
       .finally(() => active && setLoading(false));
+
     return () => {
       active = false;
     };
   }, [id]);
 
-  const lessons = useMemo(
-    () => (course ? flattenSyllabus(course) : []),
-    [course]
-  );
+
+  const lessons = useMemo(() => flattenSyllabus(syllabus), [syllabus]);
+
+  useEffect(() => {
+    if (id && lessons.length) setTotal(id, lessons.length);
+  }, [id, lessons.length, setTotal]);
+
 
   useEffect(() => {
     if (lessons.length && !activeLessonId) {
@@ -185,10 +198,10 @@ export default function Learning() {
               View Course
             </button>
             <button
-              onClick={() => navigate("/my-courses")}
+              onClick={() => navigate("/my-lessons")}
               className="rounded-xl border border-gray-200 px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
             >
-              My Courses
+              My Lessons
             </button>
           </div>
         </div>
@@ -207,10 +220,10 @@ export default function Learning() {
         <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <button
-              onClick={() => navigate("/my-courses")}
+              onClick={() => navigate("/my-lessons")}
               className="mb-2 flex items-center gap-2 text-sm font-medium text-indigo-600 hover:underline"
             >
-              <IoIosArrowBack /> Back to My Courses
+              <IoIosArrowBack /> Back to My Lessons
             </button>
             <h1 className="text-2xl font-bold text-gray-900">{course.title}</h1>
             <p className="text-sm text-gray-500">

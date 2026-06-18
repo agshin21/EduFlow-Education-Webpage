@@ -19,6 +19,7 @@ import { Line } from 'react-chartjs-2';
 import type { StatusInput } from '../@types/types';
 import gsap from 'gsap';
 import { logoutUser } from '../services/authService';
+import { useProgress } from '../store/progressStore';
 import { usePurchased } from '../store/purchasedStore';
 import { useTheme } from '../context/ThemeContext';
 
@@ -41,6 +42,7 @@ export interface User {
   username?: string;
 }
 const Dashboard: React.FC = () => {
+  const isCourseCompleted = useProgress((s) => s.isCourseCompleted);
   const {purchased} = usePurchased()
   const titleRef = useRef(null)
   const statsRef = useRef(null)
@@ -54,6 +56,8 @@ const Dashboard: React.FC = () => {
     const storedUser = localStorage.getItem('user') || sessionStorage.getItem('user');
     return storedUser ? JSON.parse(storedUser) : null;
   });
+  
+
 
   const isPurchased = (id?: number | string) => {
     return purchased.some((item) => String(item.id) === String(id))
@@ -68,9 +72,11 @@ const Dashboard: React.FC = () => {
     const owned = isPurchased(course.id);
   
     if (owned) {
-      if (today > endDate) return "completed"; 
-      return "active";                          
+      if (isCourseCompleted(String(course.id))) return "completed";
+      if (today > endDate) return "completed";
+      return "active";
     }
+
   
    
     if (today > endDate) return "locked";   
@@ -137,7 +143,7 @@ const Dashboard: React.FC = () => {
     ...course,
     status: getCourseStatus(course),
   }));
-}, [purchased]);
+}, [purchased, isCourseCompleted]);
 
 
   if(!user) return <div className={`flex ${ theme === 'dark' ? 'bg-[#1a1919]' : 'bg-[#f1f5fc]'} items-center justify-center h-screen text-gray-700`}><CircularIndeterminate /></div>

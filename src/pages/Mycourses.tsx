@@ -3,8 +3,12 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import type { Course } from "../@types/types";
+import { IconClockHour2Filled } from '@tabler/icons-react';
+import { IconStarFilled } from '@tabler/icons-react';
+import SvgComponent from "../components/HumanIcon";
 import type { User } from "./Dashboard";
 import { fetchCourses } from "../api/courses";
+import { useProgress } from "../store/progressStore";
 import { usePurchased } from "../store/purchasedStore";
 
 const LEVELS = ["beginner", "intermediate", "advanced"];
@@ -23,33 +27,33 @@ const levelStyles: Record<string, string> = {
 type PurchasedCourse = Course & CartItem;
 
 function CourseCard({ course }: { course: PurchasedCourse }) {
-  const navigate = useNavigate() 
-  const {purchased} = usePurchased()
-  
-  const isPurchased = (id?: number | string) => {
-      return purchased.some((item) => String(item.id) === String(id))
-    }
-    
-    const getCourseStatus = (course: StatusInput): string => {
-      const today = new Date().setHours(0, 0, 0, 0);
-      const startDateRaw = new Date(course.startDate)
-      const endDateRaw = new Date(course.endDate)
-      const startDate = isNaN(startDateRaw.getTime()) ? today : startDateRaw.setHours(0, 0, 0, 0);
-      const endDate = isNaN(endDateRaw.getTime()) ? today : endDateRaw.setHours(0, 0, 0, 0);  
-      const owned = isPurchased(course.id);
-    
-      if (owned) {
-        if (today > endDate) return "completed"; 
-        return "active";                          
-      }
-    
-     
-      if (today > endDate) return "locked";   
-      if (today < startDate) return "upcoming";
-      return "active";
-    };
+  const navigate = useNavigate();
+  const { purchased } = usePurchased();
+  const isCourseCompleted = useProgress((s) => s.isCourseCompleted);
 
-    const status = getCourseStatus(course)
+  const isPurchased = (id?: number | string) =>
+    purchased.some((item) => String(item.id) === String(id));
+
+  const getCourseStatus = (course: StatusInput): string => {
+    const today = new Date().setHours(0, 0, 0, 0);
+    const startDateRaw = new Date(course.startDate);
+    const endDateRaw = new Date(course.endDate);
+    const startDate = isNaN(startDateRaw.getTime()) ? today : startDateRaw.setHours(0, 0, 0, 0);
+    const endDate = isNaN(endDateRaw.getTime()) ? today : endDateRaw.setHours(0, 0, 0, 0);
+    const owned = isPurchased(course.id);
+
+    if (owned) {
+      if (isCourseCompleted(String(course.id))) return "completed";
+      if (today > endDate) return "completed";
+      return "active";
+    }
+
+    if (today > endDate) return "locked";
+    if (today < startDate) return "upcoming";
+    return "active";
+  };
+
+  const status = getCourseStatus(course);
     
   return (
     <div className="group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md">
@@ -96,7 +100,7 @@ function CourseCard({ course }: { course: PurchasedCourse }) {
           {course.title}
         </h3>
         {course.description && (
-          <p className="mt-1 line-clamp-2 text-sm text-gray-500">
+          <p className="mt-1 line-clamp-2 h-10 text-sm text-gray-500">
             {course.description}
           </p>
         )}
@@ -117,11 +121,10 @@ function CourseCard({ course }: { course: PurchasedCourse }) {
         )}
 
         <div className="mt-4 flex items-center gap-4 text-sm text-gray-500">
-          {course.rating != null && <span>⭐ {course.rating}</span>}
-          {course.totalTime != null && <span>🕒 {course.totalTime}h</span>}
-          {course.studentsCount != null && <span>👥 {course.studentsCount}</span>}
+          {course.rating != null && <span className="flex items-center gap-1 font-medium"> <IconStarFilled color="#ffea00"/> {course.rating}</span>}
+          {course.totalTime != null && <span className="flex items-center gap-1 font-medium"><IconClockHour2Filled color="#c7c7c7" /> {course.totalTime}h</span>}
+          {course.studentsCount != null && <span className="flex items-center gap-1 font-medium"><SvgComponent /> {course.studentsCount}</span>}
         </div>
-
         <button 
           onClick={() => navigate(`/learn/${course.id}`)}
           className="mt-5 w-full rounded-xl bg-indigo-600 py-2.5 text-sm font-medium text-white transition hover:bg-indigo-700 active:scale-[0.98]">
@@ -248,7 +251,7 @@ export default function MyCourses() {
     <div className="min-h-screen pt-13 bg-gray-50">
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <header className="mb-8 flex justify-between">
-          <h1 className="text-3xl font-bold text-gray-900">My Courses</h1>
+          <h1 className="text-3xl font-bold text-gray-900">My Lessons</h1>
         </header>
 
         {/* Empty store state */}

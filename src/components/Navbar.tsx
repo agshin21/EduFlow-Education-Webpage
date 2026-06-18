@@ -38,9 +38,10 @@ return (
         <nav className={`${theme === 'dark' 
         ? 'flex items-center gap-8 text-[#cccccc] font-medium' 
         : 'flex items-center gap-8 text-gray-600 font-medium'}`}>
+            <Link to={routes[0]?.href} className="hover:text-blue-600 transition">{routes[0]?.title}</Link>
             <Link to={routes[1]?.href} className="hover:text-blue-600 transition">{routes[1]?.title}</Link>
             <Link to={routes[2]?.href} className="hover:text-blue-600 transition">{routes[2]?.title}</Link>
-            <Link to={routes[0]?.href} className="hover:text-blue-600 transition">{routes[0]?.title}</Link>
+            <Link to={routes[4]?.href} className="hover:text-blue-600 transition">{routes[4]?.title}</Link>
         </nav>
     </div>
     <div className="flex items-center gap-4">

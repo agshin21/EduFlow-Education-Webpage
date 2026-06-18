@@ -17,6 +17,10 @@ export const routes = [
     href: "/login",
   },
   {
+    title: "My Lessons",
+    href: "/my-lessons"
+  },
+  {
     title: "Register",
     href: "/register"
   },
@@ -24,7 +28,7 @@ export const routes = [
     title: "Cart",
     href: "/cart"
   },
-   {
+  {
     title: "Details",
     href: "/details"
   },
