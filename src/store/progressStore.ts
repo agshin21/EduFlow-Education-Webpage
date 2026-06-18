@@ -5,12 +5,16 @@ import { create } from "zustand";
 interface ProgressState {
   completed: Record<string, string[]>;
   totals: Record<string, number>;
+  lastLesson: Record<string, string>;
   toggleLesson: (courseId: string, lessonId: string) => void;
   isCompleted: (courseId: string, lessonId: string) => boolean;
   getCompleted: (courseId: string) => string[];
   setTotal: (courseId: string, total: number) => void;
   isCourseCompleted: (courseId: string) => boolean;
   resetCourse: (courseId: string) => void;
+  setLastLesson: (courseId: string, lessonId: string) => void; 
+  getLastLesson: (courseId: string) => string | undefined;     
+  getProgressPct: (courseId: string) => number;                
 }
 
 const getCurrentUserId = (): string => {
@@ -28,6 +32,7 @@ export const useProgress = create<ProgressState>()(
     (set, get) => ({
       completed: {},
       totals: {},
+      lastLesson: {},
       toggleLesson: (courseId, lessonId) =>
         set((state) => {
           const current = state.completed[courseId] ?? [];
@@ -59,8 +64,26 @@ export const useProgress = create<ProgressState>()(
         set((state) => {
           const next = { ...state.completed };
           delete next[courseId];
-          return { completed: next };
+          const nextLast = { ...state.lastLesson };
+          delete nextLast[courseId];
+          return { completed: next, lastLesson: nextLast };
         }),
+
+     
+      setLastLesson: (courseId, lessonId) =>
+        set((state) =>
+          state.lastLesson[courseId] === lessonId
+            ? state
+            : { lastLesson: { ...state.lastLesson, [courseId]: lessonId } }
+        ),
+      getLastLesson: (courseId) => get().lastLesson[courseId],
+
+      
+      getProgressPct: (courseId) => {
+        const total = get().totals[courseId] ?? 0;
+        const done = (get().completed[courseId] ?? []).length;
+        return total > 0 ? Math.round((done / total) * 100) : 0;
+      },
     }),
     {
       name: "course-progress",

@@ -17,7 +17,7 @@ const Cartbutton = () => {
     return
   }
   return (
-    <Link onClick={toastError} to={!userAuth ? '/login' : routes[5]?.href} className={`p-2 fixed right-5 z-10 ${theme === 'dark' ? 'bg-[#373535]' : 'bg-white'} transition duration-500 rounded-full`}>
+    <Link onClick={toastError} to={!userAuth ? '/login' : routes[6]?.href} className={`p-2 fixed right-5 z-10 ${theme === 'dark' ? 'bg-[#373535]' : 'bg-white'} transition duration-500 rounded-full`}>
       <LuShoppingCart className={`size-9 ${theme === 'dark' ? 'text-white' : 'text-black'}`}/>
       <p className='px-2 rounded-full text-white font-semibold absolute bg-red-400 w-fit'>{cartLength}</p>
     </Link>

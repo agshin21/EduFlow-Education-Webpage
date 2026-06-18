@@ -68,7 +68,7 @@ export default function Learning() {
   const navigate = useNavigate();
 
   const purchased = usePurchased((s) => s.purchased);
-  const { getCompleted, isCompleted, toggleLesson, setTotal } = useProgress();
+  const { getCompleted, isCompleted, toggleLesson, setTotal, setLastLesson, getLastLesson } = useProgress();
 
   const [course, setCourse] = useState<Course | null>(null);
   const [syllabus, setSyllabus] = useState<Syllabus | null>(null);
@@ -117,10 +117,24 @@ export default function Learning() {
 
 
   useEffect(() => {
-    if (lessons.length && !activeLessonId) {
-      setActiveLessonId(lessons[0].id);
+    if (!lessons.length || activeLessonId || !id) return;
+
+    const saved = getLastLesson(id);
+    const savedExists = saved && lessons.some((l) => l.id === saved);
+
+    if (savedExists) {
+      setActiveLessonId(saved!);
+      return;
     }
-  }, [lessons, activeLessonId]);
+
+    const completed = getCompleted(id);
+    const firstUnfinished = lessons.find((l) => !completed.includes(l.id));
+    setActiveLessonId(firstUnfinished ? firstUnfinished.id : lessons[0].id);
+  }, [lessons, activeLessonId, id, getLastLesson, getCompleted]);
+
+  useEffect(() => {
+    if (id && activeLessonId) setLastLesson(id, activeLessonId);
+  }, [id, activeLessonId, setLastLesson]);
 
   const completedIds = id ? getCompleted(id) : [];
   const totalLessons = lessons.length;
@@ -278,16 +292,27 @@ export default function Learning() {
 
                 <div className="mt-5 flex flex-wrap items-center gap-3">
                   <button
-                    onClick={() =>
-                      toggleLesson(course.id as string, activeLesson.id)
-                    }
+                    onClick={() => {
+                      if (!isActiveDone) {
+                        toggleLesson(course.id as string, activeLesson.id);
+                      }
+                      if (activeIndex < lessons.length - 1) {
+                        goTo(activeIndex + 1);
+                      }
+                    }}
                     className={`rounded-xl px-4 py-2.5 text-sm font-medium transition active:scale-[0.98] ${
                       isActiveDone
                         ? "bg-emerald-100 text-emerald-700 hover:bg-emerald-200"
                         : "bg-indigo-600 text-white hover:bg-indigo-700"
                     }`}
                   >
-                    {isActiveDone ? "✓ Completed" : "Mark as complete"}
+                    {isActiveDone
+                      ? activeIndex < lessons.length - 1
+                        ? "Completed · Next lesson"
+                        : "✓ Completed"
+                      : activeIndex < lessons.length - 1
+                      ? "Complete & continue"
+                      : "Mark as complete"}
                   </button>
 
                   <button

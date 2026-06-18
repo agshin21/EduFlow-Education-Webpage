@@ -30,6 +30,9 @@ function CourseCard({ course }: { course: PurchasedCourse }) {
   const navigate = useNavigate();
   const { purchased } = usePurchased();
   const isCourseCompleted = useProgress((s) => s.isCourseCompleted);
+  const getProgressPct = useProgress((s) => s.getProgressPct);
+  const progressPct = getProgressPct(String(course.id));
+
 
   const isPurchased = (id?: number | string) =>
     purchased.some((item) => String(item.id) === String(id));
@@ -125,10 +128,29 @@ function CourseCard({ course }: { course: PurchasedCourse }) {
           {course.totalTime != null && <span className="flex items-center gap-1 font-medium"><IconClockHour2Filled color="#c7c7c7" /> {course.totalTime}h</span>}
           {course.studentsCount != null && <span className="flex items-center gap-1 font-medium"><SvgComponent /> {course.studentsCount}</span>}
         </div>
+        
+        <div className="mt-4">
+          <div className="mb-1 flex items-center justify-between text-xs font-medium text-gray-500">
+            <span>{status === "completed" ? "Completed" : "In progress"}</span>
+            <span>{progressPct}%</span>
+          </div>
+          <div className="h-2 w-full overflow-hidden rounded-full bg-gray-100">
+            <div
+              className={`h-full rounded-full transition-all duration-500 ${
+                status === "completed" ? "bg-emerald-500" : "bg-indigo-600"
+              }`}
+              style={{ width: `${progressPct}%` }}
+            />
+          </div>
+        </div>
         <button 
           onClick={() => navigate(`/learn/${course.id}`)}
           className="mt-5 w-full rounded-xl bg-indigo-600 py-2.5 text-sm font-medium text-white transition hover:bg-indigo-700 active:scale-[0.98]">
-          {status === "completed" ? "Review" : "Continue Learning"}
+          {progressPct === 0
+            ? "Start Learning"
+            : status === "completed"
+            ? "Review"
+            : "Continue Learning"}
         </button>
       </div>
     </div>
