@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
-import React, {useState} from 'react'
+import React, { useState} from 'react'
 
 import { registerUser, type RegisterData } from '../services/authService'
 import { routes } from '../route/routes';
@@ -45,31 +45,31 @@ const Register: React.FC = () => {
     <div className="relative flex min-h-screen w-full items-center justify-center bg-[url('/bg-img.jpg')] bg-no-repeat">
           
           {/* Dark Mode Overlay */}
-          <div className={`absolute inset-0 transition-colors duration-500 ${theme === 'dark' ? 'bg-black/60' : 'bg-transparent'}`} />
+          <div className={`absolute inset-0 transition-colors duration-500 ${theme === 'dark' ? 'bg-black/60 backdrop-blur-md' : 'bg-transparent backdrop-blur-md'}`} />
     
           {/* Grid Container */}
-          <div className={`relative z-10 flex w-fit min-w-xs sm:min-w-md max-w-4xl overflow-hidden rounded-2xl shadow-2xl backdrop-blur-xl transition-colors duration-500 ${
-              theme === 'dark' ? 'bg-gray-900/50 text-white' : 'bg-white/20 text-gray-900'
+          <div className={`relative z-10 flex w-full mt-15 max-w-xs sm:max-w-lg lg:max-w-4xl xl:max-w-5xl h-118 sm:h-150 overflow-hidden rounded-2xl shadow-2xl backdrop-blur-xl transition-colors duration-500 ${
+              theme === 'dark' ? 'bg-gray-900/30 text-white' : 'bg-white/10 text-gray-900'
             }`}>
             
             {/* Left Column */}
             <div className="flex w-full flex-col justify-center p-8 sm:p-12 lg:w-1/2">
               <div className="mx-auto w-full max-w-sm">
-                <h1 className="text-2xl font-bold">Welcome back</h1>
-                <p className={`mt-2 text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
+                <h1 className="text-2xl lg:text-4xl font-bold">Welcome back</h1>
+                <p className={`mt-2 text-sm lg:text-lg ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
                   Please enter your details to sign in.
                 </p>
     
                 <form className=" space-y-6 pt-4" onSubmit={handleSubmit} noValidate>
                   <div>
                     <div>
-                      <label className="block text-xs font-semibold uppercase tracking-wider">Name</label>
+                      <label className="block text-md font-semibold uppercase tracking-wider">Name</label>
                       <input
                         id='name'
                         type="text"
                         onChange={(e) => setFormData({...formData, firstName: e.target.value})}
                         placeholder="Enter your Name"
-                        className={`mt-1 block w-full rounded-lg border px-4 py-2.5 outline-none transition focus:ring-2 ${
+                        className={`mt-1 block w-full rounded-lg border px-4 placeholder:text-lg py-2.5 outline-none transition duration-500 focus:ring-2 ${
                           theme === 'dark' 
                             ? 'bg-gray-800/50 border-gray-600 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500/20' 
                             : 'bg-white/50 border-gray-300 text-gray-900 placeholder-gray-500 focus:border-blue-600 focus:ring-blue-600/20'
@@ -78,28 +78,28 @@ const Register: React.FC = () => {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold uppercase tracking-wider">Surname</label>
+                      <label className="block text-md font-semibold uppercase tracking-wider">Surname</label>
                       <input
                         id='surname'
                         type="text"
                         onChange={(e) => setFormData({...formData, lastName: e.target.value})}
                         placeholder="Enter your Surname"
-                        className={`mt-1 block w-full rounded-lg border px-4 py-2.5 outline-none transition focus:ring-2 ${
+                        className={`mt-1 block w-full rounded-lg border px-4 placeholder:text-lg py-2.5 outline-none transition duration-500 focus:ring-2 ${
                           theme === 'dark' 
                             ? 'bg-gray-800/50 border-gray-600 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500/20' 
-                            : 'bg-white/50 border-gray-300 text-gray-900 placeholder-gray-500 focus:border-blue-600 focus:ring-blue-600/20'
+                            : 'bg-white/50 border-gray-300  text-gray-900 placeholder-gray-500 focus:border-blue-600 focus:ring-blue-600/20'
                         }`}
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold uppercase tracking-wider">Email</label>
+                      <label className="block text-md font-semibold uppercase tracking-wider">Email</label>
                       <input
                         id='email'
                         type="email"
                         onChange={(e) => setFormData({...formData, email: e.target.value})}
                         placeholder="Enter your email"
-                        className={`mt-1 block w-full rounded-lg border px-4 py-2.5 outline-none transition focus:ring-2 ${
+                        className={`mt-1 block w-full rounded-lg placeholder:text-lg border px-4 py-2.5 outline-none transition duration-500 focus:ring-2 ${
                           theme === 'dark' 
                             ? 'bg-gray-800/50 border-gray-600 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500/20' 
                             : 'bg-white/50 border-gray-300 text-gray-900 placeholder-gray-500 focus:border-blue-600 focus:ring-blue-600/20'
@@ -108,16 +108,16 @@ const Register: React.FC = () => {
                     </div>
     
                     <div>
-                      <label className="block text-xs font-semibold uppercase tracking-wider">Password</label>
+                      <label className="block text-md font-semibold uppercase tracking-wider">Password</label>
                       <input
                         id='password'
                         type="password"
                         onChange={(e) => setFormData({...formData, password: e.target.value})}
                         placeholder="••••••••"
-                        className={`mt-1 block w-full rounded-lg border px-4 py-2.5 outline-none transition focus:ring-2 ${
+                        className={`mt-1 block w-full rounded-lg border px-4 placeholder:text-lg py-2.5 outline-none transition duration-500 focus:ring-2 ${
                           theme === 'dark' 
                             ? 'bg-gray-800/50 border-gray-600 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500/20' 
-                            : 'bg-white/50 border-gray-300 text-gray-900 placeholder-gray-500 focus:border-blue-600 focus:ring-blue-600/20'
+                            : 'bg-white/50 border-gray-300 text-gray-900  placeholder-gray-500 focus:border-blue-600 focus:ring-blue-600/20'
                         }`}
                       />
                     </div>

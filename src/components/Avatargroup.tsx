@@ -19,7 +19,7 @@ function Avatargroup() {
       {
          courses.slice(0, 5).map((c) => {
             return (
-              <Avatar alt={c.instructorName} src={c.avatar} sx={{width: {xs: 35, sm: 40}, height: {xs: 35, sm: 40}}}/>
+              <Avatar alt={c.instructorName} src={c.avatar} sx={{width: {xs: 35, sm: 50}, height: {xs: 35, sm: 50}}}/>
             )
          })
       }

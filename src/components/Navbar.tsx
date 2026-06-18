@@ -1,6 +1,6 @@
 import HamburgerC from "./Hamburger";
 import { HiMiniAcademicCap } from "react-icons/hi2";
-import { Link } from "react-router"
+import { Link, } from "react-router"
 import ThemeToggle from "../context/ThemeToggle";
 import { routes } from "../route/routes";
 import { useMediaQuery } from "react-responsive";
@@ -10,6 +10,7 @@ function NavbarC() {
 const isSmallDevices = useMediaQuery({query: '(max-width: 1023px)'})
 const isLargeDevices = useMediaQuery({query: '(min-width: 1024px)'})  
 const {theme} = useTheme()  
+
 return (
 <>
 {isSmallDevices && <header className={`${theme === 'dark' 
@@ -25,6 +26,7 @@ return (
     </div>
 </div>
 </header>}
+
 
 
 {isLargeDevices &&<header className={`${theme === 'dark' 

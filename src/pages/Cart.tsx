@@ -1,7 +1,7 @@
 import { ShoppingBag, Trash2 } from 'lucide-react';
 
-import Alertbutton from './Alertbutton';
-import Footer from './Footer';
+import Alertbutton from '../components/Alertbutton';
+import Footer from '../components/Footer';
 import { Link } from 'react-router';
 import { routes } from '../route/routes';
 import { useCart } from '../store/cartStore';

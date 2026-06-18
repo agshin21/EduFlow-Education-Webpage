@@ -1,21 +1,22 @@
 import { Button, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 
 import { ArrowRight } from 'lucide-react'
-import type { CartItem, } from '../@types/types'
 import { toast } from 'react-toastify'
 import { useCart } from '../store/cartStore'
 import { useState } from 'react'
 import { useTheme } from '../context/ThemeContext'
+import { usePurchased } from '../store/purchasedStore'
 
-export const purchasedCourses: CartItem[] = []
 export default function Alertbutton() {
+  const {addPurchased} = usePurchased()
   const {theme} = useTheme()
   const {cart, clearCart} = useCart()
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)  
+  
   const handleButtonClick = () => {
     toast.success('Payment was completed successfully')
     setIsOpen(false)
-    purchasedCourses.push(...cart)
+    addPurchased(cart)
     clearCart() 
   }
   
@@ -26,7 +27,7 @@ export default function Alertbutton() {
   function close() {
     setIsOpen(false)
   }
-
+ 
   return (
     <>
       <Button

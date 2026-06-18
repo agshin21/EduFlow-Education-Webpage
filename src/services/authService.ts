@@ -1,4 +1,6 @@
 import axios from "axios";
+import { toast } from "react-toastify";
+import { usePurchased } from "../store/purchasedStore";
 
 const api = axios.create({
   baseURL: "https://6a0818fefa9b27c848faa2b1.mockapi.io",
@@ -19,7 +21,10 @@ export const registerUser = async (data: {
 }) => {
   const allUsers = await api.get("/users");
   const existing = allUsers.data?.find((u: any) => u.email === data.email)
-  if (existing) throw new Error("This email already exists");
+  if (existing){ 
+    toast.error("This email already exists")
+    throw new Error("This email already exists");
+  }
 
   const res = await api.post("/users", data);
   return res.data;
@@ -30,8 +35,14 @@ export const loginUser = async (email: string, password: string, rememberMe: boo
   
   const user = res.data?.find((u: any) => u.email === email);
 
-  if (!user) throw new Error("User not found");
-  if (user.password !== password) throw new Error("Wrong password");
+  if (!user) { 
+    toast.error("User not found!")
+    throw new Error("User not found") 
+  }
+  if (user.password !== password) {
+    toast.error("Please sure password is correct!")
+    throw new Error("Please sure password is correct")
+  }
 
   if (rememberMe) {
     localStorage.setItem("user", JSON.stringify(user));
@@ -49,4 +60,6 @@ export const logoutUser = () => {
   localStorage.removeItem("authToken");
   sessionStorage.removeItem("user")
   sessionStorage.removeItem("authToken");
+  usePurchased.setState({ purchased: []})
+  usePurchased.persist.rehydrate()
 };

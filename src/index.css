@@ -17,3 +17,20 @@
   --tw-backdrop-saturate: ;
   --tw-backdrop-sepia: ;
 }
+
+[data-gsap] {
+  transition: none;
+}
+.course-syllabus {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #222;
+}

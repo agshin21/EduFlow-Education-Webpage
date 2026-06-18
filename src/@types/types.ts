@@ -23,7 +23,11 @@ export interface Course {
    status: string,
    totalTime: string | number,
    startDate: string,
-   endDate: string
+   endDate: string,
+   topic_1?: Topic;
+   topic_2?: Topic;
+   topic_3?: Topic;
+   previewCourse?: string;
 }
 
 export interface Review {
@@ -78,3 +82,28 @@ export type CartState = {
     clearCart: () => void;
 };
 
+export interface LessonGroup {
+  lesson_1: string;
+  lesson_2: string;
+  lesson_3: string;
+}
+
+export interface Topic {
+  title: string;
+  lesson_syllabus: LessonGroup;
+  lessonsTime: LessonGroup;
+}
+
+export interface Syllabus {
+  id?: number | string;
+  previewCourse: string;
+  topic_1: Topic;
+  topic_2: Topic;
+  topic_3: Topic;
+}
+
+export type StatusInput = {
+  id?: string | number,
+  startDate: string,
+  endDate: string
+}
