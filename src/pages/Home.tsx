@@ -175,9 +175,8 @@ function Home() {
 
       {/* Hero */}
       <section
-        data-gsap
         ref={heroRef}
-        className={`${theme === "dark" ? "pt-32 pb-20 bg-[#2e2a2a] text-[#cccccc] transition duration-500" : "pt-32 pb-20 bg-blue-300/60 transition duration-500"}`}
+        className={`${theme === "dark" ? "pt-32 pb-20 bg-[#272727]/95 text-[#cccccc] transition duration-500" : "pt-32 pb-20 bg-blue-300/60 transition duration-500"}`}
       >
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
@@ -231,7 +230,7 @@ function Home() {
       {/* Categories */}
       <section
         ref={categoriesRef}
-        className={`${theme === "dark" ? "py-20 bg-[#313131] transition duration-500" : "py-20 bg-[#cfdeff]/60 transition duration-500"}`}
+        className={`${theme === "dark" ? "py-20 bg-[#242424] transition duration-500" : "py-20 bg-[#cfdeff]/60 transition duration-500"}`}
       >
         <div className="max-w-7xl mx-auto px-6 grid items-center justify-center">
           <h2 className={`${theme === "dark" ? "text-4xl font-bold text-center mb-6 text-[#cccccc] transition" : "text-4xl font-bold text-center mb-6 transition"}`}>
@@ -241,7 +240,7 @@ function Home() {
             Diverse learning paths curated by industry experts to help you achieve your career goals.
           </p>
           <div className="grid lg:grid-cols-12 gap-6 lg:auto-rows-[170px]">
-            <div className={`px-6 py-13 lg:py-18 rounded-2xl bg-[#005bbf] shadow-md shadow-slate-500 lg:col-span-4 lg:row-span-2 text-white/80 hover:text-white transition duration-500 group`}>
+            <div className={`px-6 py-13 lg:py-18 rounded-2xl bg-[#005bbf] shadow-md shadow-indigo-400 lg:col-span-4 lg:row-span-2 text-white/80 hover:text-white transition duration-500 group`}>
               <IoCode className="text-3xl mb-20 group-hover:text-white" />
               <h2 className="font-semibold text-2xl mb-4">Development</h2>
               <p className="mb-3">Master Full-Stack, Mobile, and Cloud Computing.</p>
@@ -249,7 +248,7 @@ function Home() {
                 Browse {routes[1]?.title} <GoArrowRight />
               </Link>
             </div>
-            <div className={`${theme === "dark" ? "bg-[#999999] rounded-2xl lg:col-span-4 flex gap-3 items-center justify-start h-45 px-5 lg:px-15 group text-white transition duration-500 shadow-md shadow-slate-500" : "bg-white rounded-2xl lg:col-span-4 flex gap-3 items-center justify-start h-45 px-5 lg:px-15 group transition duration-500 shadow-md shadow-slate-500"}`}>
+            <div className={`${theme === "dark" ? "bg-[#313131]/80 rounded-2xl lg:col-span-4 flex gap-3 items-center justify-start h-45 px-5 lg:px-15 group text-white transition duration-500 shadow-md shadow-indigo-400" : "bg-white rounded-2xl lg:col-span-4 flex gap-3 items-center justify-start h-45 px-5 lg:px-15 group transition duration-500 shadow-md shadow-slate-500"}`}>
               <div className="bg-[#68fadd] text-3xl rounded-2xl text-[#357e70] p-3">
                 <MdOutlineColorLens />
               </div>
@@ -258,7 +257,7 @@ function Home() {
                 <p className="font-semibold">120+ Courses</p>
               </div>
             </div>
-            <div className={`${theme === "dark" ? "bg-[#999999] rounded-2xl lg:col-span-4 flex gap-3 items-center justify-start h-45 px-5 lg:px-15 group shadow-md shadow-slate-500 text-white transition duration-500" : "bg-white rounded-2xl lg:col-span-4 flex gap-3 items-center justify-start h-45 px-5 lg:px-15 group shadow-md shadow-slate-500 transition duration-500"}`}>
+            <div className={`${theme === "dark" ? "bg-[#313131]/80 rounded-2xl lg:col-span-4 flex gap-3 items-center justify-start h-45 px-5 lg:px-15 group shadow-md shadow-indigo-400 text-white transition duration-500" : "bg-white rounded-2xl lg:col-span-4 flex gap-3 items-center justify-start h-45 px-5 lg:px-15 group shadow-md shadow-slate-500 transition duration-500"}`}>
               <div className="bg-[#f9eee5] text-3xl rounded-2xl text-[#af7767] p-3">
                 <LuChartNoAxesCombined />
               </div>
@@ -267,7 +266,7 @@ function Home() {
                 <p className="font-semibold">85+ Courses</p>
               </div>
             </div>
-            <div className={`${theme === "dark" ? "bg-[#999999] rounded-2xl lg:col-span-6 flex gap-3 items-center justify-start h-45 px-5 lg:px-15 group shadow-md shadow-slate-500 text-white duration-500 transition" : "bg-white rounded-2xl lg:col-span-6 flex gap-3 items-center justify-start h-45 px-5 lg:px-15 group shadow-md shadow-slate-500 duration-500 transition"}`}>
+            <div className={`${theme === "dark" ? "bg-[#313131]/80 rounded-2xl lg:col-span-6 flex gap-3 items-center justify-start h-45 px-5 lg:px-15 group shadow-md shadow-indigo-400 text-white duration-500 transition" : "bg-white rounded-2xl lg:col-span-6 flex gap-3 items-center justify-start h-45 px-5 lg:px-15 group shadow-md shadow-slate-500 duration-500 transition"}`}>
               <div className="bg-[#e8f1fd] text-3xl rounded-2xl text-[#005ec2] p-3">
                 <MdWorkOutline />
               </div>
@@ -276,7 +275,7 @@ function Home() {
                 <p className="font-semibold">240+ Courses available</p>
               </div>
             </div>
-            <div className={`bg-[#006b5c] rounded-2xl flex flex-row lg:flex-col lg:col-span-2 gap-3 shadow-slate-500 shadow-md justify-start items-center lg:justify-center h-45 px-5 group duration-500 transition`}>
+            <div className={`bg-[#006b5c] rounded-2xl flex flex-row lg:flex-col lg:col-span-2 gap-3 shadow-indigo-400 shadow-md justify-start items-center lg:justify-center h-45 px-5 group duration-500 transition`}>
               <div className="text-4xl rounded-2xl text-white">
                 <TbWorld />
               </div>

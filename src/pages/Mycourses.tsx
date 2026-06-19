@@ -10,6 +10,7 @@ import type { User } from "./Dashboard";
 import { fetchCourses } from "../api/courses";
 import { useProgress } from "../store/progressStore";
 import { usePurchased } from "../store/purchasedStore";
+import { useTheme } from "../context/ThemeContext";
 
 const LEVELS = ["beginner", "intermediate", "advanced"];
 
@@ -27,6 +28,7 @@ const levelStyles: Record<string, string> = {
 type PurchasedCourse = Course & CartItem;
 
 function CourseCard({ course }: { course: PurchasedCourse }) {
+  const {theme} = useTheme()
   const navigate = useNavigate();
   const { purchased } = usePurchased();
   const isCourseCompleted = useProgress((s) => s.isCourseCompleted);
@@ -47,7 +49,6 @@ function CourseCard({ course }: { course: PurchasedCourse }) {
 
     if (owned) {
       if (isCourseCompleted(String(course.id))) return "completed";
-      if (today > endDate) return "completed";
       return "active";
     }
 
@@ -59,7 +60,7 @@ function CourseCard({ course }: { course: PurchasedCourse }) {
   const status = getCourseStatus(course);
     
   return (
-    <div className="group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+    <div className={`group flex flex-col transition duration-500 overflow-hidden rounded-2xl ${theme === 'dark' ? 'bg-[#313131]/90' : 'bg-white'}  shadow-sm transition hover:-translate-y-1 hover:shadow-md`}>
       <div className="relative h-44 overflow-hidden">
         <img
           src={course.thumbnail}
@@ -99,11 +100,11 @@ function CourseCard({ course }: { course: PurchasedCourse }) {
           )}
         </div>
 
-        <h3 className="line-clamp-2 text-lg font-semibold text-gray-900">
+        <h3 className={`line-clamp-2 text-lg font-semibold ${theme === 'dark' ? 'text-[#e1dede]' : 'text-gray-900'}`}>
           {course.title}
         </h3>
         {course.description && (
-          <p className="mt-1 line-clamp-2 h-10 text-sm text-gray-500">
+          <p className={`mt-1 line-clamp-2 h-10 text-sm ${theme === 'dark' ? 'text-[#e1dede]/80' : 'text-gray-500'}`}>
             {course.description}
           </p>
         )}
@@ -117,20 +118,20 @@ function CourseCard({ course }: { course: PurchasedCourse }) {
                 className="h-8 w-8 rounded-full object-cover"
               />
             )}
-            <span className="text-sm font-medium text-gray-700">
+            <span className={`text-sm font-medium ${theme === 'dark' ? 'text-[#e1dede]/80' : 'text-gray-700'}`}>
               {course.instructorName}
             </span>
           </div>
         )}
 
         <div className="mt-4 flex items-center gap-4 text-sm text-gray-500">
-          {course.rating != null && <span className="flex items-center gap-1 font-medium"> <IconStarFilled color="#ffea00"/> {course.rating}</span>}
-          {course.totalTime != null && <span className="flex items-center gap-1 font-medium"><IconClockHour2Filled color="#c7c7c7" /> {course.totalTime}h</span>}
-          {course.studentsCount != null && <span className="flex items-center gap-1 font-medium"><SvgComponent /> {course.studentsCount}</span>}
+          {course.rating != null && <span className={`flex items-center gap-1 font-medium ${theme === 'dark' ? 'text-[#e1dede]/80' : 'text-gray-700'}`}> <IconStarFilled color="#ffea00"/> {course.rating}</span>}
+          {course.totalTime != null && <span className={`flex items-center gap-1 font-medium ${theme === 'dark' ? 'text-[#e1dede]/80' : 'text-gray-700'}`}><IconClockHour2Filled color="#c7c7c7" /> {course.totalTime}h</span>}
+          {course.studentsCount != null && <span className={`flex items-center gap-1 font-medium ${theme === 'dark' ? 'text-[#e1dede]/80' : 'text-gray-700'}`}><SvgComponent /> {course.studentsCount}</span>}
         </div>
         
         <div className="mt-4">
-          <div className="mb-1 flex items-center justify-between text-xs font-medium text-gray-500">
+          <div className={`mb-1 flex items-center justify-between text-xs font-medium ${theme === 'dark' ? 'text-[#e1dede]/80' : 'text-gray-700'}`}>
             <span>{status === "completed" ? "Completed" : "In progress"}</span>
             <span>{progressPct}%</span>
           </div>
@@ -174,7 +175,7 @@ function CardSkeleton() {
 export default function MyCourses() {
   const [searchParams, setSearchParams] = useSearchParams();
   const purchased = usePurchased((s) => s.purchased);
-
+  const {theme} = useTheme()
   const search = searchParams.get("search") ?? "";
   const level = searchParams.get("level") ?? "";
   const sortBy = searchParams.get("sortBy") ?? "";
@@ -270,10 +271,10 @@ export default function MyCourses() {
   const isEmpty = purchased.length === 0;
 
   return (
-    <div className="min-h-screen pt-13 bg-gray-50">
+    <div className={`min-h-screen pt-13 transition duration-500 ${theme === 'dark' ? 'bg-[#1a1919]/95' : 'bg-gray-50'}`}>
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <header className="mb-8 flex justify-between">
-          <h1 className="text-3xl font-bold text-gray-900">My Lessons</h1>
+          <h1 className={`text-3xl font-bold ${theme === 'dark' ? 'text-[#e1dede]' : 'text-gray-900'}`}>My Lessons</h1>
         </header>
 
         {/* Empty store state */}
@@ -353,11 +354,11 @@ export default function MyCourses() {
                 ))}
               </div>
             ) : (
-              <div className="rounded-2xl border border-dashed border-gray-200 bg-white py-20 text-center">
-                <p className="text-lg font-medium text-gray-700">
+              <div className={`rounded-2xl border border-dashed border-gray-200 transition duration-500  ${theme === 'dark' ? 'bg-[#313131]/90' : 'bg-white'} py-20 text-center`}>
+                <p className={`text-lg font-medium ${theme === 'dark' ? 'text-[#e1dede]/90' : 'text-gray-700'}`}>
                   No matches
                 </p>
-                <p className="mt-1 text-sm text-gray-500">
+                <p className={`mt-1 text-sm ${theme === 'dark' ? 'text-[#e1dede]/75' : 'text-gray-500'}`}>
                   None of your courses match these filters.
                 </p>
               </div>

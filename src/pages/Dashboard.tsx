@@ -73,7 +73,6 @@ const Dashboard: React.FC = () => {
   
     if (owned) {
       if (isCourseCompleted(String(course.id))) return "completed";
-      if (today > endDate) return "completed";
       return "active";
     }
 

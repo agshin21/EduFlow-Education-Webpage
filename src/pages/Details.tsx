@@ -220,8 +220,8 @@ const handleSubmitReview = async () => {
             </div>
 
             <div className="pb-4">
-              <p className="text-sm font-medium">Course is openning: {course.startDate}</p>
-              <p className="text-sm font-medium">Course is closing: {course.endDate}</p>
+              <p className={`text-sm font-medium ${theme === 'dark' ? 'text-[#e1dede]/70' : 'text-black/70'}`}>Course is openning: {course.startDate}</p>
+              <p className={`text-sm font-medium ${theme === 'dark' ? 'text-[#e1dede]/70' : 'text-black/70'}`}>Course is closing: {course.endDate}</p>
             </div>
 
             <div className="flex items-center gap-2 mt-2">
@@ -510,8 +510,8 @@ return discountPrices.filter((discount) => String(discount.id) === String(course
             </div>
             </div>
             <div>
-              <p className="text-xl font-medium">Course is openning: {course.startDate}</p>
-              <p className="text-xl font-medium">Course is closing: {course.endDate}</p>
+              <p className={`text-xl font-medium ${theme === 'dark' ? 'text-[#e1dede]/70' : 'text-black/70'}`}>Course is openning: {course.startDate}</p>
+              <p className={`text-xl font-medium ${theme === 'dark' ? 'text-[#e1dede]/70' : 'text-black/70'}`}>Course is closing: {course.endDate}</p>
             </div>
           <iframe src={`https://www.youtube.com/embed/${course.previewVideoId}`} className="w-full mb-8 shadow-md shadow-slate-500 mt-11 h-96 xl:h-114 rounded-2xl"></iframe>
           
@@ -692,35 +692,18 @@ return discountPrices.filter((discount) => String(discount.id) === String(course
               {courseStatus === "locked" ? "Locked" : courseStatus === "upcoming" ? "Coming Soon" : isPurchased(course.id) ? 'Owned' : isInCart(course.id) ? 'In Cart' : 'Add to Cart'}
             </button>
             <hr className={`${theme === 'dark' ? 'text-[#e1dede]/40' : 'text-black/20'} `} />
-            <h2 className={`font-bold text-md ${theme === 'dark' ? 'text-[#e1dede]' : 'text-black'}`}>
-              This course includes:
-            </h2>
-            <p className={`flex items-center gap-2 font-semibold ${theme === 'dark' ? 'text-[#e1dede]/80' : 'text-black/60'}`}>
-              <BsPlayBtn /> 28 hours on-demand video
-            </p>
-            <p className={`flex items-center gap-2 font-semibold ${theme === 'dark' ? 'text-[#e1dede]/80' : 'text-black/60'}`}>
-              <FaRegFileAlt /> 15 downloadable resources
-            </p>
-            <p className={`flex items-center gap-2 font-semibold ${theme === 'dark' ? 'text-[#e1dede]/80' : 'text-black/60'}`}>
-              <IoInfiniteSharp /> Full lifetime access
-            </p>
-            <p className={`flex items-center gap-2 font-semibold ${theme === 'dark' ? 'text-[#e1dede]/80' : 'text-black/60'}`}>
-              <PiCertificateBold /> Certificate of
-              completion
-            </p>
-          </div>
-
-          {/* Guarantee Card */}
-          <div className={`flex flex-col items-center rounded-xl shadow-md shadow-slate-500 py-5 transition  duration-500 ${theme === 'dark' ? 'text-[#e1dede] bg-[#222121] ' : 'text-black bg-[#EFF4FF] '}`}>
-            <h2 className="text-md font-semibold mb-2">30-Day Money-Back Guarantee</h2>
-            <div className={`flex text-5xl gap-4 transition ${theme === 'dark' ? 'text-[#e1dede]/80' : 'text-black/60'}`}>
-              <AiOutlineSafetyCertificate />
-              <PiMoneyLight />
-              <MdLockOutline />
+            
+            {/* Guarantee card */}
+            <div className={`flex flex-col items-center rounded-xl shadow-md shadow-slate-500 py-5 transition  duration-500 ${theme === 'dark' ? 'text-[#e1dede] bg-[#222121] ' : 'text-black bg-[#EFF4FF] '}`}>
+              <h2 className="text-md font-semibold mb-2">30-Day Money-Back Guarantee</h2>
+              <div className={`flex text-5xl gap-4 transition ${theme === 'dark' ? 'text-[#e1dede]/80' : 'text-black/60'}`}>
+                <AiOutlineSafetyCertificate />
+                <PiMoneyLight />
+                <MdLockOutline />
+              </div>
             </div>
-          </div>
-        </div>          
-
+          </div> 
+        </div>
         
       </div>
       {/* ── WRITE A REVIEW + USER REVIEWS ── */}

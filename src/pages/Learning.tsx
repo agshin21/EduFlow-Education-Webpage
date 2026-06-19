@@ -7,6 +7,7 @@ import axios from "axios";
 import { fetchCourseById } from "../api/courses";
 import { useProgress } from "../store/progressStore";
 import { usePurchased } from "../store/purchasedStore";
+import { useTheme } from "../context/ThemeContext";
 
 const SYLLABUS_URL = "https://6a2ec8d2c9776ca6c0c4f04a.mockapi.io/lessons/v1/previews";
 
@@ -66,7 +67,7 @@ function groupByTopic(lessons: FlatLesson[]) {
 export default function Learning() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-
+  const {theme} = useTheme()
   const purchased = usePurchased((s) => s.purchased);
   const { getCompleted, isCompleted, toggleLesson, setTotal, setLastLesson, getLastLesson } = useProgress();
 
@@ -227,7 +228,7 @@ export default function Learning() {
     : false;
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-16">
+    <div className={`min-h-screen transition duration-500 ${theme === 'dark' ? 'bg-[#1a1919]/95' : 'bg-white'} pt-16`}>
       <div className="mx-auto max-w-7xl px-4 py-8 lg:px-8">
         {/* Title */}
         <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -238,16 +239,16 @@ export default function Learning() {
             >
               <IoIosArrowBack /> Back to My Lessons
             </button>
-            <h1 className="text-2xl font-bold text-gray-900">{course.title}</h1>
-            <p className="text-sm text-gray-500">
+            <h1 className={`text-2xl font-bold ${theme === 'dark' ? 'text-[#e1dede]' : 'text-gray-900'}`}>{course.title}</h1>
+            <p className={`text-sm ${theme === 'dark' ? 'text-[#e1dede]/70' : 'text-gray-500'}`}>
               by {course.instructorName}
             </p>
           </div>
-          <div className="rounded-xl bg-white px-4 py-3 shadow-sm">
-            <p className="text-xs text-gray-500">Your progress</p>
-            <p className="text-lg font-semibold text-gray-900">
+          <div className={`rounded-xl transition duration-500 ${theme === 'dark' ? 'bg-[#313131]/90' : 'bg-white'}  px-4 py-3 shadow-sm`}>
+            <p className={`text-xs ${theme === 'dark' ? 'text-[#e1dede]/90' : 'text-gray-500'}`}>Your progress</p>
+            <p className={`text-lg ${theme === 'dark' ? 'text-[#e1dede]/80' : 'text-gray-900'} font-semibold`}>
               {progressPct}%{" "}
-              <span className="text-sm font-normal text-gray-400">
+              <span className={`text-sm font-normal ${theme === 'dark' ? 'text-[#e1dede]/70' : 'text-gray-400'}`}>
                 ({completedCount}/{totalLessons})
               </span>
             </p>
@@ -278,14 +279,14 @@ export default function Learning() {
             </div>
 
             {activeLesson && (
-              <div className="mt-5 rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
-                <p className="text-xs font-medium uppercase tracking-wide text-indigo-500">
+              <div className={`mt-5 rounded-2xl transition duration-500 ${theme === 'dark' ? 'bg-[#313131]/90' : 'bg-white'} p-6 shadow-sm`}>
+                <p className={`text-xs font-medium uppercase tracking-wide text-indigo-500`}>
                   {activeLesson.topicTitle}
                 </p>
-                <h2 className="mt-1 text-xl font-semibold text-gray-900">
+                <h2 className={`mt-1 text-xl font-semibold ${theme === 'dark' ? 'text-[#e1dede]' : 'text-gray-900'}`}>
                   {activeIndex + 1}. {activeLesson.title}
                 </h2>
-                <p className="mt-1 text-sm text-gray-500">
+                <p className={`mt-1 text-sm ${theme === 'dark' ? 'text-[#e1dede]/80' : 'text-gray-500'}`}>
                   Duration: {Math.ceil(Number(course.totalTime) / topicLength)}h
                 </p>
 
@@ -317,14 +318,14 @@ export default function Learning() {
                   <button
                     onClick={() => goTo(activeIndex - 1)}
                     disabled={activeIndex <= 0}
-                    className="rounded-xl flex items-center gap-2 border border-gray-200 px-4 py-2.5 text-sm font-medium text-gray-700 transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40"
+                    className={`rounded-xl flex items-center gap-2 ${theme === 'dark' ? 'text-[#e1dede]/80' : 'border border-gray-200 text-gray-700'}  px-4 py-2.5 text-sm font-medium  transition duration-500 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40`}
                   >
                     <IoIosArrowBack /> Previous
                   </button>
                   <button
                     onClick={() => goTo(activeIndex + 1)}
                     disabled={activeIndex >= lessons.length - 1}
-                    className="rounded-xl flex items-center gap-2 border border-gray-200 px-4 py-2.5 text-sm font-medium text-gray-700 transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40"
+                    className={`rounded-xl flex items-center gap-2 ${theme === 'dark' ? 'text-[#e1dede]/80' : 'border border-gray-200 text-gray-700'}  px-4 py-2.5 text-sm font-medium  transition duration-500 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40`}
                   >
                     Next <IoIosArrowForward />
                   </button>
@@ -335,10 +336,10 @@ export default function Learning() {
 
           {/* Right: Syllabus */}
           <aside className="lg:col-span-1">
-            <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm">
-              <div className="border-b border-gray-100 p-5">
-                <h3 className="font-semibold text-gray-900">Course content</h3>
-                <p className="mt-1 text-xs text-gray-500">
+            <div className={`overflow-hidden rounded-2xl transition duration-500 border-gray-100 ${theme === 'dark' ? 'bg-[#313131]/90' : 'bg-white'} shadow-sm`}>
+              <div className="p-5">
+                <h3 className={`font-semibold ${theme === 'dark' ? 'text-[#e1dede]' : 'text-gray-900'}`}>Course content</h3>
+                <p className={`mt-1 text-xs ${theme === 'dark' ? 'text-[#e1dede]/70' : 'text-gray-500'} `}>
                   {totalLessons} lessons
                 </p>
                 {/* Progress bar */}
@@ -352,8 +353,8 @@ export default function Learning() {
 
               <div className="max-h-[60vh] overflow-y-auto">
                 {groupByTopic(lessons).map(([topicTitle, topicLessons]) => (
-                  <div key={topicTitle} className="border-b border-gray-50">
-                    <p className="bg-gray-50 px-5 py-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
+                  <div key={topicTitle}>
+                    <p className={`${theme === 'dark' ? 'bg-[#484848]/40 text-[#e1dede]/90' : 'bg-gray-50 text-gray-500'} transition duration-500 px-5 py-2 text-xs font-semibold uppercase tracking-wide`}>
                       {topicTitle}
                     </p>
                     <ul>
@@ -367,9 +368,13 @@ export default function Learning() {
                                 setActiveLessonId(lesson.id);
                                 window.scrollTo({ top: 0, behavior: "smooth" });
                               }}
-                              className={`flex w-full items-center gap-3 px-5 py-3 text-left text-sm transition ${
-                                active
-                                  ? "bg-indigo-50"
+                              className={`flex w-full items-center gap-3 px-5 py-3 text-left text-sm transition duration-500 ${
+                                active && theme === 'dark'
+                                  ? "bg-[#484848]/20" :
+                                active && theme === 'light'
+                                  ? "bg-indigo-50" :
+                                theme === 'dark' 
+                                  ?  "hover:bg-[#3a3a3a]"  
                                   : "hover:bg-gray-50"
                               }`}
                             >
@@ -384,8 +389,10 @@ export default function Learning() {
                               </span>
                               <span
                                 className={`flex-1 ${
-                                  active
-                                    ? "font-medium text-indigo-700"
+                                 active  
+                                    ? "font-medium text-indigo-700" :
+                                  theme === 'dark' 
+                                    ? "text-[#e1dede]/60" 
                                     : "text-gray-700"
                                 }`}
                               >
