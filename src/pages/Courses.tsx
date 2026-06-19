@@ -244,16 +244,22 @@ const Courses = () => {
             >
               {paginatedCourses.map((course: Course) => {
                 const daysLeft = getRemainingDays(course.endDate);
+                const startDate = new Date(course.startDate).getTime();
+                const now = new Date().getTime();
                 const styles = {
                   red: "bg-red-200 w-fit text-md font-semibold py-1 shadow-red-300 rounded-lg text-red-700 shadow-lg px-3",
                   green: "bg-green-200 w-fit text-md font-semibold py-1 shadow-green-300 rounded-lg text-green-700 shadow-lg px-3",
                   locked: "bg-gray-200 w-fit text-md font-semibold py-1 shadow-gray-300 rounded-lg text-gray-700 shadow-lg px-3",
+                  blue: "bg-blue-200 w-fit text-md font-semibold py-1 shadow-blue-300 rounded-lg text-blue-700 shadow-lg px-3"
                 };
 
                 let text = "";
                 let statusCourse = "";
 
-                if (daysLeft <= 0) {
+                if(startDate > now) {
+                  text = "Upcoming"
+                  statusCourse = styles.blue
+                } else if (daysLeft <= 0) {
                   text = "Closed";
                   statusCourse = styles.locked;
                 } else if (daysLeft <= 5) {
@@ -280,7 +286,7 @@ const Courses = () => {
                         className="w-full h-48 md:h-63 xl:h-63 lg:h-40 object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>
-                    <h2 className="font-bold lg:font-medium xl:font-bold text-lg md:text-2xl lg:text-md xl:text-2xl min-h-16">
+                    <h2 className="font-bold lg:font-medium xl:font-bold text-lg md:text-2xl lg:text-md xl:text-2xl h-14">
                       {course.title}
                     </h2>
                     <p className="h-10">{course.description}</p>

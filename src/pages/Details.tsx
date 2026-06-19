@@ -22,7 +22,6 @@ import { PiUsersBold } from "react-icons/pi";
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutlineOutlined';
 import QuizIcon from '@mui/icons-material/Quiz';
 import StarIcon from "@mui/icons-material/Star";
-import SvgComponent from "../components/HumanIcon";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useCart } from "../store/cartStore";
@@ -54,7 +53,6 @@ const Details = () => {
   const isPurchased = (id?: number | string) => {
     return purchased.some((item) => String(item.id) === String(id))
   }
-
 const getCourseStatus = (course: Course): string => {
   const today = new Date().setHours(0, 0, 0, 0);
   const startDateRaw = new Date(course.startDate)
@@ -214,11 +212,16 @@ const handleSubmitReview = async () => {
               {course.title}
             </h1>
 
-            <div className="flex items-center gap-1 mt-1">
+            <div className="flex items-center gap-1 mt-1 pb-2">
               <span className="text-yellow-500 text-xs font-bold">{course.rating}</span>
               <Rating value={Number(course.rating)} readOnly precision={0.5} size="small" sx={{ fontSize: 14, color: "#EAB308" }} />
               <span className="text-sm text-gray-500 font-medium">({review.totalReviews} Reviews)</span>
               <span className="text-sm text-gray-500 font-medium ml-1">{course.studentsCount} students</span>
+            </div>
+
+            <div className="pb-4">
+              <p className="text-sm font-medium">Course is openning: {course.startDate}</p>
+              <p className="text-sm font-medium">Course is closing: {course.endDate}</p>
             </div>
 
             <div className="flex items-center gap-2 mt-2">
@@ -478,7 +481,7 @@ return discountPrices.filter((discount) => String(discount.id) === String(course
             {course.title}
           </h2>
           
-          <div className="flex gap-4">
+          <div className="flex gap-4 pb-7">
           <div className="flex gap-1 items-center">
               <PiUsersBold className={`size-10 rounded-full shadow-md shadow-indigo-400 bg-[#563fec] p-2 ${theme === 'dark' ? 'text-[#e1dede]' : 'text-white'}`} />
               <p className={`text-[23px] tracking-tighter font-medium ${theme === 'dark' ? 'text-[#e1dede]' : 'text-black'}`}>
@@ -505,6 +508,10 @@ return discountPrices.filter((discount) => String(discount.id) === String(course
               </p>
               <p className={`font-semibold text-[23px] ${theme === 'dark' ? 'text-[#e1dede]' : 'text-black'}`}>({review.totalReviews} Review)</p>
             </div>
+            </div>
+            <div>
+              <p className="text-xl font-medium">Course is openning: {course.startDate}</p>
+              <p className="text-xl font-medium">Course is closing: {course.endDate}</p>
             </div>
           <iframe src={`https://www.youtube.com/embed/${course.previewVideoId}`} className="w-full mb-8 shadow-md shadow-slate-500 mt-11 h-96 xl:h-114 rounded-2xl"></iframe>
           
