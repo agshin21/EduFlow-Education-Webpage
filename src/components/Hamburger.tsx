@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 
 import Hamburger from "hamburger-react";
-import { createPortal } from "react-dom"; // 1. Portal import edin
+import { createPortal } from "react-dom";
 import { routes } from "../route/routes";
 import { useClickAway } from "react-use";
 import { useMediaQuery } from "react-responsive";

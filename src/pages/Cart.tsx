@@ -13,7 +13,7 @@ export default function CartPage() {
   const {cart} = useCart(useShallow((state) => ({cart: state.cart})))
   const { removeCart } = useCart();
   const numberOfCartItems = cart.length
-  // Calculations
+  
   const originalTotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   const discountedTotal = cart.reduce((sum, item) => {
