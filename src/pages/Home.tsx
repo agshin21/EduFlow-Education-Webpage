@@ -214,7 +214,7 @@ function Home() {
             </div>
             <Avatargroup />
           </div>
-          <div className="space-y-5">
+          <div className="space-y-5 hidden lg:block">
             <h2 className="text-2xl md:text-4xl font-bold">
               Most Selling Course of
               <br /> This Week
@@ -363,8 +363,8 @@ function Home() {
               className="max-w-60 md:max-w-140 lg:max-w-150 xl:max-w-180 max-h-120"
             >
               {courses.slice(21, 25).map((c) => (
-                <SwiperSlide key={c.id} className="bg-white p-8 rounded-2xl shadow-md shadow-slate-500 w-full h-full">
-                  <div className="max-w-35 lg:max-w-50 xl:max-w-60 text-[15px] xl:text-[21px] mb-6">
+                <SwiperSlide key={c.id} className="bg-white p-8 rounded-2xl shadow-md shadow-slate-500 w-full">
+                  <div className="max-w-35 lg:max-w-50 h-50 xl:max-w-60 text-[15px] xl:text-[21px] mb-6">
                     <em>"{c.testimonial}"</em>
                   </div>
                   <div className="flex gap-3 items-center">

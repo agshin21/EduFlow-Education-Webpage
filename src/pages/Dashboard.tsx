@@ -156,11 +156,11 @@ const activeCourses = purchasedWithStatus.filter((course) => course.status === '
     datasets: [
       {
         label: 'Lesson hours',
-        data: [12, 19, 15, 20, 24, 18],
+        data: [12, 13, 16, 14, 18, 12],
         borderColor: 'rgb(75, 192, 192)',
         backgroundColor: 'rgba(75, 192, 192, 0.5)',
-        tension: 0.3,
-        labelColor: '#e1dede'
+        tension: 0.5,
+        labelColor: '#e1dede',
       },
     ],
   };
@@ -201,7 +201,7 @@ const activeCourses = purchasedWithStatus.filter((course) => course.status === '
             Welcome, <strong className="text-blue-600">{user?.firstName || 'User'}</strong>!
           </p>
         </div>
-        <div className='flex flex-wrap items-center gap-2'>
+        <div className='flex sm:flex-wrap items-center gap-2'>
         <div className='px-3 py-1 text-slate-300 rounded-full text-2xl bg-green-800'>{user.firstName?.charAt(0)}</div>
         <button
           onClick={handleLogout}
@@ -228,37 +228,10 @@ const activeCourses = purchasedWithStatus.filter((course) => course.status === '
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+      <div className="grid grid-cols-1 gap-8 mb-8">
         {/* Chart.js */}
         <div ref={chartRef} className={`${theme === 'dark' ? 'bg-[#222121]' : 'bg-white'} transition duration-500 p-6 rounded-lg shadow-md`}>
           <Line data={chartData} options={chartOptions}/>
-        </div>
-
-        {/* Upcoming lessons */}
-        <div ref={tableRef} className={`${theme === 'dark' ? 'bg-[#222121]' : 'bg-white'} transition duration-500 p-6 rounded-lg shadow-md overflow-hidden`}>
-          <h3 className={`text-xl font-bold ${theme === 'dark' ? 'text-[#e1dede]' : 'text-gray-800'}  mb-4`}>Upcoming Lessons</h3>
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="border-b-2 border-gray-100 text-gray-500 text-sm">
-                  <th className={`py-3 px-2 ${theme === 'dark' ? 'text-[#e1dede]' : 'text-gray-500'}`}>Start Date</th>
-                  <th className={`py-3 px-2 ${theme === 'dark' ? 'text-[#e1dede]' : 'text-gray-500'}`}>End Date</th>
-                  <th className={`py-3 px-2 ${theme === 'dark' ? 'text-[#e1dede]' : 'text-gray-500'}`}>Total time</th>
-                  <th className={`py-3 px-2 ${theme === 'dark' ? 'text-[#e1dede]' : 'text-gray-500'}`}>Course</th>
-                </tr>
-              </thead>
-              <tbody>
-                {purchasedWithStatus.filter((course) => course.status === 'upcoming').map((course) => (
-                  <tr key={course.id} className="border-b font-medium border-gray-50 hover:bg-gray-50">
-                    <td className={`py-3 px-2 ${theme === 'dark' ? 'text-[#e1dede]/70' : 'text-gray-500'}`}>{course.startDate}</td>
-                    <td className={`py-3 px-2 ${theme === 'dark' ? 'text-[#e1dede]/70' : 'text-gray-500'}`}>{course.endDate}</td>
-                    <td className={`py-3 px-2 ${theme === 'dark' ? 'text-[#e1dede]/70' : 'text-gray-500'}`}>{course.totalTime} Hours</td>
-                    <td className={`py-3 px-2 ${theme === 'dark' ? 'text-[#e1dede]/70' : 'text-gray-500'}`}>{course.title}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
         </div>
       </div>
 
@@ -279,8 +252,6 @@ const activeCourses = purchasedWithStatus.filter((course) => course.status === '
                 </p>
               </div>
               <span className={`${course.status === 'completed' && styles.completed || 
-              course.status === 'upcoming' && styles.upcoming || 
-              course.status === 'locked' && styles.locked || 
               course.status === 'active' && styles.active}`}>
                 {course.status}
               </span>
@@ -298,7 +269,5 @@ const activeCourses = purchasedWithStatus.filter((course) => course.status === '
 const styles = {
   completed: "mt-2 sm:mt-0 bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide",
   active: "mt-2 sm:mt-0 bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide",
-  upcoming: "mt-2 sm:mt-0 bg-orange-200 text-orange-500 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide",
-  locked : "mt-2 sm:mt-0 bg-gray-300 text-gray-600 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide"
 }
 export default Dashboard;   
