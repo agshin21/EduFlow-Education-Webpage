@@ -123,7 +123,7 @@ const handleSubmitReview = async () => {
     if (!course) return;
     setSubmitting(true);
     const newReview = {
-      courseId: String(course.id),
+      courseId: String(id),
       studentName: userAuth.fullName || userAuth?.firstName || "Anonymous",
       avatar: userAuth.avatar || "",
       rating: String(reviewRating),
