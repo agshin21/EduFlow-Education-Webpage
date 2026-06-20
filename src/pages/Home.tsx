@@ -50,11 +50,14 @@ function Home() {
  useEffect(() => {
     if (loading) return;
 
+    const allElements = document.querySelectorAll<HTMLElement>(".transition");
+    allElements.forEach(el => el.style.transition = "none")
+
     if (heroRef.current) {
       gsap.fromTo(
         heroRef.current,
         { opacity: 0, y: -80 },
-        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
+        { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }
       );
     }
 
@@ -157,6 +160,8 @@ function Home() {
         }
       );
     }
+
+    allElements.forEach(el => el.style.transition = "")
 
     return () => {
       ScrollTrigger.getAll().forEach((t) => t.kill());

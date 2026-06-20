@@ -22,8 +22,8 @@ function flattenSyllabus(syllabus: Syllabus | null): FlatLesson[] {
   const topics: (Topic | undefined)[] = syllabus
     ? [syllabus.topic_1, syllabus.topic_2, syllabus.topic_3]
     : [];
-
-  const lessons: FlatLesson[] = [];
+ 
+  const lessons: FlatLesson[] = [];  
 
   topics.forEach((topic, ti) => {
     if (!topic) return;
