@@ -124,7 +124,7 @@ const handleSubmitReview = async () => {
     setSubmitting(true);
     const newReview = {
       courseId: String(course.id),
-      studentName: userAuth.fullName || userAuth.name || "Anonymous",
+      studentName: userAuth.fullName || userAuth?.firstName || "Anonymous",
       avatar: userAuth.avatar || "",
       rating: String(reviewRating),
       comment: reviewText.trim(),
