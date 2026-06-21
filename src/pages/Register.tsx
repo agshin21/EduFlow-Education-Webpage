@@ -48,7 +48,7 @@ const Register: React.FC = () => {
           <div className={`absolute inset-0 transition-colors duration-500 ${theme === 'dark' ? 'bg-black/60 backdrop-blur-md' : 'bg-transparent backdrop-blur-md'}`} />
     
           {/* Grid Container */}
-          <div className={`relative z-10 flex w-full mt-15 max-w-xs sm:max-w-lg lg:max-w-4xl xl:max-w-5xl h-118 sm:h-150 overflow-hidden rounded-2xl shadow-2xl backdrop-blur-xl transition-colors duration-500 ${
+          <div className={`relative z-10 flex w-full mt-15 max-w-xs sm:max-w-lg lg:max-w-4xl xl:max-w-5xl h-130 sm:h-150 overflow-hidden rounded-2xl shadow-2xl backdrop-blur-xl transition-colors duration-500 ${
               theme === 'dark' ? 'bg-gray-900/30 text-white' : 'bg-white/10 text-gray-900'
             }`}>
             
