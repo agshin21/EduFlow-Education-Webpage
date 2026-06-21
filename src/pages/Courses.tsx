@@ -247,10 +247,11 @@ const Courses = () => {
                 const startDate = new Date(course.startDate).getTime();
                 const now = new Date().getTime();
                 const styles = {
-                  red: "bg-red-200 w-fit text-md font-semibold py-1 shadow-red-300 rounded-lg text-red-700 shadow-lg px-3",
-                  green: "bg-green-200 w-fit text-md font-semibold py-1 shadow-green-300 rounded-lg text-green-700 shadow-lg px-3",
-                  locked: "bg-gray-200 w-fit text-md font-semibold py-1 shadow-gray-300 rounded-lg text-gray-700 shadow-lg px-3",
-                  blue: "bg-blue-200 w-fit text-md font-semibold py-1 shadow-blue-300 rounded-lg text-blue-700 shadow-lg px-3"
+                  red: "bg-red-200 w-fit text-md font-semibold py-1 shadow-red-300 rounded-lg text-red-700 shadow-lg px-1",
+                  green: `bg-green-200 w-fit ${course.businessCategory.length <= 18 ? "text-md" : "text-sm" } font-semibold py-1 shadow-green-300 rounded-lg text-green-700 shadow-lg px-1`,
+                  locked: "bg-gray-200 w-fit text-md font-semibold py-1 shadow-gray-300 rounded-lg text-gray-700 shadow-lg px-1",
+                  blue: "bg-blue-200 w-fit text-md font-semibold py-1 shadow-blue-300 rounded-lg text-blue-700 shadow-lg px-1",
+                  yellow: "bg-yellow-100 w-fit text-md font-semibold py-1 shadow-yellow-300 rounded-lg text-yellow-800 shadow-lg px-1"
                 };
 
                 let text = "";
@@ -286,10 +287,13 @@ const Courses = () => {
                         className="w-full h-48 md:h-63 xl:h-63 lg:h-40 object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>
+                    <div>
+                      <p className={`uppercase ${course.level === "beginner" ? styles.green : course.level === "intermediate" ? styles.yellow : styles.red}`}>{course.level}</p>
+                    </div>
                     <h2 className="font-bold lg:font-medium xl:font-bold text-lg md:text-2xl lg:text-md xl:text-2xl h-14">
                       {course.title}
                     </h2>
-                    <p className="h-10">{course.description}</p>
+                    <p className={`h-10 font-medium ${course.description.length > 50 ? "text-sm" : "text-base"}`}>{course.description}</p>
                     <div className="flex flex-col gap-2 items-center justify-between">
                       <button
                         onClick={() => course.id ? navigate(`/details/${course.id}`) : console.error("Course id is nothing!")}
@@ -298,8 +302,8 @@ const Courses = () => {
                         Browse Course
                       </button>
                     </div>
-                    <div className="flex items-center">
-                      <Box sx={{ width: { xs: 170, sm: 230, md: 140, lg: 240 }, display: "flex", alignItems: "center" }}>
+                    <div className="flex items-center justify-between">
+                      <Box sx={{ width: { xs: 130, sm: 230, md: 140, lg: 240 }, display: "flex", alignItems: "center" }}>
                         <Rating
                           name="text-feedback"
                           value={Number(course.rating)}
