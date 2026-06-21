@@ -190,7 +190,7 @@ const handleSubmitReview = async () => {
   };
   console.log(courseStatus);
  
-  if (!course) return <div className={`flex ${theme === 'dark' ? 'bg-[#1a1919]' : 'bg-[#f1f5fc]'} items-center justify-center h-screen text-gray-700`}><CircularIndeterminate /></div>
+  if (!course) return <div className={`flex ${theme === 'dark' ? 'bg-[#1a1919]/95' : 'bg-[#f1f5fc]'} items-center justify-center h-screen text-gray-700`}><CircularIndeterminate /></div>
 
   return (
     <div>
@@ -509,7 +509,7 @@ return discountPrices.filter((discount) => String(discount.id) === String(course
               <p className={`text-xl font-medium ${theme === 'dark' ? 'text-[#e1dede]/70' : 'text-black/70'}`}>Course is openning: {course.startDate}</p>
               <p className={`text-xl font-medium ${theme === 'dark' ? 'text-[#e1dede]/70' : 'text-black/70'}`}>Course is closing: {course.endDate}</p>
             </div>
-          <iframe src={`https://www.youtube.com/embed/${course.previewVideoId}`} className="w-full mb-8 shadow-md shadow-slate-500 mt-11 h-96 xl:h-114 rounded-2xl"></iframe>
+          <iframe src={`https://www.youtube.com/embed/${course.previewVideoId}`} className="w-full mb-8 shadow-md mt-11 h-96 xl:h-114 rounded-2xl"></iframe>
           
           <p className={`text-md p-6 xl:text-lg mb-4 font-medium ${theme === 'dark' ? 'text-[#e1dede]/70' : 'text-black/70'}`}>
             {description?.courseDescription}
@@ -540,7 +540,7 @@ return discountPrices.filter((discount) => String(discount.id) === String(course
                   <Accordion
                     key={index}
                     disableGutters
-                    className={`!rounded-2xl !shadow-none before:!hidden ${
+                    className={`!rounded-2xl !shadow-none before:!hidden transition! duration-500! ${
                       theme === 'dark'
                         ? '!bg-[#222121] !border !border-white/5'
                         : '!bg-white !border !border-slate-100'
@@ -639,7 +639,7 @@ return discountPrices.filter((discount) => String(discount.id) === String(course
  
           {/* Instructor */}
           <h2 className={`text-5xl font-bold mt-16 ${theme === 'dark' ? 'text-[#e1dede]' : 'text-black'}`}>Instructor</h2>
-          <div className={`${theme === 'dark' ? 'text-[#e1dede] bg-[#222121]' : 'text-black bg-[#ffffff]'} shadow-md duration-500 transition mt-8 shadow-slate-500 max-w-xl xl:max-w-3xl w-full px-10 py-7 rounded-2xl flex flex-col items-start gap-2`}>
+          <div className={`${theme === 'dark' ? 'text-[#e1dede] bg-[#313131]/60' : 'text-black bg-[#ffffff]'} shadow-md duration-500 transition mt-8 max-w-xl xl:max-w-3xl w-full px-10 py-7 rounded-2xl flex flex-col items-start gap-2`}>
             <div className="flex gap-5 mb-2">
               <AvatarGroup max={1} className="flex">
                 <Avatar
@@ -667,7 +667,7 @@ return discountPrices.filter((discount) => String(discount.id) === String(course
 
         {/* Add to Cart */}
         <div className="mb-20 mt-10">
-          <div className={`${theme === 'dark' ? 'bg-[#222121]' : 'bg-[#ffffff]'} sticky top-28 duration-500 transition shadow-md shadow-slate-500 h-fit px-9 py-11 rounded-2xl space-y-4 mb-3`}>
+          <div className={`${theme === 'dark' ? 'bg-[#313131]/60' : 'bg-[#ffffff]'} sticky top-28 duration-500 transition shadow-md h-fit px-9 py-11 rounded-2xl space-y-4 mb-3`}>
             <h2 className="font-bold text-sm text-red-600">
               LIMITED TIME OFFER
             </h2>
@@ -690,7 +690,7 @@ return discountPrices.filter((discount) => String(discount.id) === String(course
             <hr className={`${theme === 'dark' ? 'text-[#e1dede]/40' : 'text-black/20'} `} />
             
             {/* Guarantee card */}
-            <div className={`flex flex-col items-center rounded-xl shadow-md shadow-slate-500 py-5 transition  duration-500 ${theme === 'dark' ? 'text-[#e1dede] bg-[#222121] ' : 'text-black bg-[#EFF4FF] '}`}>
+            <div className={`flex flex-col items-center rounded-xl shadow-md py-5 transition  duration-500 ${theme === 'dark' ? 'text-[#e1dede] bg-[#222121] ' : 'text-black bg-[#EFF4FF] '}`}>
               <h2 className="text-md font-semibold mb-2">30-Day Money-Back Guarantee</h2>
               <div className={`flex text-5xl gap-4 transition ${theme === 'dark' ? 'text-[#e1dede]/80' : 'text-black/60'}`}>
                 <AiOutlineSafetyCertificate />
@@ -708,7 +708,7 @@ return discountPrices.filter((discount) => String(discount.id) === String(course
           Write a Review
         </h2>
 
-        <div className={`max-w-220 w-full rounded-2xl p-6 shadow-md shadow-slate-400 ${theme === 'dark' ? 'bg-[#222121]' : 'bg-white'}`}>
+        <div className={`max-w-220 w-full rounded-2xl p-6 shadow-md transition duration-500 ${theme === 'dark' ? 'bg-[#313131]/80' : 'bg-white'}`}>
           <div className="flex items-center gap-3 mb-4">
             <span className={`font-semibold ${theme === 'dark' ? 'text-[#e1dede]' : 'text-gray-700'}`}>
               Your rating:
@@ -726,7 +726,7 @@ return discountPrices.filter((discount) => String(discount.id) === String(course
             onChange={(e) => setReviewText(e.target.value)}
             placeholder="Share your experience with this course..."
             rows={4}
-            className={`w-full rounded-xl border p-4 text-sm outline-none transition focus:ring-2 focus:ring-indigo-200 ${
+            className={`w-full rounded-xl border duration-500 p-4 text-sm outline-none transition focus:ring-2 focus:ring-indigo-200 ${
               theme === 'dark'
                 ? 'bg-[#1a1919] border-white/10 text-[#e1dede] placeholder:text-[#e1dede]/40'
                 : 'bg-white border-slate-200 text-gray-800'
@@ -753,7 +753,7 @@ return discountPrices.filter((discount) => String(discount.id) === String(course
             {userReviews.map((r) => (
               <div
                 key={r.id}
-                className={`rounded-2xl p-5 shadow-md shadow-slate-300 ${theme === 'dark' ? 'bg-[#222121]' : 'bg-white'}`}
+                className={`rounded-2xl p-5 shadow-md transition duration-500 ${theme === 'dark' ? 'bg-[#313131]/80' : 'bg-white'}`}
               >
                 <div className="flex items-start gap-4">
                   <Avatar src={r.avatar} sx={{ width: 48, height: 48 }} />
