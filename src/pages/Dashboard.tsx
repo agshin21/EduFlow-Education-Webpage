@@ -202,7 +202,7 @@ const activeCourses = purchasedWithStatus.filter((course) => course.status === '
           </p>
         </div>
         <div className='flex sm:flex-wrap items-center gap-2'>
-        <div className='px-3 py-1 text-slate-300 rounded-full text-2xl bg-green-800'>{user.firstName?.charAt(0)}</div>
+        <div className='px-3 py-1 text-slate-300 rounded-full uppercase text-2xl bg-green-800'>{user.firstName?.charAt(0)}</div>
         <button
           onClick={handleLogout}
           className="px-5 py-2 font-semibold text-base sm:text-xl bg-red-500 hover:bg-red-600 text-white rounded-md shadow transition"
