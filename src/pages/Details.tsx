@@ -188,7 +188,6 @@ const handleSubmitReview = async () => {
       discountPrice: currentDiscount?.discountPrice,
     });
   };
-  console.log(courseStatus);
  
   if (!course) return <div className={`flex ${theme === 'dark' ? 'bg-[#1a1919]/95' : 'bg-[#f1f5fc]'} items-center justify-center h-screen text-gray-700`}><CircularIndeterminate /></div>
 
@@ -196,7 +195,7 @@ const handleSubmitReview = async () => {
     <div>
       {isSmallDevices &&
         studentReviews.filter((review) => String(review.id) === String(course.id)).map((review) =>
-        (<div className={`max-w-lg sm:max-w-4xl ${theme === 'dark' ? 'bg-[#1a1919]' : ''} transition duration-500 mx-auto min-h-screen font-sans relative pt-20 pb-20`}>
+        (<div key={review.id} className={`max-w-lg sm:max-w-4xl ${theme === 'dark' ? 'bg-[#1a1919]' : ''} transition duration-500 mx-auto min-h-screen font-sans relative pt-20 pb-20`}>
 
           {/* ── HERO IMAGE ── */}
           <div className="relative w-full h-44 sm:h-84 bg-gray-800 overflow-hidden">
@@ -466,7 +465,7 @@ const handleSubmitReview = async () => {
 {isLargeDevices &&
 studentReviews.filter((review) => String(review.id) === String(course.id)).map((review) => {
 return discountPrices.filter((discount) => String(discount.id) === String(course.id)).map((discount) =>
-<>
+<div key={discount.id}>
   <main className={`py-21 transition duration-500 ${theme === 'dark' ? 'bg-[#1a1919]' : 'bg-[#f1f5fc]'}`}>
     <section className="w-full">
       <div className="max-w-7xl mx-auto px-3 grid justify-center grid-cols-3 text-left">
@@ -783,7 +782,7 @@ return discountPrices.filter((discount) => String(discount.id) === String(course
 
   {/* Footer */}
    <Footer />
-   </>)
+   </div>)
    })}
  </div>)
 }
