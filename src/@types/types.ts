@@ -108,6 +108,28 @@ export type StatusInput = {
   endDate: string
 }
 
+export interface CodePractice {
+  id: string;
+  title: string;
+  description: string;
+  instructions: string[];
+  starterCode: string;
+  expectedOutput: string;
+  language: 'javascript';
+  difficulty: 'easy' | 'medium' | 'hard';
+}
+
+export type FlatLessonKind = 'lesson' | 'practice';
+
+export interface FlatLesson {
+  id: string;
+  topicTitle: string;
+  title: string;
+  time: string;
+  kind?: FlatLessonKind;
+  practice?: CodePractice;
+}
+
 export type Description = {
     id?: number | string;
     courseDescription: string;
