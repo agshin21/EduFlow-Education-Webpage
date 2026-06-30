@@ -152,11 +152,11 @@ const Dashboard: React.FC = () => {
 const completedCourses = purchasedWithStatus.filter((course) => course.status === 'completed').length;
 const activeCourses = purchasedWithStatus.filter((course) => course.status === 'active').length;
   const chartData = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
     datasets: [
       {
         label: 'Lesson hours',
-        data: [12, 13, 16, 14, 18, 12],
+        data: [8, 11, 15, 12, 17, 12, 9],
         borderColor: 'rgb(75, 192, 192)',
         backgroundColor: 'rgba(75, 192, 192, 0.5)',
         tension: 0.5,
