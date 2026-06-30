@@ -245,13 +245,13 @@ export default function CodePractice({
             value={code}
             onChange={(e) => setCode(e.target.value)}
             spellCheck={false}
-            className={`w-full resize-none font-mono text-sm leading-6 outline-none ${
+            className={`w-full resize-none font-mono text-sm outline-none ${
               isDark
                 ? "bg-[#0f1115] text-[#e1dede] placeholder:text-[#e1dede]/30"
                 : "bg-[#0f1115] text-[#e1dede] placeholder:text-[#e1dede]/30"
             } px-4 py-4`}
             placeholder="// Write your code here..."
-            style={{ minHeight: "260px" }}
+            style={{ minHeight: "272px" }}
           />
         </div>
 
@@ -277,7 +277,7 @@ export default function CodePractice({
 
           {/* Console */}
           <div
-            className={` px-4 py-3 text-xs font-semibold uppercase tracking-wide ${
+            className={`px-4 py-3 text-xs font-semibold uppercase tracking-wide ${
               isDark ? "bg-[#1f1f1f] text-[#e1dede]/70" : "bg-slate-100 text-slate-600"
             }`}
           >
@@ -286,7 +286,7 @@ export default function CodePractice({
             </span>
           </div>
           <div
-            className={`min-h-[163px] px-4 py-3 font-mono text-sm leading-6 ${
+            className={`h-44 px-4 py-3 font-mono text-sm ${
               isDark ? "bg-[#0a0c10] text-[#e1dede]" : "bg-[#0a0c10] text-[#e1dede]"
             }`}
           >
