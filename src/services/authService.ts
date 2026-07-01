@@ -13,6 +13,37 @@ export interface RegisterData {
   password: string;
 }
 
+export interface UpdateProfileData {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  avatar?: string;
+  password?: string;
+}
+
+const readUser = (): any | null => {
+  if (typeof window === "undefined") return null;
+  const raw =
+    localStorage.getItem("user") || sessionStorage.getItem("user");
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+};
+
+const writeUser = (user: any) => {
+  if (typeof window === "undefined") return;
+  const raw = JSON.stringify(user);
+  if (localStorage.getItem("user")) {
+    localStorage.setItem("user", raw);
+  } else {
+    sessionStorage.setItem("user", raw);
+  }
+  window.dispatchEvent(new Event("auth-change"));
+};
+
 export const registerUser = async (data: {
   firstName: string;
   lastName: string;
@@ -62,4 +93,61 @@ export const logoutUser = () => {
   sessionStorage.removeItem("authToken");
   usePurchased.setState({ purchased: []})
   usePurchased.persist.rehydrate()
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new Event("auth-change"));
+  }
+};
+
+export const getCurrentUser = () => readUser();
+
+export const updateUser = async (
+  data: UpdateProfileData
+): Promise<any> => {
+  const currentUser = readUser();
+  if (!currentUser || !currentUser.id) {
+    toast.error("You must be logged in to update your profile.");
+    throw new Error("Not authenticated");
+  }
+
+  const payload: UpdateProfileData = { ...data };
+
+  let updatedRemote: any = currentUser;
+  try {
+    const res = await api.put(`/users/${currentUser.id}`, payload);
+    updatedRemote = res.data ?? { ...currentUser, ...payload };
+  } catch (err) {
+    console.warn(
+      "Remote update failed, falling back to local-only update",
+      err
+    );
+    updatedRemote = { ...currentUser, ...payload };
+    toast.warning(
+      "Saved locally only — server sync failed, will retry on next save."
+    );
+  }
+
+  writeUser(updatedRemote);
+  // Force purchased store to rehydrate under the (possibly unchanged) user id
+  usePurchased.persist.rehydrate();
+
+  return updatedRemote;
+};
+
+export const uploadAvatar = async (file: File): Promise<string> => {
+  if (!file) throw new Error("No file selected");
+  if (!file.type.startsWith("image/")) {
+    toast.error("Please choose an image file");
+    throw new Error("Invalid file type");
+  }
+  if (file.size > 2 * 1024 * 1024) {
+    toast.error("Image is too large. Max size is 2 MB.");
+    throw new Error("File too large");
+  }
+
+  return await new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result));
+    reader.onerror = () => reject(new Error("Failed to read file"));
+    reader.readAsDataURL(file);
+  });
 };

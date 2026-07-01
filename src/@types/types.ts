@@ -134,3 +134,14 @@ export type Description = {
     id?: number | string;
     courseDescription: string;
 }
+
+export interface AppUser {
+  id?: string | number;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  password?: string;
+  username?: string;
+  avatar?: string;
+  createdAt?: string;
+}

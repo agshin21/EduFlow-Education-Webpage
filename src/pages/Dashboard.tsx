@@ -18,7 +18,6 @@ import Footer from '../components/Footer';
 import { Line } from 'react-chartjs-2';
 import type { StatusInput } from '../@types/types';
 import gsap from 'gsap';
-import { logoutUser } from '../services/authService';
 import { useProgress } from '../store/progressStore';
 import { usePurchased } from '../store/purchasedStore';
 import { useTheme } from '../context/ThemeContext';
@@ -52,7 +51,7 @@ const Dashboard: React.FC = () => {
   const location = useLocation()
   const {theme} = useTheme()
   const navigate = useNavigate();
-  const [user, setUser] = useState<User | null>(() => {
+  const [user] = useState<User | null>(() => {
     const storedUser = localStorage.getItem('user') || sessionStorage.getItem('user');
     return storedUser ? JSON.parse(storedUser) : null;
   });
@@ -131,11 +130,6 @@ const Dashboard: React.FC = () => {
     }
   }, [user, navigate]);
 
-  const handleLogout = () => {
-    logoutUser();
-    setUser(null);
-    navigate('/login');
-  };
 
   const purchasedWithStatus = useMemo(() => {
   return purchased.map((course) => ({
@@ -200,15 +194,6 @@ const activeCourses = purchasedWithStatus.filter((course) => course.status === '
           <p className={`${theme === 'dark' ? 'text-[#e1dede]/70' : 'text-gray-600'} mt-1 font-medium`}>
             Welcome, <strong className="text-blue-600">{user?.firstName || 'User'}</strong>!
           </p>
-        </div>
-        <div className='flex sm:flex-wrap items-center gap-2'>
-        <div className='px-3 py-1 text-slate-300 rounded-full uppercase text-2xl bg-green-800'>{user.firstName?.charAt(0)}</div>
-        <button
-          onClick={handleLogout}
-          className="px-5 py-2 font-semibold text-base sm:text-xl bg-red-500 hover:bg-red-600 text-white rounded-md shadow transition"
-        >
-          Logout
-        </button>
         </div>
       </div>
 

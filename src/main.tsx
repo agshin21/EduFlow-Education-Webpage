@@ -13,6 +13,7 @@ import Login from './pages/Login.tsx'
 import MyCourses from './pages/Mycourses.tsx'
 import NavbarC from './components/Navbar.tsx'
 import Register from './pages/Register.tsx'
+import Settings from './pages/Settings.tsx'
 import { ThemeProvider } from './context/ThemeContext.tsx'
 import { ToastContainer } from 'react-toastify'
 import { createRoot } from 'react-dom/client'
@@ -46,6 +47,7 @@ function Root() {
           />
           <NavbarC />
           <Routes>
+            <Route path="/settings" element={<Settings />} />
             <Route path="/learn/:id" element={<Learning />} />
             <Route path="/my-lessons" element={<MyCourses />} />
             <Route path={routes[3]?.href} element={<Login />} />

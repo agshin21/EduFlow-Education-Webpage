@@ -23,10 +23,7 @@ function normalizeOutput(text: string): string {
   return text.replace(/\r\n/g, "\n").trim();
 }
 
-/**
- * Run the user's JS code inside an isolated Function() sandbox.
- * Returns the captured console output plus any thrown error.
- */
+
 function runJavaScript(code: string): { output: string; error?: string } {
   const logs: string[] = [];
   const fakeConsole = {
@@ -41,7 +38,6 @@ function runJavaScript(code: string): { output: string; error?: string } {
   };
 
   try {
-    // eslint-disable-next-line no-new-func
     const fn = new Function("console", `"use strict";\n${code}`);
     fn(fakeConsole);
     return { output: logs.join("\n") };
@@ -74,7 +70,6 @@ export default function CodePractice({
   const [showHint, setShowHint] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
-  // Whenever a new practice loads, reset the editor
   useEffect(() => {
     setCode(practice.starterCode);
     setOutput("");
@@ -83,7 +78,6 @@ export default function CodePractice({
     setShowHint(false);
   }, [practice.id, practice.starterCode]);
 
-  // Auto-resize the textarea so users can write larger code blocks
   useEffect(() => {
     const el = textareaRef.current;
     if (!el) return;
