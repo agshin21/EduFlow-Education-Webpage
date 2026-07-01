@@ -201,13 +201,13 @@ function Home() {
             <div className="flex gap-4">
               <Link
                 to={routes[1]?.href}
-                className="flex items-center gap-3 bg-[#005bbf] text-white px-2 py-2 sm:px-6 sm:py-3 rounded-xl hover:bg-[#004084] transition shadow-md shadow-black cursor-pointer text-sm sm:text-lg"
+                className="flex items-center gap-3 bg-[#005bbf] text-white px-2 sm:px-6 rounded-xl hover:bg-[#004084] transition shadow-md shadow-black cursor-pointer text-sm sm:text-lg"
               >
                 Explore All {routes[1]?.title} <GoArrowRight />
               </Link>
               <Link
                 to={routes[2]?.href}
-                className="border shadow-md shadow-black border-gray-300 px-3 py-3 sm:px-6 sm:py-3 rounded-xl hover:bg-white/30 transition font-semibold text-[#005bbf] cursor-pointer text-sm sm:text-lg"
+                className="border shadow-md shadow-black border-gray-300 px-3 sm:px-6 py-2 rounded-xl hover:bg-white/30 transition font-semibold text-[#005bbf] cursor-pointer text-sm sm:text-lg"
               >
                 Go to {routes[2]?.title}
               </Link>
@@ -224,7 +224,7 @@ function Home() {
             </div>
             <Link
               to={`${routes[1]?.href}`}
-              className="bg-[#005bbf] shadow-md shadow-black hover:bg-[#004084] px-8 py-2 text-white rounded-lg transition text-md sm:text-xl flex items-center w-46.5 sm:w-54 gap-2"
+              className="bg-[#005bbf] shadow-md shadow-black hover:bg-[#004084] px-6 py-2 text-white rounded-lg transition text-md sm:text-xl flex items-center w-46.5 gap-2"
             >
               Buy Course <GoArrowRight />
             </Link>
