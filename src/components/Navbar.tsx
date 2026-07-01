@@ -62,7 +62,7 @@ function NavbarC() {
       {menuOpen && (
         <div
           role="menu"
-          className={`absolute right-0 mt-3 w-56 overflow-hidden rounded-xl shadow-2xl backdrop-blur-xl transition ${
+          className={`absolute -translate-x-20 mt-3 w-56 overflow-hidden rounded-xl shadow-2xl backdrop-blur-xl transition ${
             theme === "dark"
               ? "bg-gray-900/80 text-white ring-1 ring-gray-700"
               : "bg-white/90 text-gray-900 ring-1 ring-gray-200"
