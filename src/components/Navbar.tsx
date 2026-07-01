@@ -119,7 +119,7 @@ function NavbarC() {
   ) : (
     <Link
       to={routes[3]?.href}
-      className={`text-white rounded-xl bg-[#251cd5] hover:bg-[#150f7e] py-2 px-8 text-xl font-semibold transition`}
+      className={`text-white hidden sm:block rounded-xl bg-[#251cd5] hover:bg-[#150f7e] py-2 px-8 text-xl font-semibold transition`}
     >
       {routes[3]?.title}
     </Link>
