@@ -313,8 +313,8 @@ const Courses = () => {
                           sx={{ fontSize: { xs: 15, sm: 25 } }}
                         />
                       </Box>
-                      <p className="text-sm md:text-lg lg:text-sm xl:text-lg font-semibold text-green-500">
-                        {course.studentsCount} Active Students
+                      <p className="text-xs md:text-md lg:text-sm xl:text-md font-semibold text-green-500">
+                        {course.studentsCount} Students Enrolled
                       </p>
                     </div>
                     <div className="flex items-center justify-between">

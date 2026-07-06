@@ -208,7 +208,7 @@ const activeCourses = purchasedWithStatus.filter((course) => course.status === '
           <p className={`text-3xl font-bold ${theme === 'dark' ? 'text-[#e1dede]/70' : 'text-gray-800'}  mt-2`}>{completedCourses}</p>
         </div>
         <div className={`${theme === 'dark' ? 'bg-[#222121]' : 'bg-white'} duration-500 transition p-6 rounded-lg shadow-md border-l-4 border-yellow-500`}>
-          <h3 className={`${theme === 'dark' ? 'text-[#e1dede]' : 'text-gray-500'}  text-sm font-semibold uppercase`}>Total Lesson Time</h3>
+          <h3 className={`${theme === 'dark' ? 'text-[#e1dede]' : 'text-gray-500'}  text-sm font-semibold uppercase`}>Total Course Time</h3>
           <p className={`text-3xl font-bold ${theme === 'dark' ? 'text-[#e1dede]/70' : 'text-gray-800'}  mt-2`}>{totalHours}</p>
         </div>
       </div>
