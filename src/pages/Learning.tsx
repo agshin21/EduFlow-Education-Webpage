@@ -62,15 +62,11 @@ function flattenSyllabus(syllabus: Syllabus | null): FlatLesson[] {
   return lessons;
 }
 
-/**
- * Insert code practice items after every two lessons. Practice items
- * are appended to the topic of the lesson that immediately precedes
- * them so the sidebar grouping stays meaningful.
- */
-function insertPractices(lessons: FlatLesson[]): FlatLesson[] {
+
+function insertPractices(lessons: FlatLesson[], courseId?: string): FlatLesson[] {
   const out: FlatLesson[] = [];
   const total = lessons.length;
-  const practices = getPracticesForCourse(total);
+  const practices = getPracticesForCourse(total, courseId);
   let practiceIdx = 0;
 
   lessons.forEach((lesson, idx) => {
@@ -151,8 +147,8 @@ export default function Learning() {
   const topicLength = String(course?.topic_1).length;
   const lessons = useMemo(() => {
     const flat = flattenSyllabus(syllabus);
-    return insertPractices(flat);
-  }, [syllabus]);
+    return insertPractices(flat, id);
+  }, [syllabus, id]);
 
   useEffect(() => {
     if (id && lessons.length) setTotal(id, lessons.length);
