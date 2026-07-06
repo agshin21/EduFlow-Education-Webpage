@@ -124,10 +124,10 @@ function CourseCard({ course }: { course: PurchasedCourse }) {
           </div>
         )}
 
-        <div className="mt-4 flex items-center gap-4 text-sm text-gray-500">
-          {course.rating != null && <span className={`flex items-center gap-1 font-medium ${theme === 'dark' ? 'text-[#e1dede]/80' : 'text-gray-700'}`}> <IconStarFilled color="#ffea00"/> {course.rating}</span>}
-          {course.totalTime != null && <span className={`flex items-center gap-1 font-medium ${theme === 'dark' ? 'text-[#e1dede]/80' : 'text-gray-700'}`}><IconClockHour2Filled color="#c7c7c7" /> {course.totalTime}h</span>}
-          {course.studentsCount != null && <span className={`flex items-center gap-1 font-medium ${theme === 'dark' ? 'text-[#e1dede]/80' : 'text-gray-700'}`}><SvgComponent /> {course.studentsCount}</span>}
+        <div className="mt-4 flex justify-between items-center gap-4 text-sm text-gray-500">
+          {course.rating != null && <span className={`flex flex-col sm:flex-row items-center gap-1 font-medium ${theme === 'dark' ? 'text-[#e1dede]/80' : 'text-gray-700'}`}> <IconStarFilled color="#ffea00"/> {course.rating} Reviews</span>}
+          {course.totalTime != null && <span className={`flex flex-col sm:flex-row items-center gap-1 font-medium ${theme === 'dark' ? 'text-[#e1dede]/80' : 'text-gray-700'}`}><IconClockHour2Filled color="#c7c7c7" /> {course.totalTime} Hours</span>}
+          {course.studentsCount != null && <span className={`flex flex-col sm:flex-row items-center gap-1 font-medium ${theme === 'dark' ? 'text-[#e1dede]/80' : 'text-gray-700'}`}><SvgComponent /> {course.studentsCount} Students</span>}
         </div>
         
         <div className="mt-4">
