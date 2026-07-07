@@ -1,13 +1,10 @@
 import "swiper/css";
 import "swiper/css/navigation";
 
-import { FaShoppingBag, FaShoppingBasket, FaShoppingCart } from "react-icons/fa";
-import { HiAcademicCap, HiShoppingCart } from "react-icons/hi2";
 import { IoCode, IoStatsChart } from "react-icons/io5";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { Link, useLocation } from "react-router";
-import { LuChartNoAxesCombined, LuShoppingBag } from "react-icons/lu";
-import { MdOutlineColorLens, MdShoppingBag, MdWorkOutline } from "react-icons/md";
+import { MdOutlineColorLens, MdWorkOutline } from "react-icons/md";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useEffect, useRef, useState } from "react";
 
@@ -16,8 +13,11 @@ import { Avatar } from "@mui/material";
 import Avatargroup from "../components/Avatargroup";
 import CircularIndeterminate from "../components/Progressbar";
 import type { Course } from "../@types/types";
+import { FaShoppingBasket } from "react-icons/fa";
 import Footer from "../components/Footer";
 import { GoArrowRight } from "react-icons/go";
+import { HiAcademicCap } from "react-icons/hi2";
+import { LuChartNoAxesCombined } from "react-icons/lu";
 import { Navigation } from "swiper/modules";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TbWorld } from "react-icons/tb";
