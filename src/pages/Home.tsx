@@ -1,9 +1,13 @@
 import "swiper/css";
 import "swiper/css/navigation";
 
+import { FaShoppingBag, FaShoppingBasket, FaShoppingCart } from "react-icons/fa";
+import { HiAcademicCap, HiShoppingCart } from "react-icons/hi2";
+import { IoCode, IoStatsChart } from "react-icons/io5";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { Link, useLocation } from "react-router";
-import { MdOutlineColorLens, MdWorkOutline } from "react-icons/md";
+import { LuChartNoAxesCombined, LuShoppingBag } from "react-icons/lu";
+import { MdOutlineColorLens, MdShoppingBag, MdWorkOutline } from "react-icons/md";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useEffect, useRef, useState } from "react";
 
@@ -14,8 +18,6 @@ import CircularIndeterminate from "../components/Progressbar";
 import type { Course } from "../@types/types";
 import Footer from "../components/Footer";
 import { GoArrowRight } from "react-icons/go";
-import { IoCode } from "react-icons/io5";
-import { LuChartNoAxesCombined } from "react-icons/lu";
 import { Navigation } from "swiper/modules";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TbWorld } from "react-icons/tb";
@@ -203,13 +205,13 @@ function Home() {
                 to={routes[1]?.href}
                 className="flex items-center gap-3 bg-[#005bbf] text-white px-2 sm:px-6 rounded-xl hover:bg-[#004084] transition shadow-md shadow-black cursor-pointer text-sm sm:text-lg"
               >
-                Explore All {routes[1]?.title} <GoArrowRight />
+                Explore All {routes[1]?.title} <HiAcademicCap className="text-2xl" />
               </Link>
               <Link
                 to={routes[2]?.href}
-                className="border shadow-md shadow-black border-gray-300 px-3 sm:px-6 py-2 rounded-xl hover:bg-white/30 transition font-semibold text-[#005bbf] cursor-pointer text-sm sm:text-lg"
+                className="border shadow-md shadow-black border-gray-300 flex px-3 sm:px-6 items-center gap-2 py-2 rounded-xl hover:bg-white/30 transition font-semibold text-[#005bbf] cursor-pointer text-sm sm:text-lg"
               >
-                Go to {routes[2]?.title}
+                Go to {routes[2]?.title} <IoStatsChart />
               </Link>
             </div>
             <Avatargroup />
@@ -224,9 +226,9 @@ function Home() {
             </div>
             <Link
               to={`${routes[1]?.href}`}
-              className="bg-[#005bbf] shadow-md shadow-black hover:bg-[#004084] px-6 py-2 text-white rounded-lg transition text-md sm:text-xl flex items-center w-46.5 gap-2"
+              className="bg-[#005bbf] shadow-md shadow-black hover:bg-[#004084] px-3 py-2 text-white rounded-lg transition text-md sm:text-xl flex items-center justify-center w-46.5 gap-2"
             >
-              Buy Course <GoArrowRight />
+              Buy Now <FaShoppingBasket />
             </Link>
           </div>
         </div>
@@ -259,7 +261,7 @@ function Home() {
               </div>
               <div>
                 <h2 className="font-semibold text-xl">UI/UX Design</h2>
-                <p className="font-semibold">120+ Courses</p>
+                <p className="font-semibold text-blue-500">120+ Courses</p>
               </div>
             </div>
             <div className={`${theme === "dark" ? "bg-[#313131]/80 rounded-2xl lg:col-span-4 flex gap-3 items-center justify-start h-45 px-5 lg:px-15 group shadow-md shadow-indigo-400 text-white transition duration-500" : "bg-white rounded-2xl lg:col-span-4 flex gap-3 items-center justify-start h-45 px-5 lg:px-15 group shadow-md shadow-slate-500 transition duration-500"}`}>
@@ -268,7 +270,7 @@ function Home() {
               </div>
               <div>
                 <h2 className="font-semibold text-xl">Data Science</h2>
-                <p className="font-semibold">85+ Courses</p>
+                <p className="font-semibold text-red-500">85+ Courses</p>
               </div>
             </div>
             <div className={`${theme === "dark" ? "bg-[#313131]/80 rounded-2xl lg:col-span-6 flex gap-3 items-center justify-start h-45 px-5 lg:px-15 group shadow-md shadow-indigo-400 text-white duration-500 transition" : "bg-white rounded-2xl lg:col-span-6 flex gap-3 items-center justify-start h-45 px-5 lg:px-15 group shadow-md shadow-slate-500 duration-500 transition"}`}>
@@ -277,7 +279,7 @@ function Home() {
               </div>
               <div>
                 <h2 className="font-semibold text-xl">Business Strategy</h2>
-                <p className="font-semibold">240+ Courses available</p>
+                <p className="font-semibold text-violet-800">240+ Courses available</p>
               </div>
             </div>
             <div className={`bg-[#006b5c] rounded-2xl flex flex-row lg:flex-col lg:col-span-2 gap-3 shadow-indigo-400 shadow-md justify-start items-center lg:justify-center h-45 px-5 group duration-500 transition`}>
@@ -291,7 +293,8 @@ function Home() {
       </section>
 
       {/* Mentors */}
-      <section className={`${theme === "dark" ? "py-20 bg-[#292929] w-full grid justify-around gap-20 transition duration-500" : "py-20 bg-gray-50 w-full grid justify-around gap-20 transition duration-500"}`}>
+      <section className={`relative bg-[url('bg-drop.jpg')] bg-no-repeat ${theme === "dark" ? "py-20 w-full grid justify-around gap-20 transition duration-500" : "py-20 w-full grid justify-around gap-20 transition duration-500"}`}>
+        <div className={`absolute inset-0 transition duration-500 ${theme === 'dark' ? 'bg-black/70 backdrop-blur-md' : 'bg-transparent backdrop-blur-md'}`}/>
         <div ref={mentorsRef} className="flex flex-col lg:flex-row lg:justify-between items-center px-8 mt-14 gap-4">
           <div>
             <h2 className={`${theme === "dark" ? "text-[#cccccc] text-2xl md:text-4xl xl:text-5xl text-center lg:text-left font-semibold mb-3 transition" : "text-2xl md:text-4xl xl:text-5xl text-center lg:text-left font-semibold mb-3 transition"}`}>
@@ -306,7 +309,7 @@ function Home() {
           {courses.slice(8, 12).map((c) => (
             <div
               key={c.id}
-              className={`mentor-card ${theme === "dark" ? "rounded-2xl bg-[#313131] max-h-md h-full overflow-hidden shadow-md shadow-slate-500 transition duration-500 flex flex-col gap-2 items-start p-4" : "rounded-2xl bg-white max-h-md h-full overflow-hidden shadow-md transition duration-500 flex flex-col gap-2 items-start p-4"}`}
+              className={`mentor-card ${theme === "dark" ? "rounded-2xl bg-[#313131]/30 max-h-md h-full overflow-hidden shadow-md shadow-slate-500 transition duration-500 flex flex-col gap-2 items-start p-4" : "rounded-2xl bg-white/30 max-h-md h-full overflow-hidden shadow-md transition duration-500 flex flex-col gap-2 items-start p-4"}`}
             >
               <img src={c.avatar} alt={c.instructorName} className="rounded-2xl" />
               <h2 className={`${theme === "dark" ? "text-3xl lg:text-2xl xl:text-3xl font-semibold text-white transition" : "text-3xl lg:text-2xl xl:text-3xl font-semibold transition"}`}>
