@@ -30,21 +30,21 @@ function Root() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <ThemeProvider>
-          <ToastContainer
-            style={{ position: 'absolute', top: '80px', maxWidth: 280 }}
-            position="top-center"
-            autoClose={4000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-          />
+        <BrowserRouter> 
+          <ThemeProvider>
+            <ToastContainer
+              style={{ position: 'absolute', top: '80px', maxWidth: 280 }}
+              position="top-center"
+              autoClose={4000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+            />
           <NavbarC />
           <Routes>
             <Route path="/settings" element={<Settings />} />

@@ -119,7 +119,7 @@ export interface CodePractice {
   difficulty: 'easy' | 'medium' | 'hard';
 }
 
-export type FlatLessonKind = 'lesson' | 'practice';
+export type FlatLessonKind = 'lesson' | 'practice'
 
 export interface FlatLesson {
   id: string;
