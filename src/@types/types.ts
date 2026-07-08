@@ -88,10 +88,38 @@ export interface LessonGroup {
   lesson_3: string;
 }
 
+export interface LessonsTime {
+  lesson_1: {
+    startDate: string;
+    endDate: string;
+  };
+  lesson_2: {
+    startDate: string;
+    endDate: string;
+  };
+  lesson_3: {
+    startDate: string;
+    endDate: string;
+  };
+}
+
+export interface LessonsDate {
+  lesson_1: {
+    startDate: string;
+  };
+  lesson_2: {
+    startDate: string;
+  };
+  lesson_3: {
+    startDate: string;
+  };
+}
+
 export interface Topic {
   title: string;
   lesson_syllabus: LessonGroup;
-  lessonsTime: LessonGroup;
+  lessonsTime: LessonsTime;
+  lessonsDate: LessonsDate;
 }
 
 export interface Syllabus {

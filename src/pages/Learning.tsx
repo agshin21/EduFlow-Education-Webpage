@@ -144,7 +144,6 @@ export default function Learning() {
     };
   }, [id]);
 
-  const topicLength = String(course?.topic_1).length;
   const lessons = useMemo(() => {
     const flat = flattenSyllabus(syllabus);
     return insertPractices(flat, id);
@@ -332,9 +331,6 @@ export default function Learning() {
                     <h2 className={`mt-1 text-xl font-semibold ${theme === 'dark' ? 'text-[#e1dede]' : 'text-gray-900'}`}>
                       {activeIndex + 1}. {activeLesson.title}
                     </h2>
-                    <p className={`mt-1 text-sm ${theme === 'dark' ? 'text-[#e1dede]/80' : 'text-gray-500'}`}>
-                      Duration: {Math.ceil(Number(course.totalTime) / topicLength)}h
-                    </p>
 
                     <div className="mt-5 flex flex-wrap items-center gap-3">
                       <button
@@ -459,17 +455,6 @@ export default function Learning() {
                                 }`}
                               >
                                 {lesson.title}
-                              </span>
-                              <span
-                                className={`shrink-0 text-xs ${
-                                  isPractice
-                                    ? theme === 'dark'
-                                      ? "text-violet-300/80"
-                                      : "text-violet-500"
-                                    : "text-gray-400"
-                                }`}
-                              >
-                                {isPractice ? "Practice" : lesson.time}
                               </span>
                             </button>
                           </li>
