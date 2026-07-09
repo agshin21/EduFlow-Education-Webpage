@@ -247,7 +247,6 @@ const handleSubmitReview = async () => {
               <div className="flex flex-col gap-3">
                 {topics.map((topic, index) => {
                   const lessons = Object.values(topic.lesson_syllabus);
-                  const times = Object.values(topic.lessonsTime)
                   return (
                     <Accordion
                       key={index}
@@ -293,7 +292,6 @@ const handleSubmitReview = async () => {
                       <AccordionDetails className="!px-3 !pb-3 !pt-0">
                         <div className="ml-4 flex flex-col border-l-2 border-dashed border-indigo-200/60 pl-4">
                           {lessons.map((subTopic, subIndex) => {
-                            const lessonTime = times[subIndex];
                             return (
                               <div
                                 key={subIndex}
@@ -318,10 +316,6 @@ const handleSubmitReview = async () => {
                                     {subTopic}
                                   </span>
                                 </div>
-
-                                <span className="shrink-0 text-[11px] font-medium text-slate-400">
-                                  {lessonTime}
-                                </span>
                               </div>
                             );
                           })}

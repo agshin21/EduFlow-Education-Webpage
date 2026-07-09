@@ -2,12 +2,7 @@ import type { LiveMeta, LiveStatus, MeetingProvider } from "../@types/types";
 
 const PROVIDERS: MeetingProvider[] = ["teams", "zoom", "meet"];
 
-const INSTRUCTORS = [
-  { name: "Sarah Chen", avatar: "https://i.pravatar.cc/150?img=47" },
-  { name: "David Miller", avatar: "https://i.pravatar.cc/150?img=12" },
-  { name: "Aylin Kaya", avatar: "https://i.pravatar.cc/150?img=32" },
-  { name: "James Okoro", avatar: "https://i.pravatar.cc/150?img=59" },
-];
+
 
 const JOIN_URLS: Record<MeetingProvider, string> = {
   teams: "https://teams.microsoft.com/l/meetup-join/eduflow-live",
@@ -41,15 +36,12 @@ export function buildLiveMeta(
   const end = parseLessonDateTime(dateStr, endTime);
   const seed = (Number(courseId) || 1) + lessonIndex;
   const provider = PROVIDERS[seed % PROVIDERS.length];
-  const instructor = INSTRUCTORS[seed % INSTRUCTORS.length];
 
   return {
     startsAt: start.toISOString(),
     endsAt: end.toISOString(),
     provider,
     joinUrl: JOIN_URLS[provider],
-    instructorName: instructor.name,
-    instructorAvatar: instructor.avatar,
     dateLabel: dateStr,
     timeLabel: `${startTime} - ${endTime}`,
   };

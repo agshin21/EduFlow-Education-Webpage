@@ -120,8 +120,6 @@ export interface LiveMeta {
   endsAt: string;              
   provider: MeetingProvider;
   joinUrl: string;
-  instructorName: string;
-  instructorAvatar: string;
   dateLabel: string;            
   timeLabel: string;           
 }

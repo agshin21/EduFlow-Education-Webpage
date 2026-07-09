@@ -29,17 +29,11 @@ export default function LiveLessonGate({ live, status, lessonTitle }: Props) {
           </span>
         )}
 
-        <img
-          src={live.instructorAvatar}
-          alt={live.instructorName}
-          className="h-20 w-20 rounded-full border-4 border-white object-cover shadow-lg"
-        />
+        
         <h2 className={`mt-4 text-xl font-bold ${isLive ? "text-white" : isDark ? "text-[#e1dede]" : "text-gray-900"}`}>
           {lessonTitle}
         </h2>
-        <p className={`text-sm ${isLive ? "text-white/80" : isDark ? "text-[#e1dede]/60" : "text-gray-500"}`}>
-          with {live.instructorName}
-        </p>
+       
 
         {isLive ? (
           <>
