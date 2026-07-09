@@ -1,5 +1,4 @@
 import type { CodePractice as CodePracticeType, Course, Exam, LiveMeta, Syllabus, Topic } from "../@types/types";
-import { FaClipboardCheck, FaCode } from "react-icons/fa";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { buildLiveMeta, getLiveStatus, providerLabel } from "../utils/liveSchedule";
 import { useEffect, useMemo, useState } from "react";
@@ -34,7 +33,6 @@ interface FlatLesson {
 
 const LESSON_KEYS = ["lesson_1", "lesson_2", "lesson_3"] as const;
 
-/** Syllabus -> lessons (live meta dahil) + her topic sonunda sinav */
 function flattenSyllabus(syllabus: Syllabus | null, courseId?: string): FlatLesson[] {
   const topics: (Topic | undefined)[] = syllabus
     ? [syllabus.topic_1, syllabus.topic_2, syllabus.topic_3]
@@ -52,11 +50,11 @@ function flattenSyllabus(syllabus: Syllabus | null, courseId?: string): FlatLess
     LESSON_KEYS.forEach((key, li) => {
       const title = titles?.[key];
       if (!title) return;
-      const timeSlot = times?.[key];
-      const dateSlot = dates?.[key];
+      const timeSlot = Array.isArray(times) ? times[li] : undefined
+      const dateSlot = Array.isArray(dates) ? dates[li] : undefined
 
       const live =
-        timeSlot && dateSlot
+        timeSlot?.startDate && timeSlot?.endDate && dateSlot?.startDate
           ? buildLiveMeta(courseId, globalIndex, dateSlot.startDate, timeSlot.startDate, timeSlot.endDate)
           : undefined;
 
@@ -64,14 +62,13 @@ function flattenSyllabus(syllabus: Syllabus | null, courseId?: string): FlatLess
         id: `t${ti}-l${li}`,
         topicTitle: topic.title || `Section ${ti + 1}`,
         title,
-        time: live ? live.timeLabel : "10:00",
+        time: live ? live.timeLabel : timeSlot?.startDate ?? "-",
         kind: "lesson",
         live,
       });
       globalIndex++;
     });
 
-    // her topic sonunda sinav
     lessons.push({
       id: `t${ti}-exam`,
       topicTitle: topic.title || `Section ${ti + 1}`,
@@ -92,7 +89,6 @@ function flattenSyllabus(syllabus: Syllabus | null, courseId?: string): FlatLess
   return lessons;
 }
 
-/** Sadece ders (lesson) satirlarina kod practice ekle; exam satirlarina dokunma */
 function insertPractices(lessons: FlatLesson[], courseId?: string): FlatLesson[] {
   const lessonOnly = lessons.filter((l) => l.kind === "lesson");
   const practices = getPracticesForCourse(lessonOnly.length, courseId);
@@ -111,7 +107,7 @@ function insertPractices(lessons: FlatLesson[], courseId?: string): FlatLesson[]
         id: `${lesson.id}-practice-${practiceIdx}`,
         topicTitle: lesson.topicTitle,
         title: p.title,
-        time: "10:00",
+        time: "Practice",
         kind: "practice",
         practice: p,
       });
@@ -408,7 +404,6 @@ export default function Learning() {
                     <p className={`${theme === 'dark' ? 'bg-[#484848]/40 text-[#e1dede]/90' : 'bg-gray-50 text-gray-500'} px-5 py-2 text-xs font-semibold uppercase tracking-wide`}>{topicTitle}</p>
                     <ul>
                       {topicLessons.map((lesson) => {
-                        const done = completedIds.includes(lesson.id);
                         const active = lesson.id === activeLesson?.id;
                         const isPractice = lesson.kind === "practice";
                         const isExam = lesson.kind === "exam";
@@ -424,29 +419,11 @@ export default function Learning() {
                                 : theme === 'dark' ? "hover:bg-[#3a3a3a]" : "hover:bg-gray-50"
                               }`}
                             >
-                              {/* icon / avatar */}
-                              {lesson.live ? (
-                                <img src={lesson.live.instructorAvatar} alt="" className="h-6 w-6 shrink-0 rounded-full object-cover" />
-                              ) : (
-                                <span className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[11px] ${
-                                  done ? "border-emerald-500 bg-emerald-500 text-white"
-                                  : isExam ? "border-amber-400 text-amber-500"
-                                  : isPractice ? "border-violet-300 text-violet-500"
-                                  : "border-gray-300 text-transparent"
-                                }`}>
-                                  {done ? "✓" : isExam ? <FaClipboardCheck className="!text-[10px]" /> : isPractice ? <FaCode className="!text-[10px]" /> : ""}
-                                </span>
-                              )}
 
                               <span className="flex-1 min-w-0">
                                 <span className={`block truncate ${active ? "font-medium text-indigo-700" : theme === 'dark' ? "text-[#e1dede]/70" : "text-gray-700"}`}>
                                   {lesson.title}
                                 </span>
-                                {lesson.live && (
-                                  <span className={`mt-0.5 block text-[11px] ${theme === 'dark' ? 'text-[#e1dede]/50' : 'text-gray-400'}`}>
-                                    {lesson.live.instructorName} · {providerLabel(lesson.live.provider)}
-                                  </span>
-                                )}
                               </span>
 
                               {/* status badge */}
