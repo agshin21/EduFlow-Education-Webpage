@@ -5,11 +5,9 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import CodePractice from "../components/CodePractice";
-import ExamCard from "../components/ExamCard";
 import LiveLessonGate from "../components/LiveLessonGate";
 import LiveStartedDialog from "../components/LiveStartedDialog";
 import axios from "axios";
-import { buildExamForTopic } from "../utils/examBank";
 import { fetchCourseById } from "../api/courses";
 import { getPracticesForCourse } from "../../public/data/codePractices";
 import { useProgress } from "../store/progressStore";
@@ -67,15 +65,6 @@ function flattenSyllabus(syllabus: Syllabus | null, courseId?: string): FlatLess
         live,
       });
       globalIndex++;
-    });
-
-    lessons.push({
-      id: `t${ti}-exam`,
-      topicTitle: topic.title || `Section ${ti + 1}`,
-      title: `${topic.title} — Exam`,
-      time: "Exam",
-      kind: "exam",
-      exam: buildExamForTopic(topic.title || `Section ${ti + 1}`, ti, courseId),
     });
   });
 
@@ -406,7 +395,6 @@ export default function Learning() {
                       {topicLessons.map((lesson) => {
                         const active = lesson.id === activeLesson?.id;
                         const isPractice = lesson.kind === "practice";
-                        const isExam = lesson.kind === "exam";
                         const liveStatus = lesson.live ? getLiveStatus(lesson.live, now) : null;
 
                         return (
@@ -436,8 +424,6 @@ export default function Learning() {
                                   <span className="text-[10px] text-indigo-500">{lesson.live?.dateLabel}</span>
                                 ) : liveStatus === "ended" ? (
                                   <span className="text-[10px] text-emerald-500">▶ Recording</span>
-                                ) : isExam ? (
-                                  <span className="text-amber-500">Exam</span>
                                 ) : isPractice ? (
                                   <span className="text-violet-500">Practice</span>
                                 ) : (
