@@ -82,44 +82,26 @@ export type CartState = {
     clearCart: () => void;
 };
 
+export interface LessonTimeSlot {
+  startDate: string;  
+  endDate: string;     
+}
+
+export interface LessonDateSlot {
+  startDate: string;  
+}
+
 export interface LessonGroup {
   lesson_1: string;
   lesson_2: string;
   lesson_3: string;
 }
 
-export interface LessonsTime {
-  lesson_1: {
-    startDate: string;
-    endDate: string;
-  };
-  lesson_2: {
-    startDate: string;
-    endDate: string;
-  };
-  lesson_3: {
-    startDate: string;
-    endDate: string;
-  };
-}
-
-export interface LessonsDate {
-  lesson_1: {
-    startDate: string;
-  };
-  lesson_2: {
-    startDate: string;
-  };
-  lesson_3: {
-    startDate: string;
-  };
-}
-
 export interface Topic {
   title: string;
   lesson_syllabus: LessonGroup;
-  lessonsTime: LessonsTime;
-  lessonsDate: LessonsDate;
+  lessonsTime: LessonTimeSlot[];
+  lessonsDate: LessonDateSlot[];
 }
 
 export interface Syllabus {
@@ -128,6 +110,35 @@ export interface Syllabus {
   topic_1: Topic;
   topic_2: Topic;
   topic_3: Topic;
+}
+
+export type MeetingProvider = "teams" | "zoom" | "meet";
+export type LiveStatus = "upcoming" | "live" | "ended";
+
+export interface LiveMeta {
+  startsAt: string;              
+  endsAt: string;              
+  provider: MeetingProvider;
+  joinUrl: string;
+  instructorName: string;
+  instructorAvatar: string;
+  dateLabel: string;            
+  timeLabel: string;           
+}
+
+export interface ExamQuestion {
+  id: string;
+  question: string;
+  options: string[];
+  correctIndex: number;
+  explanation?: string;
+}
+
+export interface Exam {
+  id: string;
+  title: string;
+  passScore: number;
+  questions: ExamQuestion[];
 }
 
 export type StatusInput = {
@@ -156,6 +167,8 @@ export interface FlatLesson {
   time: string;
   kind?: FlatLessonKind;
   practice?: CodePractice;
+  exam?: Exam;
+  live?: LiveMeta;
 }
 
 export type Description = {

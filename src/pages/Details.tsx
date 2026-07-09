@@ -247,11 +247,7 @@ const handleSubmitReview = async () => {
               <div className="flex flex-col gap-3">
                 {topics.map((topic, index) => {
                   const lessons = Object.values(topic.lesson_syllabus);
-                  const times = Object.values(topic.lessonsTime);
-
-                  const totalTopicTime =
-                    times.reduce((sum, t) => sum + (parseInt(t) || 0), 0) + 'h';
-
+                  const times = Object.values(topic.lessonsTime)
                   return (
                     <Accordion
                       key={index}
@@ -288,10 +284,6 @@ const handleSubmitReview = async () => {
                               <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-400">
                                 <PlayCircleOutlineIcon className="!text-[13px] !text-indigo-400" />
                                 {lessons.length} lessons
-                              </span>
-                              <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-400">
-                                <AccessTimeIcon className="!text-[13px] !text-violet-400" />
-                                {totalTopicTime}
                               </span>
                             </div>
                           </div>
@@ -530,11 +522,7 @@ return discountPrices.filter((discount) => String(discount.id) === String(course
             <div className="flex flex-col gap-4">
               {topics.map((topic, index) => {
                 const lessons = Object.values(topic.lesson_syllabus);
-                const times = Object.values(topic.lessonsTime);
-
-                const totalTopicTime =
-                  times.reduce((sum, t) => sum + (parseInt(t) || 0), 0) + 'h';
-
+                
                 return (
                   <Accordion
                     key={index}
@@ -577,7 +565,7 @@ return discountPrices.filter((discount) => String(discount.id) === String(course
                             </span>
                             <span className="inline-flex items-center gap-1.5 text-[13px] font-medium text-slate-400">
                               <AccessTimeIcon className="!text-[15px] !text-violet-400" />
-                              {totalTopicTime}
+                              {`${topic.lessonsTime[index].startDate}-${topic.lessonsTime[index].endDate}`}
                             </span>
                           </div>
                         </div>
@@ -587,7 +575,6 @@ return discountPrices.filter((discount) => String(discount.id) === String(course
                     <AccordionDetails className="!px-5 !pb-5 !pt-0">
                       <div className="ml-6 flex flex-col border-l-2 border-dashed border-indigo-200/60 pl-6">
                         {lessons.map((subTopic, subIndex) => {
-                          const lessonTime = times[subIndex];
                           return (
                             <div
                               key={subIndex}
@@ -610,12 +597,6 @@ return discountPrices.filter((discount) => String(discount.id) === String(course
                                   theme === 'dark' ? 'text-[#e1dede]/80 group-hover:text-[#e1dede]' : 'text-slate-600 group-hover:text-indigo-600'
                                 }`}>
                                   {subTopic}
-                                </span>
-                              </div>
-
-                              <div className="flex shrink-0 items-center gap-3">
-                                <span className="text-[12px] font-medium text-slate-400">
-                                  {lessonTime}
                                 </span>
                               </div>
                             </div>

@@ -14,8 +14,8 @@ const Pagination = (data: {
     {
       data.enabled > 0 ?
         (<></>) :
-        numbers && numbers.map((no) => { 
-         return <div>
+        numbers && numbers.map((no, idx) => { 
+         return <div key={idx}>
           <button className={
             data.currentPage === no ? 
             'py-1 px-4 text-white text-xl md:text-4xl max-w-11 md:max-w-15 w-full min-h-8 text-center md:min-h-16 font-bold transition bg-[#181f55] hover:cursor-pointer rounded-lg border' : 
