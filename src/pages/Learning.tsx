@@ -4,6 +4,8 @@ import { buildLiveMeta, getLiveStatus, providerLabel } from "../utils/liveSchedu
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
+import { GoPlay } from "react-icons/go";
+import { IoPlay } from "react-icons/io5";
 import LiveLessonGate from "../components/LiveLessonGate";
 import LiveStartedDialog from "../components/LiveStartedDialog";
 import axios from "axios";
@@ -298,8 +300,8 @@ export default function Learning() {
                     <div className="flex items-center gap-2">
                       <p className="text-xs font-medium uppercase tracking-wide text-indigo-500">{activeLesson.topicTitle}</p>
                       {activeLesson.live && (
-                        <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-semibold text-emerald-700">
-                          ▶ Recording
+                        <span className="flex items-center gap-1 bg-cyan-300/40 px-2 py-1 rounded-sm">
+                          <GoPlay className="text-red-700"/> Recording 
                         </span>
                       )}
                     </div>
@@ -383,7 +385,7 @@ export default function Learning() {
                                 ) : liveStatus === "upcoming" ? (
                                   <span className="text-[10px] text-indigo-500">{lesson.live?.dateLabel}</span>
                                 ) : liveStatus === "ended" ? (
-                                  <span className="text-[10px] text-emerald-500">▶ Recording</span>
+                                  <span className="flex items-center gap-1 text-[10px]"><GoPlay className="text-red-700"/> Recording</span>
                                 ) : (
                                   <span className="text-gray-400">{lesson.time}</span>
                                 )}

@@ -112,7 +112,7 @@ export interface Syllabus {
   topic_3: Topic;
 }
 
-export type MeetingProvider = "teams" | "zoom" | "meet";
+export type MeetingProvider = "meet";
 export type LiveStatus = "upcoming" | "live" | "ended";
 
 export interface LiveMeta {

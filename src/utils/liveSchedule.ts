@@ -1,13 +1,9 @@
 import type { LiveMeta, LiveStatus, MeetingProvider } from "../@types/types";
 
-const PROVIDERS: MeetingProvider[] = ["teams", "zoom", "meet"];
-
-
+const PROVIDERS: MeetingProvider[] = ["meet"];
 
 const JOIN_URLS: Record<MeetingProvider, string> = {
-  teams: "https://teams.microsoft.com/l/meetup-join/eduflow-live",
-  zoom: "https://zoom.us/j/eduflow-live",
-  meet: "https://meet.google.com/eduflow-live",
+  meet: "https://meet.google.com/eduflow-live"
 };
 
 const MONTHS: Record<string, number> = {
@@ -15,7 +11,6 @@ const MONTHS: Record<string, number> = {
   jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11,
 };
 
-/** "26 Jun 2026" + "10:00" -> Date */
 export function parseLessonDateTime(dateStr: string, timeStr: string): Date {
   const [dayRaw, monRaw, yearRaw] = String(dateStr).trim().split(/\s+/);
   const day = parseInt(dayRaw, 10);
@@ -56,15 +51,14 @@ export function getLiveStatus(meta: LiveMeta, ref: Date = new Date()): LiveStatu
   return "ended";
 }
 
-export function providerLabel(p: MeetingProvider): string {
-  return p === "teams" ? "Microsoft Teams" : p === "zoom" ? "Zoom" : "Google Meet";
+export function providerLabel(): string {
+  return "Google Meet";
 }
 
-export function providerColor(p: MeetingProvider): string {
-  return p === "teams" ? "#5059C9" : p === "zoom" ? "#2D8CFF" : "#00897B";
+export function providerColor(): string {
+  return "#00897B";
 }
 
-/** upcoming ders için kalan süre */
 export function timeUntil(meta: LiveMeta, ref: Date = new Date()): string {
   const diff = new Date(meta.startsAt).getTime() - ref.getTime();
   if (diff <= 0) return "starting now";
