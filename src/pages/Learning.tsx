@@ -5,7 +5,6 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { GoPlay } from "react-icons/go";
-import { IoPlay } from "react-icons/io5";
 import LiveLessonGate from "../components/LiveLessonGate";
 import LiveStartedDialog from "../components/LiveStartedDialog";
 import axios from "axios";
@@ -310,7 +309,7 @@ export default function Learning() {
                     </h2>
                     {activeLesson.live && (
                       <p className={`mt-1 text-sm ${theme === 'dark' ? 'text-[#e1dede]/80' : 'text-gray-500'}`}>
-                        {activeLesson.live.dateLabel} · {activeLesson.live.timeLabel} · was live on {providerLabel(activeLesson.live.provider)}
+                        {activeLesson.live.dateLabel} · {activeLesson.live.timeLabel} · was live on {providerLabel()}
                       </p>
                     )}
 

@@ -38,7 +38,7 @@ export default function LiveLessonGate({ live, status, lessonTitle }: Props) {
         {isLive ? (
           <>
             <p className="mt-3 text-sm text-white/90">
-              This lesson has already started on {providerLabel(live.provider)}.
+              This lesson has already started on {providerLabel()}.
             </p>
             <a
               href={live.joinUrl}
@@ -46,8 +46,8 @@ export default function LiveLessonGate({ live, status, lessonTitle }: Props) {
               rel="noreferrer"
               className="mt-5 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-indigo-700 shadow hover:bg-indigo-50"
             >
-              <FaVideo style={{ color: providerColor(live.provider) }} />
-              Join on {providerLabel(live.provider)}
+              <FaVideo style={{ color: providerColor() }} />
+              Join on {providerLabel()}
             </a>
           </>
         ) : (
@@ -58,7 +58,7 @@ export default function LiveLessonGate({ live, status, lessonTitle }: Props) {
             <div className={`mt-4 rounded-xl px-5 py-3 text-sm ${isDark ? "bg-[#484848]/40 text-[#e1dede]" : "bg-white text-gray-700 shadow-sm"}`}>
               <p className="font-semibold">{live.dateLabel} · {live.timeLabel}</p>
               <p className="mt-1 text-indigo-600 font-medium">Starts {timeUntil(live)}</p>
-              <p className={`mt-1 text-xs ${isDark ? "text-[#e1dede]/50" : "text-gray-400"}`}>on {providerLabel(live.provider)}</p>
+              <p className={`mt-1 text-xs ${isDark ? "text-[#e1dede]/50" : "text-gray-400"}`}>on {providerLabel()}</p>
             </div>
           </>
         )}
