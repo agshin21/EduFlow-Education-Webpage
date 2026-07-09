@@ -4,12 +4,10 @@ import { buildLiveMeta, getLiveStatus, providerLabel } from "../utils/liveSchedu
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import CodePractice from "../components/CodePractice";
 import LiveLessonGate from "../components/LiveLessonGate";
 import LiveStartedDialog from "../components/LiveStartedDialog";
 import axios from "axios";
 import { fetchCourseById } from "../api/courses";
-import { getPracticesForCourse } from "../../public/data/codePractices";
 import { useProgress } from "../store/progressStore";
 import { usePurchased } from "../store/purchasedStore";
 import { useTheme } from "../context/ThemeContext";
@@ -78,29 +76,12 @@ function flattenSyllabus(syllabus: Syllabus | null, courseId?: string): FlatLess
   return lessons;
 }
 
-function insertPractices(lessons: FlatLesson[], courseId?: string): FlatLesson[] {
-  const lessonOnly = lessons.filter((l) => l.kind === "lesson");
-  const practices = getPracticesForCourse(lessonOnly.length, courseId);
-  let practiceIdx = 0;
-  let lessonCounter = 0;
+function insertPractices(lessons: FlatLesson[]): FlatLesson[] {
 
   const out: FlatLesson[] = [];
   lessons.forEach((lesson) => {
     out.push(lesson);
     if (lesson.kind !== "lesson") return;
-    lessonCounter++;
-    const isSecondInPair = lessonCounter % 2 === 0;
-    if (isSecondInPair && practiceIdx < practices.length) {
-      const p = practices[practiceIdx++];
-      out.push({
-        id: `${lesson.id}-practice-${practiceIdx}`,
-        topicTitle: lesson.topicTitle,
-        title: p.title,
-        time: "Practice",
-        kind: "practice",
-        practice: p,
-      });
-    }
   });
 
   return out;
@@ -166,7 +147,7 @@ export default function Learning() {
 
   const lessons = useMemo(() => {
     const flat = flattenSyllabus(syllabus, id);
-    return insertPractices(flat, id);
+    return insertPractices(flat);
   }, [syllabus, id]);
 
   useEffect(() => {
@@ -254,8 +235,6 @@ export default function Learning() {
   }
 
   const isActiveDone = activeLesson ? isCompleted(course.id as string, activeLesson.id) : false;
-  const isPracticeActive = activeLesson?.kind === "practice";
-  const isExamActive = activeLesson?.kind === "exam";
   const activeLiveStatus = activeLesson?.live ? getLiveStatus(activeLesson.live, now) : null;
   const showLiveGate = activeLiveStatus === "upcoming" || activeLiveStatus === "live";
 
@@ -293,25 +272,7 @@ export default function Learning() {
 
         <div className="grid gap-6 lg:grid-cols-3">
           <div className="lg:col-span-2">
-            {isPracticeActive && activeLesson?.practice ? (
-              <CodePractice
-                practice={activeLesson.practice}
-                isCompleted={isActiveDone}
-                hasPrevious={activeIndex > 0}
-                hasNext={activeIndex < lessons.length - 1}
-                onPrevious={() => goTo(activeIndex - 1)}
-                onComplete={() => toggleLesson(course.id as string, activeLesson.id)}
-                onContinue={() => { if (activeIndex < lessons.length - 1) goTo(activeIndex + 1); }}
-              />
-            ) : isExamActive && activeLesson?.exam ? (
-              <ExamCard
-                exam={activeLesson.exam}
-                isCompleted={isActiveDone}
-                hasNext={activeIndex < lessons.length - 1}
-                onComplete={() => toggleLesson(course.id as string, activeLesson.id)}
-                onContinue={() => { if (activeIndex < lessons.length - 1) goTo(activeIndex + 1); }}
-              />
-            ) : showLiveGate && activeLesson?.live ? (
+            {showLiveGate && activeLesson?.live ? (
               <LiveLessonGate live={activeLesson.live} status={activeLiveStatus as "upcoming" | "live"} lessonTitle={activeLesson.title} />
             ) : (
               <>
@@ -394,7 +355,6 @@ export default function Learning() {
                     <ul>
                       {topicLessons.map((lesson) => {
                         const active = lesson.id === activeLesson?.id;
-                        const isPractice = lesson.kind === "practice";
                         const liveStatus = lesson.live ? getLiveStatus(lesson.live, now) : null;
 
                         return (
@@ -424,8 +384,6 @@ export default function Learning() {
                                   <span className="text-[10px] text-indigo-500">{lesson.live?.dateLabel}</span>
                                 ) : liveStatus === "ended" ? (
                                   <span className="text-[10px] text-emerald-500">▶ Recording</span>
-                                ) : isPractice ? (
-                                  <span className="text-violet-500">Practice</span>
                                 ) : (
                                   <span className="text-gray-400">{lesson.time}</span>
                                 )}
