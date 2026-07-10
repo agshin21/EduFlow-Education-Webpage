@@ -7,20 +7,30 @@ import { useCurrentUser } from "../hooks/useCurrentUser";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
 
-const LESSON_KEYS = ["lesson_1", "lesson_2", "lesson_3"] as const;
+type LessonForm = {
+  title: string;
+  date: string;
+  start: string;
+  end: string;
+  meetUrl: string; 
+};
 
 type TopicForm = {
   title: string;
-  lessons: { title: string; date: string; start: string; end: string }[];
+  lessons: LessonForm[];
 };
+
+const emptyLesson = (): LessonForm => ({
+  title: "",
+  date: "",
+  start: "",
+  end: "",
+  meetUrl: "",
+});
 
 const emptyTopic = (): TopicForm => ({
   title: "",
-  lessons: [
-    { title: "", date: "", start: "", end: "" },
-    { title: "", date: "", start: "", end: "" },
-    { title: "", date: "", start: "", end: "" },
-  ],
+  lessons: [emptyLesson()],
 });
 
 const toLessonDate = (iso: string): string => {
@@ -28,6 +38,16 @@ const toLessonDate = (iso: string): string => {
   const d = new Date(iso);
   const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+};
+
+const isMeetUrl = (url: string): boolean => {
+  if (!url.trim()) return false;
+  try {
+    const u = new URL(url.trim());
+    return u.hostname === "meet.google.com";
+  } catch {
+    return false;
+  }
 };
 
 export default function AddCourse() {
@@ -45,15 +65,18 @@ export default function AddCourse() {
     price: 0,
     level: "beginner",
     businessCategory: "",
-    thumbnail: "",
-    previewVideoProvider: "youtube",
-    previewVideoId: "",
+    thumbnail: "",            
+    previewVideoProvider: "meet",
+    previewMeetUrl: "",       
     aboutInstructor: "",
     startDate: "",
     endDate: "",
     totalTime: 0,
   });
-  const [topics, setTopics] = useState<TopicForm[]>([emptyTopic(), emptyTopic(), emptyTopic()]);
+  const [thumbnailName, setThumbnailName] = useState("");
+  const [dragging, setDragging] = useState(false);
+
+  const [topics, setTopics] = useState<TopicForm[]>([emptyTopic()]);
 
   const input =
     theme === "dark"
@@ -65,12 +88,45 @@ export default function AddCourse() {
   const setField = (k: string, v: string | number) =>
     setCourse((c) => ({ ...c, [k]: v }));
 
-  const setLesson = (ti: number, li: number, k: string, v: string) =>
-    setTopics((prev) => {
-      const next = structuredClone(prev);
-      (next[ti].lessons[li] as any)[k] = v;
-      return next;
-    });
+  const readFileAsDataUrl = (file: File) => {
+    if (!file.type.startsWith("image/")) {
+      toast.error("Please select an image file.");
+      return;
+    }
+    if (file.size > 3 * 1024 * 1024) {
+      toast.error("Image must be smaller than 3MB.");
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      setField("thumbnail", String(reader.result || ""));
+      setThumbnailName(file.name);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const onDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setDragging(false);
+    const file = e.dataTransfer.files?.[0];
+    if (file) readFileAsDataUrl(file);
+  };
+
+  const onFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) readFileAsDataUrl(file);
+  };
+
+  const clearThumbnail = () => {
+    setField("thumbnail", "");
+    setThumbnailName("");
+  };
+
+  const addTopic = () =>
+    setTopics((prev) => [...prev, emptyTopic()]);
+
+  const removeTopic = (ti: number) =>
+    setTopics((prev) => (prev.length > 1 ? prev.filter((_, i) => i !== ti) : prev));
 
   const setTopicTitle = (ti: number, v: string) =>
     setTopics((prev) => {
@@ -79,10 +135,33 @@ export default function AddCourse() {
       return next;
     });
 
+  const addLesson = (ti: number) =>
+    setTopics((prev) => {
+      const next = structuredClone(prev);
+      next[ti].lessons.push(emptyLesson());
+      return next;
+    });
+
+  const removeLesson = (ti: number, li: number) =>
+    setTopics((prev) => {
+      const next = structuredClone(prev);
+      if (next[ti].lessons.length > 1) {
+        next[ti].lessons.splice(li, 1);
+      }
+      return next;
+    });
+
+  const setLesson = (ti: number, li: number, k: keyof LessonForm, v: string) =>
+    setTopics((prev) => {
+      const next = structuredClone(prev);
+      next[ti].lessons[li][k] = v;
+      return next;
+    });
+
   const buildTopic = (t: TopicForm, index: number): Topic => {
     const syllabus = {} as Topic["lesson_syllabus"];
-    LESSON_KEYS.forEach((key, i) => {
-      (syllabus as any)[key] = t.lessons[i]?.title || "";
+    t.lessons.forEach((l, i) => {
+      (syllabus as any)[`lesson_${i + 1}`] = l.title || "";
     });
     return {
       title: t.title || `Section ${index + 1}`,
@@ -99,21 +178,27 @@ export default function AddCourse() {
 
   const canSubmit = useMemo(() => {
     if (!course.title.trim() || !course.description.trim()) return false;
-    
+
+    if (!isMeetUrl(course.previewMeetUrl)) return false;
+
     const first = topics[0]?.lessons[0];
-    return Boolean(first?.title && first?.date && first?.start && first?.end);
+    if (!(first?.title && first?.date && first?.start && first?.end)) return false;
+
+    if (!isMeetUrl(first.meetUrl)) return false;
+
+    return true;
   }, [course, topics]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!canSubmit) {
-      toast.error("Please fill course title, description and at least the first lesson.");
+      toast.error(
+        "Please fill title, description, a valid Google Meet preview link and at least the first lesson (with a valid Meet link)."
+      );
       return;
     }
     setSaving(true);
     try {
-      const [t1, t2, t3] = topics;
-
       const coursePayload: Omit<Course, "id"> = {
         avatar: user?.avatar || "",
         title: course.title,
@@ -125,8 +210,8 @@ export default function AddCourse() {
         instructorName: `${user?.firstName ?? ""} ${user?.lastName ?? ""}`.trim() || "Instructor",
         aboutInstructor: course.aboutInstructor || "",
         rating: "0",
-        previewVideoProvider: course.previewVideoProvider,
-        previewVideoId: course.previewVideoId,
+        previewVideoProvider: "meet",
+        previewVideoId: course.previewMeetUrl, 
         businessCategory: course.businessCategory || "General",
         testimonial: "",
         studentsCount: "0",
@@ -137,11 +222,12 @@ export default function AddCourse() {
       };
 
       const syllabusPayload: Omit<Syllabus, "id"> = {
-        previewCourse: course.previewVideoId || "",
-        topic_1: buildTopic(t1, 0),
-        topic_2: buildTopic(t2, 1),
-        topic_3: buildTopic(t3, 2),
-      };
+        previewCourse: course.previewMeetUrl, 
+      } as Omit<Syllabus, "id">;
+
+      topics.forEach((t, i) => {
+        (syllabusPayload as any)[`topic_${i + 1}`] = buildTopic(t, i);
+      });
 
       const created = await createCourseWithSyllabus(coursePayload, syllabusPayload);
       toast.success("Course published successfully!");
@@ -220,14 +306,56 @@ export default function AddCourse() {
               <label className="text-sm font-semibold">Total time (hours)</label>
               <input type="number" min={0} className={inputCls} value={course.totalTime} onChange={(e) => setField("totalTime", Number(e.target.value))} />
             </div>
-            <div>
-              <label className="text-sm font-semibold">Thumbnail URL</label>
-              <input className={inputCls} value={course.thumbnail} onChange={(e) => setField("thumbnail", e.target.value)} placeholder="https://..." />
+
+            {/* Thumbnail: drag & drop + file upload */}
+            <div className="sm:col-span-2">
+              <label className="text-sm font-semibold">Thumbnail</label>
+              <div
+                onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
+                onDragLeave={() => setDragging(false)}
+                onDrop={onDrop}
+                className={`mt-1 flex flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed px-4 py-6 text-center transition
+                  ${dragging ? "border-blue-500 bg-blue-500/10" : theme === "dark" ? "border-gray-600" : "border-gray-300"}`}
+              >
+                {course.thumbnail ? (
+                  <div className="flex flex-col items-center gap-3">
+                    <img src={course.thumbnail} alt="thumbnail preview" className="h-32 w-auto rounded-lg object-cover" />
+                    <div className="flex items-center gap-3 text-sm">
+                      <span className="text-gray-500">{thumbnailName || "Selected image"}</span>
+                      <button type="button" onClick={clearThumbnail} className="text-red-500 hover:underline">
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <p className="text-sm text-gray-500">
+                      Drag & drop an image here, or
+                    </p>
+                    <label className="cursor-pointer rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700">
+                      Choose file
+                      <input type="file" accept="image/*" className="hidden" onChange={onFileInput} />
+                    </label>
+                    <p className="text-xs text-gray-400">PNG/JPG, up to 3MB</p>
+                  </>
+                )}
+              </div>
             </div>
-            <div>
-              <label className="text-sm font-semibold">YouTube preview video ID</label>
-              <input className={inputCls} value={course.previewVideoId} onChange={(e) => setField("previewVideoId", e.target.value)} placeholder="e.g. dQw4w9WgXcQ" />
+
+            {/* Preview via Google Meet */}
+            <div className="sm:col-span-2">
+              <label className="text-sm font-semibold">Preview Google Meet link</label>
+              <input
+                className={inputCls}
+                value={course.previewMeetUrl}
+                onChange={(e) => setField("previewMeetUrl", e.target.value)}
+                placeholder="https://meet.google.com/abc-defg-hij"
+              />
+              {course.previewMeetUrl && !isMeetUrl(course.previewMeetUrl) && (
+                <p className="mt-1 text-xs text-red-500">Must be a valid meet.google.com link.</p>
+              )}
             </div>
+
             <div>
               <label className="text-sm font-semibold">Start date</label>
               <input type="date" className={inputCls} value={course.startDate} onChange={(e) => setField("startDate", e.target.value)} />
@@ -248,17 +376,41 @@ export default function AddCourse() {
           <div key={ti} className={`mt-6 rounded-2xl p-6 shadow-sm ${theme === "dark" ? "bg-[#313131]" : "bg-white"}`}>
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-lg font-semibold">Section {ti + 1}</h2>
+              {topics.length > 1 && (
+                <button type="button" onClick={() => removeTopic(ti)} className="text-sm text-red-500 hover:underline">
+                  Remove section
+                </button>
+              )}
             </div>
             <input className={inputCls} value={topic.title} onChange={(e) => setTopicTitle(ti, e.target.value)} placeholder={`Section ${ti + 1} title`} />
 
             <div className="mt-4 space-y-4">
               {topic.lessons.map((lesson, li) => (
                 <div key={li} className={`rounded-xl border p-4 ${theme === "dark" ? "border-gray-700" : "border-gray-200"}`}>
-                  <p className="mb-2 text-xs font-semibold uppercase text-indigo-500">Lesson {li + 1}</p>
+                  <div className="mb-2 flex items-center justify-between">
+                    <p className="text-xs font-semibold uppercase text-indigo-500">Lesson {li + 1}</p>
+                    {topic.lessons.length > 1 && (
+                      <button type="button" onClick={() => removeLesson(ti, li)} className="text-xs text-red-500 hover:underline">
+                        Remove lesson
+                      </button>
+                    )}
+                  </div>
                   <div className="grid gap-3 sm:grid-cols-2">
                     <div className="sm:col-span-2">
                       <label className="text-sm font-semibold">Lesson title</label>
                       <input className={inputCls} value={lesson.title} onChange={(e) => setLesson(ti, li, "title", e.target.value)} placeholder="Introduction to..." />
+                    </div>
+                    <div className="sm:col-span-2">
+                      <label className="text-sm font-semibold">Google Meet link</label>
+                      <input
+                        className={inputCls}
+                        value={lesson.meetUrl}
+                        onChange={(e) => setLesson(ti, li, "meetUrl", e.target.value)}
+                        placeholder="https://meet.google.com/abc-defg-hij"
+                      />
+                      {lesson.meetUrl && !isMeetUrl(lesson.meetUrl) && (
+                        <p className="mt-1 text-xs text-red-500">Must be a valid meet.google.com link.</p>
+                      )}
                     </div>
                     <div>
                       <label className="text-sm font-semibold">Date</label>
@@ -278,8 +430,25 @@ export default function AddCourse() {
                 </div>
               ))}
             </div>
+
+            <button
+              type="button"
+              onClick={() => addLesson(ti)}
+              className="mt-4 rounded-lg border border-indigo-400 px-4 py-2 text-sm font-medium text-indigo-500 transition hover:bg-indigo-500/10"
+            >
+              + Add lesson
+            </button>
           </div>
         ))}
+
+        {/* Add section */}
+        <button
+          type="button"
+          onClick={addTopic}
+          className="mt-6 w-full rounded-xl border-2 border-dashed border-blue-400 px-4 py-3 font-semibold text-blue-500 transition hover:bg-blue-500/10"
+        >
+          + Add section
+        </button>
 
         <div className="mt-8 flex gap-3">
           <button type="submit" disabled={saving || !canSubmit} className="rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700 disabled:opacity-50">

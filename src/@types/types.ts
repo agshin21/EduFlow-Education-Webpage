@@ -109,6 +109,7 @@ export interface LessonGroup {
   lesson_1: string;
   lesson_2: string;
   lesson_3: string;
+  [key: `lesson_${number}`]: string;
 }
 
 export interface Topic {
@@ -124,6 +125,7 @@ export interface Syllabus {
   topic_1: Topic;
   topic_2: Topic;
   topic_3: Topic;
+  [key: `topic_${number}`]: Topic | undefined;
 }
 
 export type MeetingProvider = "meet";
