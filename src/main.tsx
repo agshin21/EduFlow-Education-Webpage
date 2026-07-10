@@ -3,6 +3,7 @@ import './index.css'
 import { BrowserRouter, Route, Routes } from 'react-router'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
+import AddCourse from './pages/Addcourse.tsx'
 import Cart from './pages/Cart.tsx'
 import Courses from './pages/Courses.tsx'
 import Dashboard from './pages/Dashboard.tsx'
@@ -47,6 +48,7 @@ function Root() {
             />
           <NavbarC />
           <Routes>
+            <Route path="/add-course" element={<AddCourse />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/learn/:id" element={<Learning />} />
             <Route path="/my-lessons" element={<MyCourses />} />

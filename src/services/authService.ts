@@ -1,3 +1,4 @@
+import type { UserRole } from "../@types/types";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { usePurchased } from "../store/purchasedStore";
@@ -11,6 +12,7 @@ export interface RegisterData {
   lastName: string;
   email: string;
   password: string;
+  role?: UserRole; 
 }
 
 export interface UpdateProfileData {
@@ -44,12 +46,7 @@ const writeUser = (user: any) => {
   window.dispatchEvent(new Event("auth-change"));
 };
 
-export const registerUser = async (data: {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-}) => {
+export const registerUser = async (data: RegisterData) => {
   const allUsers = await api.get("/users");
   const existing = allUsers.data?.find((u: any) => u.email === data.email)
   if (existing){ 
@@ -57,7 +54,13 @@ export const registerUser = async (data: {
     throw new Error("This email already exists");
   }
 
-  const res = await api.post("/users", data);
+  const payload = {
+    ...data,
+    role: data.role ?? "student",
+    createdAt: new Date().toISOString()
+  }
+
+  const res = await api.post("/users", payload);
   return res.data;
 };
 
@@ -127,7 +130,6 @@ export const updateUser = async (
   }
 
   writeUser(updatedRemote);
-  // Force purchased store to rehydrate under the (possibly unchanged) user id
   usePurchased.persist.rehydrate();
 
   return updatedRemote;
@@ -151,3 +153,8 @@ export const uploadAvatar = async (file: File): Promise<string> => {
     reader.readAsDataURL(file);
   });
 };
+
+export const isTeacher = (): boolean => {
+  const u = readUser()
+  return u?.role === "teacher"
+}

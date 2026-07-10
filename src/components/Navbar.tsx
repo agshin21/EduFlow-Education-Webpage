@@ -102,6 +102,19 @@ function NavbarC() {
           >
             Dashboard
           </Link>
+          
+          {user.role === "teacher" && (
+            <Link
+              to="/add-course"
+              onClick={() => setMenuOpen(false)}
+              className={`block px-4 py-2.5 text-sm font-medium transition ${
+                theme === "dark" ? "hover:bg-gray-800" : "hover:bg-gray-100"
+              }`}
+            >
+              Add Course
+            </Link>
+          )}
+
           <button
             type="button"
             onClick={handleLogout}

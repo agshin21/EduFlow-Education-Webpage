@@ -12,7 +12,8 @@ const Register: React.FC = () => {
     firstName: '',
     lastName: '',
     email: '',
-    password: ''
+    password: '',
+    role: "student"
   });
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -122,6 +123,41 @@ const Register: React.FC = () => {
                       />
                     </div>
                   </div>
+
+                  <div className="mt-2">
+                    <label className="block text-md font-semibold uppercase tracking-wider">
+                      Account type
+                    </label>
+                    <div className="mt-2 grid grid-cols-2 gap-3">
+                      <button
+                        type="button"
+                        onClick={() => setFormData({ ...formData, role: 'student' })}
+                        className={`rounded-lg border px-4 py-2.5 text-sm font-semibold transition ${
+                          formData.role === 'student'
+                            ? 'border-blue-600 bg-blue-600 text-white'
+                            : theme === 'dark'
+                            ? 'border-gray-600 bg-gray-800/50 text-gray-200'
+                            : 'border-gray-300 bg-white/50 text-gray-700'
+                        }`}
+                      >
+                        🎓 Student
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setFormData({ ...formData, role: 'teacher' })}
+                        className={`rounded-lg border px-4 py-2.5 text-sm font-semibold transition ${
+                          formData.role === 'teacher'
+                            ? 'border-blue-600 bg-blue-600 text-white'
+                            : theme === 'dark'
+                            ? 'border-gray-600 bg-gray-800/50 text-gray-200'
+                            : 'border-gray-300 bg-white/50 text-gray-700'
+                        }`}
+                      >
+                        👨‍🏫 Teacher
+                      </button>
+                    </div>
+                  </div>
+
     
                   <button
                     type="submit"

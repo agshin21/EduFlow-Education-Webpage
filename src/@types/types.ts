@@ -30,6 +30,20 @@ export interface Course {
    previewCourse?: string;
 }
 
+export type UserRole = "student" | "teacher";
+
+export interface AppUser {
+  id?: string | number;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  password?: string;
+  username?: string;
+  avatar?: string;
+  role?: UserRole;        
+  createdAt?: string;
+}
+
 export interface Review {
     id?: number | string,
     totalReviews: string
