@@ -246,7 +246,7 @@ function Home() {
             Explore top-tier categories
           </h2>
           
-        <img src="/academic-cap.png" className="absolute size-30 top-6 -rotate-15 hidden lg:block" alt="" />
+        <img src="/academic-cap.png" className="absolute size-30 opacity-50 top-6 -rotate-15 hidden lg:block" alt="" />
           
           <p className={`${theme === "dark" ? "text-center mb-8 text-[#ababab] transition" : "text-center mb-8 transition"}`}>
             Diverse learning paths curated by industry experts to help you achieve your career goals.
