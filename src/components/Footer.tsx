@@ -8,7 +8,7 @@ function Footer() {
   return (
     <>
       <footer className={`${theme === 'dark' 
-      ? 'bg-[#222121] py-12 lg:py-9 transition duration-500 shadow-lg' 
+      ? 'bg-[#2e2d2d] py-12 lg:py-9 transition duration-500 shadow-lg' 
       : 'bg-[#e7edff] py-12 lg:py-9 transition duration-500 border-black/20 border-t'}`}>
         <div className="grid lg:grid-cols-2 items-center gap-10 max-w-7xl mx-auto px-6">
           <div className="flex flex-col gap-4">

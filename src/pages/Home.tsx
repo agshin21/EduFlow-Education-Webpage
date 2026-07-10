@@ -178,7 +178,7 @@ function Home() {
     );
 
   return (
-    <div className={`${theme === "dark" ? "bg-[#2f2c2c] transition duration-500" : "bg-[#e8eaf9]/40 transition duration-500"}`}>
+    <div className={`${theme === "dark" ? "bg-[#2c2a2a] transition duration-500" : "bg-[#e8eaf9]/40 transition duration-500"}`}>
 
       {/* Hero */}
       <section
@@ -334,7 +334,7 @@ function Home() {
       {/* Testimonial */}
       <section
         ref={testimonialRef}
-        className={`${theme === "dark" ? "py-20 bg-[#1c1e1f] transition duration-500 w-full grid gap-20 overflow-x-hidden" : "py-20 bg-[#d5e3fc] transition duration-500 w-full grid gap-20 overflow-x-hidden"}`}
+        className={`${theme === "dark" ? "py-20 bg-[#322e2e] transition duration-500 w-full grid gap-20 overflow-x-hidden" : "py-20 bg-[#d5e3fc] transition duration-500 w-full grid gap-20 overflow-x-hidden"}`}
       >
         <div className="px-4 sm:px-6 lg:px-16 max-w-7xl xl:mx-auto flex flex-col lg:flex-row lg:gap-4 xl:gap-20">
           <div className="flex flex-col items-center lg:items-start gap-4 text-center lg:text-left">
