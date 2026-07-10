@@ -1,6 +1,6 @@
 # React + TypeScript + Vite
 
-Site link: https://eduflow-course.netlify.app/
+Site link: https://6a50fd7261cb750008bef51c--eduflow-course.netlify.app/register
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
