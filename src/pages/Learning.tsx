@@ -280,6 +280,7 @@ export default function Learning() {
                 <div className="overflow-hidden rounded-2xl bg-black shadow-sm">
                   <div className="aspect-video w-full">
                     {course.previewVideoProvider === "youtube" && course.previewVideoId ? (
+                      // <div></div>
                       <iframe
                         key={activeLesson?.id}
                         className="h-full w-full"
@@ -314,21 +315,14 @@ export default function Learning() {
                     )}
 
                     <div className="mt-5 flex flex-wrap items-center gap-3">
-                      <button
-                        onClick={() => {
-                          if (!isActiveDone) toggleLesson(course.id as string, activeLesson.id);
-                          if (activeIndex < lessons.length - 1) goTo(activeIndex + 1);
-                        }}
-                        className={`rounded-xl px-4 py-2.5 text-sm font-medium transition active:scale-[0.98] ${
-                          isActiveDone ? "bg-emerald-100 text-emerald-700 hover:bg-emerald-200" : "bg-indigo-600 text-white hover:bg-indigo-700"
-                        }`}
-                      >
-                        {isActiveDone ? (activeIndex < lessons.length - 1 ? "Completed · Next" : "Completed") : (activeIndex < lessons.length - 1 ? "Complete & continue" : "Mark as complete")}
-                      </button>
                       <button onClick={() => goTo(activeIndex - 1)} disabled={activeIndex <= 0} className={`rounded-xl flex items-center gap-2 ${theme === 'dark' ? 'text-[#e1dede]/80' : 'border border-gray-200 text-gray-700'} px-4 py-2.5 text-sm font-medium transition hover:bg-gray-50 disabled:opacity-40`}>
                         <IoIosArrowBack /> Previous
                       </button>
-                      <button onClick={() => goTo(activeIndex + 1)} disabled={activeIndex >= lessons.length - 1} className={`rounded-xl flex items-center gap-2 ${theme === 'dark' ? 'text-[#e1dede]/80' : 'border border-gray-200 text-gray-700'} px-4 py-2.5 text-sm font-medium transition hover:bg-gray-50 disabled:opacity-40`}>
+                      
+                      <button onClick={() => {
+                          if (!isActiveDone) toggleLesson(course.id as string, activeLesson.id);
+                          if (activeIndex < lessons.length - 1) goTo(activeIndex + 1);
+                        }} disabled={activeIndex >= lessons.length - 1} className={`rounded-xl flex items-center gap-2 ${theme === 'dark' ? 'text-[#e1dede]/80' : 'border border-gray-200 text-gray-700'} px-4 py-2.5 text-sm font-medium transition hover:bg-gray-50 disabled:opacity-40`}>
                         Next <IoIosArrowForward />
                       </button>
                     </div>

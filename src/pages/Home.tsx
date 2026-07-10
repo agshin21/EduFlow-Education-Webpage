@@ -4,8 +4,8 @@ import "swiper/css/navigation";
 import { IoCode, IoStatsChart } from "react-icons/io5";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { Link, useLocation } from "react-router";
-import { MdOutlineColorLens, MdWorkOutline } from "react-icons/md";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { TbBrandReact, TbShoppingBagCheck } from "react-icons/tb";
 import { useEffect, useRef, useState } from "react";
 
 import Accordion from "../components/Accordion";
@@ -18,9 +18,9 @@ import Footer from "../components/Footer";
 import { GoArrowRight } from "react-icons/go";
 import { HiAcademicCap } from "react-icons/hi2";
 import { LuChartNoAxesCombined } from "react-icons/lu";
+import { MdWorkOutline } from "react-icons/md";
 import { Navigation } from "swiper/modules";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { TbWorld } from "react-icons/tb";
 import axios from "axios";
 import { faqList } from "../App";
 import gsap from "gsap";
@@ -237,56 +237,61 @@ function Home() {
       {/* Categories */}
       <section
         ref={categoriesRef}
-        className={`${theme === "dark" ? "py-20 bg-[#242424] transition duration-500" : "py-20 bg-[#cfdeff]/60 transition duration-500"}`}
+        className={`relative ${theme === "dark" ? "py-20 bg-[#242424] transition duration-500" : "py-20 bg-[#cfdeff]/60 transition duration-500"}`}
       >
-        <div className="max-w-7xl mx-auto px-6 grid items-center justify-center">
-          <h2 className={`${theme === "dark" ? "text-4xl font-bold text-center mb-6 text-[#cccccc] transition" : "text-4xl font-bold text-center mb-6 transition"}`}>
+       
+        <div className="bg-[url('/confetti.png')] bg-center opacity-30 absolute inset-0 zoom-40 bg-no-repeat"/>
+        <div className="max-w-7xl relative mx-auto px-6 grid items-center justify-center">
+          <h2 className={`flex flex-col items-center ${theme === "dark" ? "text-4xl font-bold text-center mb-6 text-[#cccccc] transition" : "text-4xl font-bold text-center mb-6 transition"}`}>
             Explore top-tier categories
           </h2>
+          
+        <img src="/academic-cap.png" className="absolute size-30 top-6 -rotate-15 hidden lg:block" alt="" />
+          
           <p className={`${theme === "dark" ? "text-center mb-8 text-[#ababab] transition" : "text-center mb-8 transition"}`}>
             Diverse learning paths curated by industry experts to help you achieve your career goals.
           </p>
           <div className="grid lg:grid-cols-12 gap-6 lg:auto-rows-[170px]">
             <div className={`px-6 py-13 lg:py-18 rounded-2xl bg-[#005bbf] shadow-md shadow-indigo-400 lg:col-span-4 lg:row-span-2 text-white/80 hover:text-white transition duration-500 group`}>
-              <IoCode className="text-3xl mb-20 group-hover:text-white" />
-              <h2 className="font-semibold text-2xl mb-4">Development</h2>
-              <p className="mb-3">Master Full-Stack, Mobile, and Cloud Computing.</p>
+              <IoCode className="text-4xl mb-20 group-hover:text-white" />
+              <h2 className="font-semibold text-2xl mb-4">{courses[1]?.businessCategory}</h2>
+              <p className="mb-3">{courses[1]?.description}</p>
               <Link className="flex items-center gap-2" to={routes[1]?.href}>
                 Browse {routes[1]?.title} <GoArrowRight />
               </Link>
             </div>
-            <div className={`${theme === "dark" ? "bg-[#313131]/80 rounded-2xl lg:col-span-4 flex gap-3 items-center justify-start h-45 px-5 lg:px-15 group text-white transition duration-500 shadow-md shadow-indigo-400" : "bg-white rounded-2xl lg:col-span-4 flex gap-3 items-center justify-start h-45 px-5 lg:px-15 group transition duration-500 shadow-md shadow-slate-500"}`}>
-              <div className="bg-[#68fadd] text-3xl rounded-2xl text-[#357e70] p-3">
-                <MdOutlineColorLens />
+            <div className={`${theme === "dark" ? "bg-[#313131]/80 rounded-2xl lg:col-span-4 flex gap-3 items-center justify-start h-45 px-5 group text-white transition duration-500 shadow-md shadow-indigo-400" : "bg-white rounded-2xl lg:col-span-4 flex gap-3 items-center justify-start h-45 px-5 group transition duration-500 shadow-md shadow-slate-500"}`}>
+              <div className="bg-[#68fadd] text-4xl rounded-2xl text-[#357e70] p-3">
+                <TbShoppingBagCheck />
               </div>
               <div>
-                <h2 className="font-semibold text-xl">UI/UX Design</h2>
-                <p className="font-semibold text-blue-500">120+ Courses</p>
+                <h2 className="font-semibold text-2xl">{courses[4]?.businessCategory}</h2>
+                <p className={`font-semibold text-xs transition duration-500 ${theme === 'dark' ? 'text-white' : 'text-slate-900/60'}`}>{courses[4]?.description}</p>
               </div>
             </div>
-            <div className={`${theme === "dark" ? "bg-[#313131]/80 rounded-2xl lg:col-span-4 flex gap-3 items-center justify-start h-45 px-5 lg:px-15 group shadow-md shadow-indigo-400 text-white transition duration-500" : "bg-white rounded-2xl lg:col-span-4 flex gap-3 items-center justify-start h-45 px-5 lg:px-15 group shadow-md shadow-slate-500 transition duration-500"}`}>
-              <div className="bg-[#f9eee5] text-3xl rounded-2xl text-[#af7767] p-3">
+            <div className={`${theme === "dark" ? "bg-[#313131]/80 rounded-2xl lg:col-span-4 flex gap-3 items-center justify-start h-45 px-5 group shadow-md shadow-indigo-400 text-white transition duration-500" : "bg-white rounded-2xl lg:col-span-4 flex gap-3 items-center justify-start h-45 px-5 group shadow-md shadow-slate-500 transition duration-500"}`}>
+              <div className="bg-[#f9eee5] text-4xl rounded-2xl text-[#af7767] p-3">
                 <LuChartNoAxesCombined />
               </div>
               <div>
-                <h2 className="font-semibold text-xl">Data Science</h2>
-                <p className="font-semibold text-red-500">85+ Courses</p>
+                <h2 className="font-semibold text-2xl">{courses[7]?.businessCategory}</h2>
+                <p className={`font-semibold text-xs transition duration-500 ${theme === 'dark' ? 'text-white' : 'text-slate-900/60'}`}>{courses[7]?.description}</p>
               </div>
             </div>
-            <div className={`${theme === "dark" ? "bg-[#313131]/80 rounded-2xl lg:col-span-6 flex gap-3 items-center justify-start h-45 px-5 lg:px-15 group shadow-md shadow-indigo-400 text-white duration-500 transition" : "bg-white rounded-2xl lg:col-span-6 flex gap-3 items-center justify-start h-45 px-5 lg:px-15 group shadow-md shadow-slate-500 duration-500 transition"}`}>
-              <div className="bg-[#e8f1fd] text-3xl rounded-2xl text-[#005ec2] p-3">
-                <MdWorkOutline />
+            <div className={`${theme === "dark" ? "bg-[#313131]/80 rounded-2xl lg:col-span-6 flex gap-3 items-center justify-start h-45 px-5 group shadow-md shadow-indigo-400 text-white duration-500 transition" : "bg-white rounded-2xl lg:col-span-6 flex gap-3 items-center justify-start h-45 px-5 group shadow-md shadow-slate-500 duration-500 transition"}`}>
+              <div className="bg-[#e8f1fd] text-4xl rounded-2xl text-[#005ec2] p-3">
+                <TbBrandReact />
               </div>
               <div>
-                <h2 className="font-semibold text-xl">Business Strategy</h2>
-                <p className="font-semibold text-violet-800">240+ Courses available</p>
+                <h2 className="font-semibold text-2xl">{courses[5]?.businessCategory}</h2>
+                <p className={`font-semibold text-xs transition duration-500 ${theme === 'dark' ? 'text-white' : 'text-slate-900/60'}`}>{courses[5]?.description}</p>
               </div>
             </div>
             <div className={`bg-[#006b5c] rounded-2xl flex flex-row lg:flex-col lg:col-span-2 gap-3 shadow-indigo-400 shadow-md justify-start items-center lg:justify-center h-45 px-5 group duration-500 transition`}>
               <div className="text-4xl rounded-2xl text-white">
-                <TbWorld />
+                <MdWorkOutline />
               </div>
-              <h2 className="text-white text-md font-bold">Languages</h2>
+              <h2 className="text-white text-md font-bold">{courses[24]?.businessCategory}</h2>
             </div>
           </div>
         </div>
