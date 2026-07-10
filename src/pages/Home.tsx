@@ -178,7 +178,7 @@ function Home() {
     );
 
   return (
-    <div className={`${theme === "dark" ? "bg-[#2f2c2c] transition duration-500" : "bg-white transition duration-500"}`}>
+    <div className={`${theme === "dark" ? "bg-[#2f2c2c] transition duration-500" : "bg-[#e8eaf9]/40 transition duration-500"}`}>
 
       {/* Hero */}
       <section
@@ -246,7 +246,7 @@ function Home() {
             Explore top-tier categories
           </h2>
           
-        <img src="/academic-cap.png" className="absolute size-30 opacity-50 top-6 -rotate-15 hidden lg:block" alt="" />
+        <img src="/academic-cap.png" className="absolute size-30 opacity-50 top-6 -rotate-15" alt="" />
           
           <p className={`${theme === "dark" ? "text-center mb-8 text-[#ababab] transition" : "text-center mb-8 transition"}`}>
             Diverse learning paths curated by industry experts to help you achieve your career goals.
@@ -298,7 +298,7 @@ function Home() {
       </section>
 
       {/* Mentors */}
-      <section className={`relative bg-[url('bg-drop.jpg')] bg-no-repeat ${theme === "dark" ? "py-20 w-full grid justify-around gap-20 transition duration-500" : "py-20 w-full grid justify-around gap-20 transition duration-500"}`}>
+      <section className={`relative ${theme === "dark" ? "py-20 w-full grid justify-around bg-[#696767] gap-20 transition duration-500" : "py-20 w-full grid justify-around bg-[#c7d8fd] gap-20 transition duration-500"}`}>
         <div className={`absolute inset-0 transition duration-500 ${theme === 'dark' ? 'bg-black/70 backdrop-blur-md' : 'bg-transparent backdrop-blur-md'}`}/>
         <div ref={mentorsRef} className="flex flex-col lg:flex-row lg:justify-between items-center px-8 mt-14 gap-4">
           <div>
