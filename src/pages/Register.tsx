@@ -58,7 +58,7 @@ const Register: React.FC = () => {
               <div className="mx-auto w-full max-w-sm">
                 <h1 className="text-2xl lg:text-4xl font-bold">Welcome back</h1>
                 <p className={`mt-2 text-sm lg:text-lg ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
-                  Please enter your details to sign in.
+                  Please enter your details to sign up.
                 </p>
     
                 <form className=" space-y-6 pt-4" onSubmit={handleSubmit} noValidate>
@@ -163,14 +163,14 @@ const Register: React.FC = () => {
                     type="submit"
                     className="w-full rounded-lg bg-blue-700 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                   >
-                    Sign in
+                    Sign up
                   </button>
                 </form>
     
                 <p className={`mt-6 text-center text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
                   Already have an account?{' '}
                   <Link to={routes[3]?.href} className="font-semibold text-blue-600 hover:text-blue-500">
-                    Sign up
+                    Sign in
                   </Link>
                 </p>
               </div>
