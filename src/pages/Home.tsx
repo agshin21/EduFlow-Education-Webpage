@@ -298,14 +298,14 @@ function Home() {
       </section>
 
       {/* Mentors */}
-      <section className={`relative ${theme === "dark" ? "py-20 w-full grid justify-around bg-[#696767] gap-20 transition duration-500" : "py-20 w-full grid justify-around bg-[#c7d8fd] gap-20 transition duration-500"}`}>
-        <div className={`absolute inset-0 transition duration-500 ${theme === 'dark' ? 'bg-black/70 backdrop-blur-md' : 'bg-transparent backdrop-blur-md'}`}/>
+      <section className={`relative ${theme === "dark" ? "py-20 w-full grid justify-around bg-[#282426] gap-20 transition duration-500" : "py-20 w-full grid justify-around bg-[#9fbdff] gap-20 transition duration-500"}`}>
+        <div className="bg-[url('/world.jpg')] bg-center opacity-10 absolute inset-0 zoom-240 bg-no-repeat"/>
         <div ref={mentorsRef} className="flex flex-col lg:flex-row lg:justify-between items-center px-8 mt-14 gap-4">
           <div>
-            <h2 className={`${theme === "dark" ? "text-[#cccccc] text-2xl md:text-4xl xl:text-5xl text-center lg:text-left font-semibold mb-3 transition" : "text-2xl md:text-4xl xl:text-5xl text-center lg:text-left font-semibold mb-3 transition"}`}>
+            <h2 className={`font-medium sm:font-bold ${theme === "dark" ? "text-[#cccccc] text-3xl md:text-4xl xl:text-6xl text-center lg:text-left mb-3 transition" : "text-3xl md:text-4xl xl:text-6xl text-center lg:text-left mb-3 transition"}`}>
               Meet our world-class mentors
             </h2>
-            <p className={`${theme === "dark" ? "text-center lg:text-left text-base text-[#b9b6b6] font-semibold transition" : "text-center lg:text-left text-base font-semibold transition"}`}>
+            <p className={`${theme === "dark" ? "text-center lg:text-left text-xs sm:text-base text-[#b9b6b6] font-semibold transition" : "text-center lg:text-left text-xs sm:text-base font-semibold transition"}`}>
               Learn directly from the experts shaping the future of technology.
             </p>
           </div>
@@ -314,7 +314,7 @@ function Home() {
           {courses.slice(8, 12).map((c) => (
             <div
               key={c.id}
-              className={`mentor-card ${theme === "dark" ? "rounded-2xl bg-[#313131]/30 max-h-md h-full overflow-hidden shadow-md shadow-slate-500 transition duration-500 flex flex-col gap-2 items-start p-4" : "rounded-2xl bg-white/30 max-h-md h-full overflow-hidden shadow-md transition duration-500 flex flex-col gap-2 items-start p-4"}`}
+              className={`mentor-card backdrop-blur-xs ${theme === "dark" ? "rounded-2xl bg-[#313131]/30 max-h-md h-full overflow-hidden shadow-md shadow-slate-500 transition duration-500 flex flex-col gap-2 items-start p-4" : "rounded-2xl bg-white/30 max-h-md h-full overflow-hidden shadow-md transition duration-500 flex flex-col gap-2 items-start p-4"}`}
             >
               <img src={c.avatar} alt={c.instructorName} className="rounded-2xl" />
               <h2 className={`${theme === "dark" ? "text-3xl lg:text-2xl xl:text-3xl font-semibold text-white transition" : "text-3xl lg:text-2xl xl:text-3xl font-semibold transition"}`}>
@@ -334,7 +334,7 @@ function Home() {
       {/* Testimonial */}
       <section
         ref={testimonialRef}
-        className={`${theme === "dark" ? "py-20 bg-[#2d3033] transition duration-500 w-full grid gap-20 overflow-x-hidden" : "py-20 bg-[#d5e3fc] transition duration-500 w-full grid gap-20 overflow-x-hidden"}`}
+        className={`${theme === "dark" ? "py-20 bg-[#1c1e1f] transition duration-500 w-full grid gap-20 overflow-x-hidden" : "py-20 bg-[#d5e3fc] transition duration-500 w-full grid gap-20 overflow-x-hidden"}`}
       >
         <div className="px-4 sm:px-6 lg:px-16 max-w-7xl xl:mx-auto flex flex-col lg:flex-row lg:gap-4 xl:gap-20">
           <div className="flex flex-col items-center lg:items-start gap-4 text-center lg:text-left">
